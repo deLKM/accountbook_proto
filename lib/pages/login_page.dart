@@ -1,5 +1,17 @@
+// This file contains the implementation of the login page for the account book application.
+//
+// The login page allows users to authenticate themselves by entering their credentials.
+// It includes input fields for the username and password, and a button to submit the login form.
+// 
+// The login page also handles validation of the input fields and displays appropriate error messages
+// if the input is invalid.
+// 
+// Additionally, the login page may include options for password recovery and account creation.
+//
+// Author: Ching-Yu
+
 import 'package:flutter/material.dart';
-import '../util/proto_appbar.dart';
+import '../widgets/common/proto_appbar.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

@@ -1,3 +1,7 @@
+// This file provides a reusable AppBar widget with a customizable title.
+//
+// Author: Ching-Yu
+
 import 'package:flutter/material.dart';
 
 class ProtoAppBar extends StatelessWidget implements PreferredSizeWidget{

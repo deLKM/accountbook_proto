@@ -99,12 +99,14 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _buildHeader() {
+    final theme = Theme.of(context);
+
     return Column(
       children: [
         Icon(
           Icons.account_balance_wallet,
           size: 80,
-          color: Colors.blue,
+          color: theme.primaryColor,
         ),
         const SizedBox(height: 16),
       ],
@@ -112,6 +114,8 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _buildToggleButton() {
+    final theme = Theme.of(context);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -124,7 +128,7 @@ class _LoginPageState extends State<LoginPage> {
           child: Text(
             _isPasswordLogin ? 'Switch to SMS Login' : 'Switch to Password Login',
             style: TextStyle(
-              color: Colors.blue,
+              color: theme.primaryColor,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -219,6 +223,8 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _buildLoginButton() {
+    final theme = Theme.of(context);
+
     return Center(
       child: SizedBox(
         width: 150,
@@ -226,9 +232,9 @@ class _LoginPageState extends State<LoginPage> {
           onPressed: _isLoading ? null : _mockLogin, 
           style: FilledButton.styleFrom(
             padding: const EdgeInsets.symmetric(vertical: 16),
-            backgroundColor: Colors.blue,
+            backgroundColor: theme.primaryColor,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(40),
+              borderRadius: BorderRadius.circular(8),
             ),
           ),
           child: _isLoading 

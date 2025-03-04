@@ -12,14 +12,14 @@ class ProtoAppBar extends StatelessWidget implements PreferredSizeWidget{
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    
     return AppBar(
       title: Text(
         title,
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-        ),
+        style: theme.appBarTheme.titleTextStyle,
       ),
-      backgroundColor: Colors.blue,
+      backgroundColor: theme.appBarTheme.backgroundColor,
     );
   }
 

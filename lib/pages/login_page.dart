@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../util/proto_appbar.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -41,16 +42,11 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
+    var screenWidth = screenSize.width;
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Log In',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        backgroundColor: Colors.blue,
-      ),
+      appBar: ProtoAppBar(title: 'Account Book Proto'),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Form(
@@ -66,11 +62,11 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 40),
               
               // 电话号码
-              _buildPhoneField(),
+              _buildPhoneField(screenWidth * 0.8),
               const SizedBox(height: 40),
 
-              // 切换密码登陆还是短信验证码登录
-              _isPasswordLogin ? _buildPasswordField() : _buildCodeField(),
+              // 切换密码登陆/短信验证码登录
+              _isPasswordLogin ? _buildPasswordField(screenWidth * 0.8) : _buildCodeField(screenWidth * 0.8),
               const SizedBox(height: 40),
 
               // 登录按钮
@@ -81,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
               _buildHelperButtons(),
               const SizedBox(height: 40),
 
-              //
+              // 第三方登录
               _buildSocialLogin(),
             ],
           ),
@@ -125,94 +121,117 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _buildPhoneField() {
-    return TextFormField(
-      controller: _phoneController,
-      decoration: const InputDecoration(
-        labelText: 'Phone Number',
-        prefixIcon: Icon(Icons.phone_iphone_rounded),
-        hintText: 'Please enter your 11-digit phone number',
-      ),
-      validator: (value) {
-        if (value?.isEmpty ?? true) return 'Please enter your phone number';
-        if (!RegExp(r'^1[3-9]\d{9}$').hasMatch(value!)) return 'Wrong format';
-        return null;
-      },
-    );
-  }
-
-  Widget _buildPasswordField() {
-    return TextFormField(
-      controller: _passwordController,
-      obscureText: !_showPassword,
-      decoration: InputDecoration(
-        labelText: 'Password',
-        prefixIcon: Icon(Icons.lock_rounded),
-        suffixIcon: IconButton(
-          onPressed: () {
-            setState(() {
-              _showPassword = !_showPassword;
-            });
-          }, 
-          icon: Icon(_showPassword 
-          ? Icons.visibility_off_rounded
-          : Icons.visibility_rounded
+  Widget _buildPhoneField(double width) {
+    return Center(
+      child: SizedBox(
+        width: width,
+        child: TextFormField(
+          controller: _phoneController,
+          decoration: const InputDecoration(
+            labelText: 'Phone Number',
+            prefixIcon: Icon(Icons.phone_iphone_rounded),
+            hintText: 'Please enter your 11-digit phone number',
           ),
+          validator: (value) {
+            if (value?.isEmpty ?? true) return 'Please enter your phone number';
+            if (!RegExp(r'^1[3-9]\d{9}$').hasMatch(value!)) return 'Wrong format';
+            return null;
+          },
         ),
       ),
-      validator: (value) {
-        if (value?.isEmpty ?? true) return 'Please enter your Password';
-        if (value!.length < 6) return 'At least 6-digit Password is needed';
-        return null;
-      },
     );
   }
 
-  Widget _buildCodeField() {
-    return Row(
-      children: [
-        Expanded(
-          child: TextFormField(
-            controller: _codeController,
-            decoration: const InputDecoration(
-              labelText: 'CAPTCHA',
-              prefixIcon: Icon(Icons.sms_rounded),
-              hintText: 'Please enter 6-digit CAPTCHA'
+  Widget _buildPasswordField(double width) {
+    return Center(
+      child: SizedBox(
+        width: width, 
+        child: TextFormField(
+          controller: _passwordController,
+          obscureText: !_showPassword,
+          decoration: InputDecoration(
+            labelText: 'Password',
+            prefixIcon: Icon(Icons.lock_rounded),
+            suffixIcon: IconButton(
+              onPressed: () {
+                setState(() {
+                  _showPassword = !_showPassword;
+                });
+              }, 
+              icon: Icon(_showPassword 
+              ? Icons.visibility_off_rounded
+              : Icons.visibility_rounded
+              ),
             ),
-            validator: (value) {
-              if (value?.isEmpty ?? true) return 'Please enter the CAPTCHA';
-              if (value!.length != 6) return 'At least 6-digit CAPTCHA is needed';
-              return null;
-            },
           ),
+          validator: (value) {
+            if (value?.isEmpty ?? true) return 'Please enter your Password';
+            if (value!.length < 6) return 'At least 6-digit Password is needed';
+            return null;
+          },
         ),
-        const SizedBox(width: 12),
-        OutlinedButton(
-          onPressed: () {}, 
-          child: const Text('Get the CAPTCHA'),
+      ),
+    );
+  }
+
+  Widget _buildCodeField(double width) {
+    return Center(
+      child: SizedBox(
+        width: width, 
+        child: Row(
+          children: [
+            Expanded(
+              child: TextFormField(
+                controller: _codeController,
+                decoration: const InputDecoration(
+                  labelText: 'CAPTCHA',
+                  prefixIcon: Icon(Icons.sms_rounded),
+                  hintText: 'Please enter 6-digit CAPTCHA'
+                ),
+                validator: (value) {
+                  if (value?.isEmpty ?? true) return 'Please enter the CAPTCHA';
+                  if (value!.length != 6) return 'At least 6-digit CAPTCHA is needed';
+                  return null;
+                },
+              ),
+            ),
+            const SizedBox(width: 12),
+            OutlinedButton(
+              onPressed: () {}, 
+              child: const Text('Get the CAPTCHA'),
+            ),
+          ],
         ),
-      ],
+      ),
     );
   }
 
   Widget _buildLoginButton() {
-    return FilledButton(
-      onPressed: _isLoading ? null : _mockLogin, 
-      style: FilledButton.styleFrom(
-        padding: const EdgeInsets.symmetric(vertical: 16),
-        backgroundColor: Colors.blue,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
+    return Center(
+      child: SizedBox(
+        width: 150,
+        child: FilledButton(
+          onPressed: _isLoading ? null : _mockLogin, 
+          style: FilledButton.styleFrom(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            backgroundColor: Colors.blue,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(40),
+            ),
+          ),
+          child: _isLoading 
+            ? const SizedBox(
+              child: CircularProgressIndicator(strokeWidth: 2),
+              )
+            : const Text(
+              'Log In',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
         ),
       ),
-      child: _isLoading 
-        ? const SizedBox(
-          child: CircularProgressIndicator(strokeWidth: 2),
-          )
-        : const Text(
-          'Log In',
-          style: TextStyle(fontSize: 16),
-        ),
     );
   }
 

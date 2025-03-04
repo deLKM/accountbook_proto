@@ -26,7 +26,42 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: IndexedStack(
+        index: _selectedIndex,
+        children: _pages,
+      ),
+      bottomNavigationBar: _buildBottomNavBar(),
+    );
+  }
 
+  Widget _buildBottomNavBar() {
+    return BottomNavigationBar(
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home), 
+          label: 'Detail',
+          backgroundColor: Colors.blue,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.list), 
+          label: 'Plan',
+          backgroundColor: Colors.blue,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.pie_chart), 
+          label: 'Account',
+          backgroundColor: Colors.blue,
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.person), 
+          label: 'Profile',
+          backgroundColor: Colors.blue,
+        ),
+      ],
+      currentIndex: _selectedIndex,
+      onTap: (index) => setState(() {
+        _selectedIndex = index;
+      }),
     );
   }
 }

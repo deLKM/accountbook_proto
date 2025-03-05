@@ -36,40 +36,36 @@ class _MainPageState extends State<MainPage> {
   Widget _buildBottomNavBar() {
     final theme = Theme.of(context);
 
-    return BottomAppBar(
-      shape: const CircularNotchedRectangle(),
-      color: theme.primaryColor,
-      notchMargin: 3.0,
-      height: 65,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          _buildNavItem(Icons.home, 0),
-          _buildNavItem(Icons.list, 1),
-          _buildNavItem(Icons.paste_rounded, 2),
-          _buildNavItem(Icons.person, 3),
-        ],
-      ),
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      backgroundColor: theme.primaryColor,
+      selectedItemColor: theme.primaryColorDark,
+      unselectedItemColor: theme.scaffoldBackgroundColor,
+      currentIndex: _selectedIndex,
+      onTap: _onItemTapped,
+      iconSize: 20,
+      selectedIconTheme: IconThemeData(size: 20),
+      unselectedIconTheme: IconThemeData(size: 20),
+      selectedFontSize: 8, 
+      unselectedFontSize: 8,
+      items: [
+      _buildNavItem(Icons.home, 0, 'HOME'),
+      _buildNavItem(Icons.list, 1, 'Plan'),
+      _buildNavItem(Icons.paste_rounded, 2, 'ACCOUNT'),
+      _buildNavItem(Icons.person, 3, 'PROFILE'),
+      ],
     );
   }
 
-  Widget _buildNavItem(icon, int? index) {
+  BottomNavigationBarItem _buildNavItem(IconData icon, int index, String label) {
     final theme = Theme.of(context);
 
-    return IconButton(
+    return BottomNavigationBarItem(
       icon: Icon(icon, size: 20),
-      color:
-          _selectedIndex == index
-              ? theme.primaryColorDark
-              : theme.scaffoldBackgroundColor,
-      onPressed: () => _onItemTapped(index),
-      splashColor: Colors.transparent,
-      highlightColor: Colors.transparent,
-      hoverColor: Colors.transparent,
-      enableFeedback: false,
-      padding: EdgeInsets.zero, // Add this line to reduce the padding
-      constraints: const BoxConstraints(),
-      alignment: Alignment.bottomCenter,
+      label: label,
+      backgroundColor: _selectedIndex == index
+        ? theme.primaryColorDark
+        : theme.scaffoldBackgroundColor,
     );
   }
 

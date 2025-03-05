@@ -77,7 +77,7 @@ class _LoginPageState extends State<LoginPage> {
 
               // 帮助功能
               _buildHelperButtons(),
-              const SizedBox(height: 40),
+              const SizedBox(height: 80),
 
               // 第三方登录
               _buildSocialLogin(),
@@ -95,10 +95,10 @@ class _LoginPageState extends State<LoginPage> {
       children: [
         Icon(
           Icons.account_balance_wallet,
-          size: 80,
+          size: 50,
           color: theme.primaryColor,
         ),
-        const SizedBox(height: 16),
+        const SizedBox(height: 0),
       ],
     );
   }
@@ -140,6 +140,13 @@ class _LoginPageState extends State<LoginPage> {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30.0),
             ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30.0),
+              borderSide: BorderSide(
+                color: Theme.of(context).primaryColor,
+                width: 2.0,
+              ),
+            ),
           ),
           validator: (value) {
             if (value?.isEmpty ?? true) return 'Please enter your phone number';
@@ -163,6 +170,13 @@ class _LoginPageState extends State<LoginPage> {
             prefixIcon: Icon(Icons.lock_rounded),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30.0),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30.0),
+              borderSide: BorderSide(
+                color: Theme.of(context).primaryColor,
+                width: 2.0,
+              ),
             ),
             suffixIcon: IconButton(
               onPressed: () {
@@ -199,6 +213,13 @@ class _LoginPageState extends State<LoginPage> {
                   labelText: 'CAPTCHA',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                    borderSide: BorderSide(
+                      color: Theme.of(context).primaryColor,
+                      width: 2.0,
+                    ),
                   ),
                   prefixIcon: Icon(Icons.sms_rounded),
                   hintText: 'Please enter 6-digit CAPTCHA'
@@ -286,12 +307,12 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             IconButton.outlined(
-              iconSize: 40,
+              iconSize: 25,
               onPressed: () {}, // 微信登录
               icon: const Icon(Icons.wechat_rounded),
             ),
             IconButton.outlined(
-              iconSize: 40,
+              iconSize: 25,
               onPressed: () {}, // QQ登录
               icon: const Icon(Icons.quick_contacts_dialer_rounded),
             ),

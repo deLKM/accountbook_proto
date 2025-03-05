@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/profile_page/profile_header.dart';
 import 'login_page.dart'; // Import the login page
+import 'change_avatar_page.dart'; // Import the change avatar page
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -42,6 +43,11 @@ class _ProfilePageState extends State<ProfilePage> {
                           if (result == true) {
                             updateLoginStatus(true);
                           }
+                        } else {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ChangeAvatarPage()),
+                          );
                         }
                       },
                       child: ProfileHeader(

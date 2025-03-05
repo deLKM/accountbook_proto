@@ -23,6 +23,11 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         primaryColor: Colors.blue,
         scaffoldBackgroundColor: Colors.white,
+        splashColor: Colors.transparent,
+        splashFactory: NoSplash.splashFactory,
+        hoverColor: Colors.transparent,
+        focusColor: Colors.transparent,
+        highlightColor: Colors.transparent,
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.blue,
           titleTextStyle: TextStyle(

@@ -26,10 +26,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: IndexedStack(
-        index: _selectedIndex,
-        children: _pages,
-      ),
+      body: IndexedStack(index: _selectedIndex, children: _pages),
       bottomNavigationBar: _buildBottomNavBar(),
       floatingActionButton: _buildFAButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -39,85 +36,36 @@ class _MainPageState extends State<MainPage> {
   Widget _buildBottomNavBar() {
     final theme = Theme.of(context);
 
-    return BottomAppBar(
-      shape: const CircularNotchedRectangle(),
-      color: theme.primaryColor,
-      notchMargin: 6.0,
-      height: 88,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          IconButton(
-            icon: const Icon(Icons.home, size: 28),
-            color: _selectedIndex == 0 ? theme.primaryColorDark : theme.scaffoldBackgroundColor,
-            onPressed: () => _onItemTapped(0),
-          ),
-          Text(
-            'Home', 
-            style: TextStyle(color: _selectedIndex == 0 
-              ? theme.primaryColorDark 
-              : theme.scaffoldBackgroundColor
-            )
-          ),
-        ],
-          ),
-          Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          IconButton(
-            icon: const Icon(Icons.list, size: 28),
-            color: _selectedIndex == 1 ? theme.primaryColorDark : theme.scaffoldBackgroundColor,
-            onPressed: () => _onItemTapped(1),
-          ),
-          Text(
-            'Plan', 
-            style: TextStyle(color: _selectedIndex == 1 
-              ? theme.primaryColorDark 
-              : theme.scaffoldBackgroundColor
-            )
-          ),
-        ],
-          ),
-          const SizedBox(width: 48), // 中间空出的位置给FloatingActionButton
-          Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          IconButton(
-            icon: const Icon(Icons.pie_chart, size: 28),
-            color: _selectedIndex == 2 ? theme.primaryColorDark : theme.scaffoldBackgroundColor,
-            onPressed: () => _onItemTapped(2),
-          ),
-          Text(
-            'Account', 
-            style: TextStyle(color: _selectedIndex == 2 
-              ? theme.primaryColorDark 
-              : theme.scaffoldBackgroundColor
-            )
-          ),
-        ],
-          ),
-          Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          IconButton(
-            icon: const Icon(Icons.person, size: 28),
-            color: _selectedIndex == 3 ? theme.primaryColorDark : theme.scaffoldBackgroundColor,
-            onPressed: () => _onItemTapped(3),
-          ),
-          Text(
-            'Profile', 
-            style: TextStyle(color: _selectedIndex == 3 
-            ? theme.primaryColorDark 
-            : theme.scaffoldBackgroundColor
-            )
-          ),
-        ],
-          ),
-        ],
-      ),
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      backgroundColor: theme.primaryColor,
+      selectedItemColor: theme.primaryColorDark,
+      unselectedItemColor: theme.scaffoldBackgroundColor,
+      currentIndex: _selectedIndex,
+      onTap: _onItemTapped,
+      iconSize: 20,
+      selectedIconTheme: IconThemeData(size: 20),
+      unselectedIconTheme: IconThemeData(size: 20),
+      selectedFontSize: 8, 
+      unselectedFontSize: 8,
+      items: [
+      _buildNavItem(Icons.home, 0, 'HOME'),
+      _buildNavItem(Icons.list, 1, 'Plan'),
+      _buildNavItem(Icons.paste_rounded, 2, 'ACCOUNT'),
+      _buildNavItem(Icons.person, 3, 'PROFILE'),
+      ],
+    );
+  }
+
+  BottomNavigationBarItem _buildNavItem(IconData icon, int index, String label) {
+    final theme = Theme.of(context);
+
+    return BottomNavigationBarItem(
+      icon: Icon(icon, size: 20),
+      label: label,
+      backgroundColor: _selectedIndex == index
+        ? theme.primaryColorDark
+        : theme.scaffoldBackgroundColor,
     );
   }
 
@@ -126,19 +74,21 @@ class _MainPageState extends State<MainPage> {
       _selectedIndex = index;
     });
   }
-  
+
   Widget _buildFAButton() {
     final theme = Theme.of(context);
 
     return FloatingActionButton(
-      onPressed: () {
+      onPressed: () {},
 
-      },
       backgroundColor: theme.scaffoldBackgroundColor,
       elevation: 0,
-      splashColor: theme.primaryColor,
+      splashColor: Colors.transparent,
+      enableFeedback: false,
+      highlightElevation: 0,
       foregroundColor: theme.primaryColor,
       hoverColor: theme.primaryColorLight,
+      hoverElevation: 0,
       shape: CircleBorder(),
       child: const Icon(Icons.add),
     );

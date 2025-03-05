@@ -1,9 +1,10 @@
 // Author: Ching-Yu
 
-import 'package:accountbook_proto/pages/account_page.dart';
-import 'package:accountbook_proto/pages/plan_page.dart';
-import 'package:accountbook_proto/pages/profile_page.dart';
-import 'package:accountbook_proto/pages/txn_dtl_page.dart';
+import 'account_page.dart';
+import 'plan_page.dart';
+import 'profile_page.dart';
+import 'txn_dtl_page.dart';
+import 'record_a_bill_page.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
@@ -79,7 +80,13 @@ class _MainPageState extends State<MainPage> {
     final theme = Theme.of(context);
 
     return FloatingActionButton(
-      onPressed: () {},
+      onPressed: () {
+        showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          builder: (context) => RecordPage(),
+        );
+      },
 
       backgroundColor: theme.scaffoldBackgroundColor,
       elevation: 0,

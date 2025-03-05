@@ -39,45 +39,37 @@ class _MainPageState extends State<MainPage> {
     return BottomAppBar(
       shape: const CircularNotchedRectangle(),
       color: theme.primaryColor,
-      notchMargin: 6.0,
-      height: 95,
+      notchMargin: 3.0,
+      height: 65,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          _buildNavItem('Home'),
-          _buildNavItem('Plan'),
-          const SizedBox(width: 48), // 中间空出的位置给FloatingActionButton
-          _buildNavItem('Account'),
-          _buildNavItem('Profile'),
+          _buildNavItem(Icons.home, 0),
+          _buildNavItem(Icons.list, 1),
+          _buildNavItem(Icons.paste_rounded, 2),
+          _buildNavItem(Icons.person, 3),
         ],
       ),
     );
   }
 
-  Widget _buildNavItem(String? name) {
+  Widget _buildNavItem(icon, int? index) {
     final theme = Theme.of(context);
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        IconButton(
-          icon: const Icon(Icons.list, size: 23),
-          color:
-              _selectedIndex == 1
-                  ? theme.primaryColorDark
-                  : theme.scaffoldBackgroundColor,
-          onPressed: () => _onItemTapped(1),
-        ),
-        Text(
-          name.toString(),
-          style: TextStyle(
-            color:
-                _selectedIndex == 1
-                    ? theme.primaryColorDark
-                    : theme.scaffoldBackgroundColor,
-          ),
-        ),
-      ],
+    return IconButton(
+      icon: Icon(icon, size: 20),
+      color:
+          _selectedIndex == index
+              ? theme.primaryColorDark
+              : theme.scaffoldBackgroundColor,
+      onPressed: () => _onItemTapped(index),
+      splashColor: Colors.transparent,
+      highlightColor: Colors.transparent,
+      hoverColor: Colors.transparent,
+      enableFeedback: false,
+      padding: EdgeInsets.zero, // Add this line to reduce the padding
+      constraints: const BoxConstraints(),
+      alignment: Alignment.bottomCenter,
     );
   }
 
@@ -92,11 +84,15 @@ class _MainPageState extends State<MainPage> {
 
     return FloatingActionButton(
       onPressed: () {},
+
       backgroundColor: theme.scaffoldBackgroundColor,
       elevation: 0,
-      splashColor: theme.primaryColor,
+      splashColor: Colors.transparent,
+      enableFeedback: false,
+      highlightElevation: 0,
       foregroundColor: theme.primaryColor,
       hoverColor: theme.primaryColorLight,
+      hoverElevation: 0,
       shape: CircleBorder(),
       child: const Icon(Icons.add),
     );

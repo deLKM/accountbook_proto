@@ -11,7 +11,7 @@
 // Author: Ching-Yu
 
 import 'package:flutter/material.dart';
-import '../widgets/common/proto_appbar.dart';
+import '../widgets/proto_appbar.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

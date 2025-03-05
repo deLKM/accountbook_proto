@@ -33,13 +33,37 @@ class _LoginPageState extends State<LoginPage> {
       _isLoading = true;
     });
 
-    // 模拟一个耗时操作，延迟2秒
-    await Future.delayed(const Duration(seconds: 2));
-    setState(() { 
-      _isLoading = false;
-    });
-    
-    // 这里可以添加导航到主页的逻辑
+    try {
+      // 模拟一个耗时操作（例如请求API），延迟2秒
+      await Future.delayed(const Duration(seconds: 2));
+      
+      // 假设登录成功
+      bool loginSuccess = true;
+      if(!mounted) return;
+      
+      setState(() { 
+        _isLoading = false;
+      });
+
+      if (loginSuccess) {
+        Navigator.pop(context, true);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Login failed. Please try again.')
+          ),
+        );
+      }
+    } catch (e) {
+      setState(() {
+        _isLoading = false;
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('An error occurred: $e'),
+        ),
+      );
+    }
   }
 
   @override

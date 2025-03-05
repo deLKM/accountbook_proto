@@ -14,6 +14,12 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   bool isLoggedIn = false; // Add a variable to track login status
 
+  void updateLoginStatus(bool status) {
+    setState(() {
+      isLoggedIn = status;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,12 +33,15 @@ class _ProfilePageState extends State<ProfilePage> {
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: GestureDetector(
-                      onTap: () {
+                      onTap: () async {
                         if (!isLoggedIn) {
-                          Navigator.push(
+                          final result = await Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) => LoginPage()),
                           );
+                          if (result == true) {
+                            updateLoginStatus(true);
+                          }
                         }
                       },
                       child: ProfileHeader(

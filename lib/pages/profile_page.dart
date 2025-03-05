@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import '../widgets/profile_header.dart';
+import 'login_page.dart'; // Import the login page
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -11,6 +12,8 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  bool isLoggedIn = false; // Add a variable to track login status
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,9 +26,19 @@ class _ProfilePageState extends State<ProfilePage> {
                 children: [
                   Align(
                     alignment: Alignment.bottomCenter,
-                    child: ProfileHeader(
-                      avatarUrl: 'https://i.pravatar.cc/150',
-                      username: 'FlutterMaster',
+                    child: GestureDetector(
+                      onTap: () {
+                        if (!isLoggedIn) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => LoginPage()),
+                          );
+                        }
+                      },
+                      child: ProfileHeader(
+                        avatarUrl: '',
+                        username: 'DefaultUser',
+                      ),
                     ),
                   ),
                 ],

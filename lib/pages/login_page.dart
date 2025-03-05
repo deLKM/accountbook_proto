@@ -133,10 +133,13 @@ class _LoginPageState extends State<LoginPage> {
         width: width,
         child: TextFormField(
           controller: _phoneController,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
             labelText: 'Phone Number',
-            prefixIcon: Icon(Icons.phone_iphone_rounded),
+            prefixIcon: const Icon(Icons.phone_iphone_rounded),
             hintText: 'Please enter your 11-digit phone number',
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30.0),
+            ),
           ),
           validator: (value) {
             if (value?.isEmpty ?? true) return 'Please enter your phone number';
@@ -158,6 +161,9 @@ class _LoginPageState extends State<LoginPage> {
           decoration: InputDecoration(
             labelText: 'Password',
             prefixIcon: Icon(Icons.lock_rounded),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(30.0),
+            ),
             suffixIcon: IconButton(
               onPressed: () {
                 setState(() {
@@ -189,8 +195,11 @@ class _LoginPageState extends State<LoginPage> {
             Expanded(
               child: TextFormField(
                 controller: _codeController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   labelText: 'CAPTCHA',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
                   prefixIcon: Icon(Icons.sms_rounded),
                   hintText: 'Please enter 6-digit CAPTCHA'
                 ),
@@ -224,7 +233,7 @@ class _LoginPageState extends State<LoginPage> {
             padding: const EdgeInsets.symmetric(vertical: 16),
             backgroundColor: theme.primaryColor,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: BorderRadius.circular(30.0),
             ),
           ),
           child: _isLoading 

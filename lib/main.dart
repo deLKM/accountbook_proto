@@ -20,8 +20,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        primaryColor: Colors.blue,
+        primaryColor: Colors.lightBlueAccent,
         scaffoldBackgroundColor: Colors.white,
         splashColor: Colors.transparent,
         splashFactory: NoSplash.splashFactory,
@@ -29,15 +28,17 @@ class MyApp extends StatelessWidget {
         focusColor: Colors.transparent,
         highlightColor: Colors.transparent,
         appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.blue,
+          backgroundColor: Colors.transparent,
           titleTextStyle: TextStyle(
-            color: Colors.white,
+            color: Color(0xFF2D2D2D),
             fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
-        ),       
+          titleSpacing: 20,
+          centerTitle: false,
+        ),
         buttonTheme: ButtonThemeData(
-          buttonColor: Colors.blue,
+          buttonColor: Colors.lightBlue,
           textTheme: ButtonTextTheme.primary,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),

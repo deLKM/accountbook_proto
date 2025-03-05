@@ -49,7 +49,7 @@ class TxnDtlPage extends StatelessWidget {
           _buildMonthSummary(),
 
           // 当日细节
-          _buildDailyList(),
+          // _buildDailyList(),
         ],
       ),
     );
@@ -77,7 +77,7 @@ class TxnDtlPage extends StatelessWidget {
 
   Widget _buildStatItem(String label, double value, Color color) {
     return Padding(
-      padding: const EdgeInsets.only(left: 16),
+      padding: const EdgeInsets.only(left: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -102,57 +102,57 @@ class TxnDtlPage extends StatelessWidget {
     );
   }
 
-  Widget _buildDailyList() {
-  return SliverList(
-    delegate: SliverChildBuilderDelegate(
-      (context, index) {
-        final daily = dailyData[index];
-        return _buildDailyItem(daily);
-      },
-      childCount: dailyData.length,
-    ),
-  );
-}
+//   Widget _buildDailyList() {
+//   return SliverList(
+//     delegate: SliverChildBuilderDelegate(
+//       (context, index) {
+//         final daily = dailyData[index];
+//         return _buildDailyItem(daily);
+//       },
+//       childCount: dailyData.length,
+//     ),
+//   );
+// }
 
-  Widget _buildDailyItem(DailyData daily) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        // 日期标题
-        Padding(
-          padding: const EdgeInsets.fromLTRB(16, 20, 16, 8),
-          child: Text(
-            DateFormat('M/d').format(daily.date),
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-            ),
-          ),
-        ),
-        // 当日交易列表
-        ...daily.transactions.map((transaction) => _buildTransactionItem(transaction)),
-      ],
-    );
-  }
+  // Widget _buildDailyItem(DailyData daily) {
+  //   return Column(
+  //     crossAxisAlignment: CrossAxisAlignment.start,
+  //     children: [
+  //       // 日期标题
+  //       Padding(
+  //         padding: const EdgeInsets.fromLTRB(20, 20, 16, 8),
+  //         child: Text(
+  //           DateFormat('M/d').format(daily.date),
+  //           style: const TextStyle(
+  //             fontWeight: FontWeight.bold,
+  //             fontSize: 16,
+  //           ),
+  //         ),
+  //       ),
+  //       // 当日交易列表
+  //       ...daily.transactions.map((transaction) => _buildTransactionItem(transaction)),
+  //     ],
+  //   );
+  // }
 
-  Widget _buildTransactionItem(Transaction transaction) {
-    return ListTile(
-      leading: CircleAvatar(
-        backgroundColor: transaction.isIncome ? Colors.green[100] : Colors.red[100],
-        child: Icon(
-          transaction.isIncome ? Icons.arrow_upward : Icons.arrow_downward,
-          color: transaction.isIncome ? Colors.green : Colors.red,
-        ),
-      ),
-      title: Text(transaction.title),
-      subtitle: Text(DateFormat('HH:mm').format(transaction.time)),
-      trailing: Text(
-        '${transaction.isIncome ? '+' : '-'}¥${transaction.amount.toStringAsFixed(2)}',
-        style: TextStyle(
-          color: transaction.isIncome ? Colors.green : Colors.red,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-  }
+  // Widget _buildTransactionItem(Transaction transaction) {
+  //   return ListTile(
+  //     leading: CircleAvatar(
+  //       backgroundColor: transaction.isIncome ? Colors.green[100] : Colors.red[100],
+  //       child: Icon(
+  //         transaction.isIncome ? Icons.arrow_upward : Icons.arrow_downward,
+  //         color: transaction.isIncome ? Colors.green : Colors.red,
+  //       ),
+  //     ),
+  //     title: Text(transaction.title),
+  //     subtitle: Text(DateFormat('HH:mm').format(transaction.time)),
+  //     trailing: Text(
+  //       '${transaction.isIncome ? '+' : '-'}¥${transaction.amount.toStringAsFixed(2)}',
+  //       style: TextStyle(
+  //         color: transaction.isIncome ? Colors.green : Colors.red,
+  //         fontWeight: FontWeight.bold,
+  //       ),
+  //     ),
+  //   );
+  // }
 }

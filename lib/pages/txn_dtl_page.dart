@@ -1,6 +1,6 @@
 // Author: Ching-Yu
 
-import 'package:accountbook_proto/widgets/proto_appbar.dart';
+import 'package:accountbook_proto/widgets/login_page/proto_appbar.dart';
 import 'package:flutter/material.dart';
 import '../models/daily_data.dart';
 import 'package:intl/intl.dart';

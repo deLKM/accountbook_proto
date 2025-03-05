@@ -1,7 +1,7 @@
 // Author: Ching-Yu
 
 import 'package:flutter/material.dart';
-import '../widgets/profile_header.dart';
+import '../widgets/profile_page/profile_header.dart';
 import 'login_page.dart'; // Import the login page
 
 class ProfilePage extends StatefulWidget {

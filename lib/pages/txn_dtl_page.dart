@@ -57,16 +57,15 @@ class TxnDtlPage extends StatelessWidget {
 
   Widget _buildMonthSummary() {
     return SliverToBoxAdapter(
-      child: Container(
+      child: Card(
         margin: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: Colors.white,
+        shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
+        elevation: 0,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 20),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               _buildStatItem("Balance", monthData.income - monthData.expense, Colors.black),
             ],
@@ -77,25 +76,29 @@ class TxnDtlPage extends StatelessWidget {
   }
 
   Widget _buildStatItem(String label, double value, Color color) {
-    return Column(
-      children: [
-        Text(
-          label,
-          style: TextStyle(
-            color: Colors.grey[600],
-            fontSize: 12,
+    return Padding(
+      padding: const EdgeInsets.only(left: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            label,
+            style: TextStyle(
+              color: Colors.grey[600],
+              fontSize: 12,
+            ),
           ),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          value.toStringAsFixed(2),
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: color,
+          const SizedBox(height: 4),
+          Text(
+            value.toStringAsFixed(2),
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+              color: color,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

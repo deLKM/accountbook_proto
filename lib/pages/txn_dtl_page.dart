@@ -68,8 +68,6 @@ class TxnDtlPage extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              _buildStatItem("Income", monthData.income, Colors.black),
-              _buildStatItem("Outcome", monthData.expense, Colors.black),
               _buildStatItem("Balance", monthData.income - monthData.expense, Colors.black),
             ],
           ),
@@ -82,19 +80,19 @@ class TxnDtlPage extends StatelessWidget {
     return Column(
       children: [
         Text(
+          label,
+          style: TextStyle(
+            color: Colors.grey[600],
+            fontSize: 12,
+          ),
+        ),
+        const SizedBox(height: 4),
+        Text(
           value.toStringAsFixed(2),
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
             color: color,
-          ),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          label,
-          style: TextStyle(
-            color: Colors.grey[600],
-            fontSize: 12,
           ),
         ),
       ],

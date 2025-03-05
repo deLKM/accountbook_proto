@@ -1,11 +1,9 @@
 // Author: Ching-Yu
 
-
 import 'account_page.dart';
 import 'plan_page.dart';
 import 'profile_page.dart';
 import 'txn_dtl_page.dart';
-import 'record_a_bill_page.dart';
 import '../widgets/main_page/bottom_nav_bar.dart';
 import '../widgets/main_page/fa_button.dart';
 import 'package:flutter/material.dart';

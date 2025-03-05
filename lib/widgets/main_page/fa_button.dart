@@ -1,6 +1,7 @@
 // Author: Ching-Yu
 
 import 'package:flutter/material.dart';
+import '../../pages/record_a_bill_page.dart';
 
 class FAButton extends StatelessWidget {
   const FAButton({
@@ -15,7 +16,13 @@ class FAButton extends StatelessWidget {
     final theme = Theme.of(context);
 
     return FloatingActionButton(
-      onPressed: () {},
+      onPressed: () {
+        showModalBottomSheet(
+          context: context,
+          isScrollControlled: true,
+          builder: (context) => RecordPage(),
+        );
+      },
 
       backgroundColor: theme.scaffoldBackgroundColor,
       elevation: 0,

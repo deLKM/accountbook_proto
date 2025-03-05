@@ -1,6 +1,9 @@
 // Author: Ching-Yu
 
 import 'package:flutter/material.dart';
+import '../widgets/profile_page/profile_header.dart';
+import 'login_page.dart'; // Import the login page
+import 'change_avatar_page.dart'; // Import the change avatar page
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -10,8 +13,55 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  bool isLoggedIn = false; // Add a variable to track login status
+
+  void updateLoginStatus(bool status) {
+    setState(() {
+      isLoggedIn = status;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            expandedHeight: 200,
+            flexibleSpace: FlexibleSpaceBar(
+              background: Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: GestureDetector(
+                      onTap: () async {
+                        if (!isLoggedIn) {
+                          final result = await Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => LoginPage()),
+                          );
+                          if (result == true) {
+                            updateLoginStatus(true);
+                          }
+                        } else {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ChangeAvatarPage()),
+                          );
+                        }
+                      },
+                      child: ProfileHeader(
+                        avatarUrl: '',
+                        username: 'DefaultUser',
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }

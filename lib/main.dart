@@ -1,12 +1,13 @@
 // Author: Ching-Yu
 
-import 'package:accountbook_proto/pages/main_page.dart';
-import 'package:accountbook_proto/pages/plan_page.dart';
-import 'package:accountbook_proto/pages/profile_page.dart';
-import 'package:flutter/material.dart';
+import 'pages/main_page.dart';
+import 'pages/plan_page.dart';
+import 'pages/profile_page.dart';
+import 'pages/record_a_bill_page.dart';
 import 'pages/login_page.dart';
 import 'pages/txn_dtl_page.dart';
 import 'pages/account_page.dart';
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
@@ -59,6 +60,7 @@ class MyApp extends StatelessWidget {
         '/account': (context) => const AccountPage(),
         '/plan': (context) => const PlanPage(),
         '/profile': (context) => const ProfilePage(),
+        '/record': (context) => const RecordPage(),
       },
     );
   }

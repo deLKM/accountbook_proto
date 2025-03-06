@@ -34,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
-  Future<void> _mockLogin() async {
+  Future<void> _mockLogin() async {    
     if (!_formKey.currentState!.validate()) return;
     
     setState(() {
@@ -42,9 +42,14 @@ class _LoginPageState extends State<LoginPage> {
     });
 
     try {
-      // 模拟一个耗时操作（例如请求API），延迟2秒
-      await Future.delayed(const Duration(seconds: 2));
-      
+      if (_isPasswordLogin) {
+        // Log in with Password
+        await Future.delayed(const Duration(seconds: 2));
+      } else {
+        // Log in with CAPTCHA
+        await Future.delayed(const Duration(seconds: 2));
+      }
+
       // 假设登录成功
       bool loginSuccess = true;
       if(!mounted) return;

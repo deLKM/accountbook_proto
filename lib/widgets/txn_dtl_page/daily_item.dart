@@ -1,6 +1,6 @@
 // Author: Ching-Yu
 
-import '../../models/daily_data.dart';
+import '../../models/txn/daily_data.dart';
 import 'transaction_item.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';

@@ -1,7 +1,7 @@
 // Author: Ching-Yu
 
 import 'package:flutter/material.dart';
-import '../../models/month_summary.dart';
+import '../../models/txn/month_summary.dart';
 import 'stat_item.dart';
 
 class MonthlySummary extends StatelessWidget {

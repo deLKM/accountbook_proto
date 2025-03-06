@@ -1,28 +1,20 @@
 // Author: Ching-Yu
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../widgets/profile_header.dart';
-import '../../login_page/views/login_page.dart'; // Import the login page
-import '../../change_avatar/views/change_avatar_page.dart'; // Import the change avatar page
+import '../../login_page/views/login_page.dart';
+import '../../change_avatar/views/change_avatar_page.dart';
+import '../providers/profile_page_provider.dart';
 
-class ProfilePage extends StatefulWidget {
+class ProfilePage extends ConsumerWidget {
   const ProfilePage({super.key});
 
   @override
-  State<ProfilePage> createState() => _ProfilePageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final profileState = ref.watch(profileProvider);
+    final profileNotifier = ref.read(profileProvider.notifier);
 
-class _ProfilePageState extends State<ProfilePage> {
-  bool isLoggedIn = false; // Add a variable to track login status
-
-  void updateLoginStatus(bool status) {
-    setState(() {
-      isLoggedIn = status;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -35,18 +27,18 @@ class _ProfilePageState extends State<ProfilePage> {
                     alignment: Alignment.bottomCenter,
                     child: GestureDetector(
                       onTap: () async {
-                        if (!isLoggedIn) {
+                        if (!profileState.isLoggedIn) {
                           final result = await Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => LoginPage()),
+                            MaterialPageRoute(builder: (context) => const LoginPage()),
                           );
                           if (result == true) {
-                            updateLoginStatus(true);
+                            profileNotifier.updateLoginStatus(true);
                           }
                         } else {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => ChangeAvatarPage()),
+                            MaterialPageRoute(builder: (context) => const ChangeAvatarPage()),
                           );
                         }
                       },

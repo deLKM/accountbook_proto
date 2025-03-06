@@ -1,39 +1,35 @@
 // Author: Ching-Yu
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../providers/password_field_provider.dart';
 
-class PasswordField extends StatefulWidget {
+class PasswordField extends ConsumerWidget {
   final TextEditingController controller;
-  final bool showPassword;
-  final ValueChanged<bool> onTogglePassword;
   final double width;
   final String? Function(String?)? validator;
 
   const PasswordField({
     super.key,
     required this.controller,
-    required this.showPassword,
-    required this.onTogglePassword,
     required this.width,
     this.validator,
   });
 
   @override
-  State<PasswordField> createState() => _PasswordFieldState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final passwordState = ref.watch(passwordFieldProvider);
+    final passwordNotifier = ref.read(passwordFieldProvider.notifier);
 
-class _PasswordFieldState extends State<PasswordField> {
-  @override
-  Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        width: widget.width, 
+        width: width,
         child: TextFormField(
-          controller: widget.controller,
-          obscureText: !widget.showPassword,
+          controller: controller,
+          obscureText: !passwordState.showPassword,
           decoration: InputDecoration(
             labelText: 'Password',
-            prefixIcon: Icon(Icons.lock_rounded),
+            prefixIcon: const Icon(Icons.lock_rounded),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30.0),
             ),
@@ -45,15 +41,10 @@ class _PasswordFieldState extends State<PasswordField> {
               ),
             ),
             suffixIcon: IconButton(
-              onPressed: () {
-                setState(() {
-                  widget.onTogglePassword(!widget.showPassword);
-                });
-              }, 
-              icon: Icon(widget.showPassword 
-              ? Icons.visibility_off_rounded
-              : Icons.visibility_rounded
-              ),
+              onPressed: passwordNotifier.togglePasswordVisibility,
+              icon: Icon(passwordState.showPassword
+                  ? Icons.visibility_off_rounded
+                  : Icons.visibility_rounded),
             ),
           ),
           validator: (value) {

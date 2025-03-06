@@ -1,3 +1,5 @@
+// Author: Ching-Yu
+
 import 'package:flutter/material.dart';
 
 class ChangeAvatarPage extends StatelessWidget {

@@ -1,86 +1,30 @@
 // Author: Ching-Yu
 
-import '../widgets/login_page/login_header.dart';
-import '../widgets/login_page/proto_appbar.dart';
-import '../widgets/login_page/phone_field.dart';
-import '../widgets/login_page/code_field.dart';
-import '../widgets/login_page/social_login.dart';
-import '../widgets/login_page/helper_buttons.dart';
-import '../widgets/login_page/password_field.dart';
-import '../widgets/login_page/toggle_button.dart';
-import '../widgets/login_page/login_button.dart';
+import '../widgets/login_header.dart';
+import '../widgets/proto_appbar.dart';
+import '../widgets/phone_field.dart';
+import '../widgets/code_field.dart';
+import '../widgets/social_login.dart';
+import '../widgets/helper_buttons.dart';
+import '../widgets/password_field.dart';
+import '../widgets/toggle_button.dart';
+import '../widgets/login_button.dart';
+import '../providers/login_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends ConsumerWidget {
   const LoginPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final loginState = ref.watch(loginProvider);
+    final loginNotifier = ref.read(loginProvider.notifier);
 
-class _LoginPageState extends State<LoginPage> {
-  final _formKey = GlobalKey<FormState>();
-  final _phoneController = TextEditingController();
-  final _passwordController = TextEditingController();
-  final _codeController = TextEditingController();
+    final phoneController = TextEditingController();
+    final passwordController = TextEditingController();
+    final codeController = TextEditingController();
 
-  bool _isPasswordLogin = true;
-  bool _showPassword = false;
-  bool _isLoading = false;
-  
-  void _toggleLoginType() {
-    setState(() {
-      _isPasswordLogin = !_isPasswordLogin;
-    });
-  }
-
-  Future<void> _mockLogin() async {    
-    if (!_formKey.currentState!.validate()) return;
-    
-    setState(() {
-      _isLoading = true;
-    });
-
-    try {
-      if (_isPasswordLogin) {
-        // Log in with Password
-        await Future.delayed(const Duration(seconds: 2));
-      } else {
-        // Log in with CAPTCHA
-        await Future.delayed(const Duration(seconds: 2));
-      }
-
-      // 假设登录成功
-      bool loginSuccess = true;
-      if(!mounted) return;
-      
-      setState(() { 
-        _isLoading = false;
-      });
-
-      if (loginSuccess) {
-        Navigator.pop(context, true);
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Login failed. Please try again.')
-          ),
-        );
-      }
-    } catch (e) {
-      setState(() {
-        _isLoading = false;
-      });
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('An error occurred: $e'),
-        ),
-      );
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
     var screenWidth = screenSize.width;
 
@@ -97,35 +41,37 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(height: 40),
 
               // 切换登录方式
-              ToggleButton(isPasswordLogin: _isPasswordLogin, onToggle: _toggleLoginType),
+              ToggleButton(
+                isPasswordLogin: loginState.isPasswordLogin,
+                onToggle: loginNotifier.toggleLoginType,
+              ),
               const SizedBox(height: 40),
-              
+
               // 电话号码
-              PhoneField(phoneController: _phoneController, context: context, width: screenWidth * 0.8),
+              PhoneField(
+                phoneController: phoneController,
+                context: context,
+                width: screenWidth * 0.8,
+              ),
               const SizedBox(height: 40),
 
               // 切换密码登陆/短信验证码登录
-              _isPasswordLogin 
-                ? PasswordField(
-                    controller: _passwordController, 
-                    showPassword: _showPassword, 
-                    onTogglePassword: (value) =>
-                      setState(() {
-                        _showPassword = value;
-                      }),
-                    width: screenWidth * 0.8,
-                  ) 
-                : CodeField(
-                    codeController: _codeController, 
-                    context: context, 
-                    width: screenWidth * 0.8,
-                  ),
+              loginState.isPasswordLogin
+                  ? PasswordField(
+                      controller: passwordController,
+                      width: screenWidth * 0.8,
+                    )
+                  : CodeField(
+                      codeController: codeController,
+                      context: context,
+                      width: screenWidth * 0.8,
+                    ),
               const SizedBox(height: 40),
 
               // 登录按钮
               LoginButton(
-                isLoading: _isLoading,
-                onPressed: _mockLogin,
+                isLoading: loginState.isLoading,
+                onPressed: () => loginNotifier.mockLogin(context),
               ),
               const SizedBox(height: 40),
 

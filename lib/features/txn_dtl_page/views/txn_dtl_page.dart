@@ -1,6 +1,6 @@
 // Author: Ching-Yu
 
-import '../../login_page/widgets/login_page/proto_appbar.dart';
+import '../../login_page/widgets/proto_appbar.dart';
 import '../widgets/monthly_summary.dart';
 import '../widgets/daily_list.dart';
 import '../models/daily_data.dart';

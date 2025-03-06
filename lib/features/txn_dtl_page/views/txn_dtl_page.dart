@@ -1,47 +1,23 @@
 // Author: Ching-Yu
 
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../login_page/widgets/proto_appbar.dart';
 import '../widgets/monthly_summary.dart';
 import '../widgets/daily_list.dart';
-import '../models/daily_data.dart';
-import '../models/month_summary.dart';
-import 'package:flutter/material.dart';
+import '../providers/txn_dtl_page_provider.dart';
 
-class TxnDtlPage extends StatelessWidget {
-  final MonthSummary monthData;
-  final List<DailyData> dailyData;
-
-  TxnDtlPage({
-    super.key,
-    MonthSummary? monthData,
-    List<DailyData>? dailyData,
-  }) : 
-    monthData = monthData ?? _generateDefaultMonthSummary(),
-    dailyData = dailyData ?? _generateDefaultDailyData();
-
-  static MonthSummary _generateDefaultMonthSummary() {
-    final now = DateTime.now();
-    return MonthSummary(
-      DateTime(now.year, now.month),
-      0,
-      0,
-    );
-  }
-
-  static List<DailyData> _generateDefaultDailyData() {
-    return [
-      DailyData(
-        DateTime.now(), 
-        [],
-        )
-    ];
-  }
+class TxnDtlPage extends ConsumerWidget {
+  const TxnDtlPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final monthData = ref.watch(monthSummaryProvider);
+    final dailyData = ref.watch(dailyDataProvider);
+
     return Scaffold(
       appBar: ProtoAppBar(
-        title: '${monthData.month.year}/${monthData.month.month}'
+        title: '${monthData.month.year}/${monthData.month.month}',
       ),
       body: CustomScrollView(
         slivers: [

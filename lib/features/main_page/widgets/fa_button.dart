@@ -1,29 +1,19 @@
 // Author: Ching-Yu
 
+import '../providers/fa_button_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
-import '../../record_a_bill/views/record_a_bill_page.dart';
 
-class FAButton extends StatelessWidget {
-  const FAButton({
-    super.key,
-    required this.context,
-  });
-
-  final BuildContext context;
+class FAButton extends ConsumerWidget {
+  const FAButton({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = Theme.of(context);
+    final showRecordSheet = ref.watch(showRecordSheetProvider);
 
     return FloatingActionButton(
-      onPressed: () {
-        showModalBottomSheet(
-          context: context,
-          isScrollControlled: true,
-          builder: (context) => RecordPage(),
-        );
-      },
-
+      onPressed: () => showRecordSheet(context),
       backgroundColor: theme.scaffoldBackgroundColor,
       elevation: 0,
       splashColor: Colors.transparent,
@@ -32,7 +22,7 @@ class FAButton extends StatelessWidget {
       foregroundColor: theme.primaryColor,
       hoverColor: theme.primaryColorLight,
       hoverElevation: 0,
-      shape: CircleBorder(),
+      shape: const CircleBorder(),
       child: const Icon(Icons.add),
     );
   }

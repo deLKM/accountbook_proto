@@ -20,7 +20,7 @@ class MainPage extends ConsumerWidget {
         currentIndex: selectedIndex,
         onTap: (index) => ref.read(selectedIndexProvider.notifier).state = index,
       ),
-      floatingActionButton: FAButton(context: context),
+      floatingActionButton: FAButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }

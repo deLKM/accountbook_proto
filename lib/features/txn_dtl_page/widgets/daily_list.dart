@@ -1,7 +1,7 @@
 // Author: Ching-Yu
 
 import 'package:flutter/material.dart';
-import '../../models/txn/daily_data.dart';
+import '../models/daily_data.dart';
 import 'daily_item.dart';
 
 class DailyList extends StatelessWidget {

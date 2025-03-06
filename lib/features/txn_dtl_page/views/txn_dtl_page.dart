@@ -1,10 +1,10 @@
 // Author: Ching-Yu
 
-import '../widgets/login_page/proto_appbar.dart';
-import '../widgets/txn_dtl_page/monthly_summary.dart';
-import '../widgets/txn_dtl_page/daily_list.dart';
-import '../models/txn/daily_data.dart';
-import '../models/txn/month_summary.dart';
+import '../../login_page/widgets/login_page/proto_appbar.dart';
+import '../widgets/monthly_summary.dart';
+import '../widgets/daily_list.dart';
+import '../models/daily_data.dart';
+import '../models/month_summary.dart';
 import 'package:flutter/material.dart';
 
 class TxnDtlPage extends StatelessWidget {

@@ -1,7 +1,7 @@
 // Author: Ching-Yu
 
 import 'package:flutter/material.dart';
-import '../../pages/record_a_bill_page.dart';
+import '../../record_a_bill/views/record_a_bill_page.dart';
 
 class FAButton extends StatelessWidget {
   const FAButton({

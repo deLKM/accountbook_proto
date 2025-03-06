@@ -32,8 +32,9 @@ dependencies:
     sdk: flutter
   intl: ^0.17.0
   http: ^1.1.0  
-  json_annotation: ^4.8.1
-  flutter_dotenv: ^5.1.0
+  
+  # This App uses Riverpod for its State Management.
+  flutter_riverpod: ^2.6.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -42,8 +43,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  json_serializable: ^6.7.1
-  build_runner: ^2.4.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

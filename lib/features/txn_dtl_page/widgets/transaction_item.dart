@@ -1,7 +1,7 @@
 // Author: Ching-Yu
 
 import 'package:flutter/material.dart';
-import '../../models/txn/transaction.dart';
+import '../models/transaction.dart';
 import 'package:intl/intl.dart';
 
 class TransactionItem extends StatelessWidget {

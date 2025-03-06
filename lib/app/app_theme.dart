@@ -1,4 +1,5 @@
-// core/theme/app_theme.dart
+// Author: Ching-Yu
+
 import 'package:flutter/material.dart';
 
 final appTheme = ThemeData(

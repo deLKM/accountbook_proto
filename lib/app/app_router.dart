@@ -6,6 +6,8 @@ import '../features/account_page/views/account_page.dart';
 import '../features/plan_page/views/plan_page.dart';
 import '../features/profile_page/views/profile_page.dart';
 import '../features/record_a_bill/views/record_a_bill_page.dart';
+import '../features/forget_pwd/views/forget_pwd.dart';
+import '../features/sign_up_page/views/sign_up.dart';
 
 final appRoutes = {
   '/login': (context) => const LoginPage(),
@@ -14,4 +16,6 @@ final appRoutes = {
   '/plan': (context) => const PlanPage(),
   '/profile': (context) => const ProfilePage(),
   '/record': (context) => const RecordPage(),
+  '/signup': (context) => const SignUpPage(),
+  '/fogetpwd': (context) => const ForgetPwdPage(),
 };

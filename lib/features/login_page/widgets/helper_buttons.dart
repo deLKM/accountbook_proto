@@ -20,7 +20,7 @@ class HelperButtons extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            Navigator.pushNamed(context, '/forgetpwd');
+            Navigator.pushNamed(context, '/forgotpwd');
           }, // 跳转忘记密码
           child: const Text('Forgot your Password?'),
         ),

@@ -62,6 +62,36 @@ class LoginNotifier extends StateNotifier<LoginState> {
       );
     }
   }
+
+  Future<void> resetPassword(
+    BuildContext context,
+    String phone,
+    String code,
+    String newPassword,
+    String confirmPassword,
+  ) async {
+    if (newPassword != confirmPassword) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Passwords do not match.')),
+      );
+      return;
+    }
+
+    state = state.copyWith(isLoading: true);
+
+    // 模拟网络请求
+    await Future.delayed(const Duration(seconds: 2));
+
+    if (!context.mounted) return;
+
+    state = state.copyWith(isLoading: false);
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Password reset successfully!')),
+    );
+
+    Navigator.pop(context); // 返回上一页
+  }
 }
 
 final loginProvider = StateNotifierProvider<LoginNotifier, LoginState>((ref) {

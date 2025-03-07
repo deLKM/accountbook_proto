@@ -1,10 +1,11 @@
 // Author: Ching-Yu
 
+import 'package:accountbook_proto/common/widgets/proto_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../widgets/profile_header.dart';
 import '../../login_page/views/login_page.dart';
-import '../../change_avatar/views/change_avatar_page.dart';
+import 'change_avatar_page.dart';
 import '../providers/profile_page_provider.dart';
 
 class ProfilePage extends ConsumerWidget {
@@ -16,6 +17,7 @@ class ProfilePage extends ConsumerWidget {
     final profileNotifier = ref.read(profileProvider.notifier);
 
     return Scaffold(
+      appBar: ProtoAppBar(title: 'Profile'),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(

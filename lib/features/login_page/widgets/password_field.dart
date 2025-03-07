@@ -7,12 +7,14 @@ import '../providers/password_field_provider.dart';
 class PasswordField extends ConsumerWidget {
   final TextEditingController controller;
   final double width;
+  final String hintText;
   final String? Function(String?)? validator;
 
   const PasswordField({
     super.key,
     required this.controller,
     required this.width,
+    required this.hintText,
     this.validator,
   });
 
@@ -28,7 +30,7 @@ class PasswordField extends ConsumerWidget {
           controller: controller,
           obscureText: !passwordState.showPassword,
           decoration: InputDecoration(
-            labelText: 'Password',
+            labelText: hintText,
             prefixIcon: const Icon(Icons.lock_rounded),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(30.0),

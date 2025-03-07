@@ -1,7 +1,7 @@
 // Author: Ching-Yu
 
 import '../widgets/login_header.dart';
-import '../widgets/proto_appbar.dart';
+import '../../../common/widgets/proto_appbar.dart';
 import '../widgets/phone_field.dart';
 import '../widgets/code_field.dart';
 import '../widgets/social_login.dart';
@@ -29,7 +29,7 @@ class LoginPage extends ConsumerWidget {
     var screenWidth = screenSize.width;
 
     return Scaffold(
-      appBar: ProtoAppBar(title: 'Account Book Proto'),
+      appBar: ProtoAppBar(title: 'Login'),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Form(
@@ -60,6 +60,7 @@ class LoginPage extends ConsumerWidget {
                   ? PasswordField(
                       controller: passwordController,
                       width: screenWidth * 0.8,
+                      hintText: 'Password',
                     )
                   : CodeField(
                       codeController: codeController,

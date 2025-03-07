@@ -1,5 +1,6 @@
 // Author: Ching-Yu
 
+import 'package:accountbook_proto/common/widgets/proto_appbar.dart';
 import 'package:flutter/material.dart';
 
 class PlanPage extends StatefulWidget {
@@ -12,6 +13,8 @@ class PlanPage extends StatefulWidget {
 class _PlanPageState extends State<PlanPage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: ProtoAppBar(title: 'Plan'),
+    );
   }
 }

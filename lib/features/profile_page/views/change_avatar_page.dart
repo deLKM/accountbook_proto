@@ -1,5 +1,6 @@
 // Author: Ching-Yu
 
+import 'package:accountbook_proto/common/widgets/proto_appbar.dart';
 import 'package:flutter/material.dart';
 
 class ChangeAvatarPage extends StatelessWidget {
@@ -7,6 +8,8 @@ class ChangeAvatarPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: ProtoAppBar(title: 'Change Avatar'),
+    );
   }
 }

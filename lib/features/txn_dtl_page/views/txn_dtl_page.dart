@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../../common/widgets/proto_appbar.dart';
 import '../widgets/monthly_summary.dart';
 import '../widgets/daily_list.dart';
 import '../widgets/time_selector.dart';
@@ -16,7 +17,7 @@ class TxnDtlPage extends ConsumerWidget {
     final dailyData = ref.watch(dailyDataProvider);
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: ProtoAppBar(title: 'Transaction Detail'),
       body: CustomScrollView(
         slivers: [
           TimeSelector(monthData: monthData,),

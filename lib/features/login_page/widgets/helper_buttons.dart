@@ -14,7 +14,7 @@ class HelperButtons extends StatelessWidget {
       children: [
         TextButton(
             onPressed: () {
-            Navigator.pushNamed(context, '/signup'); // 跳转注册页面
+              Navigator.pushNamed(context, '/signup'); // 跳转注册页面
             },
           child: const Text('Sign Up'),
         ),

@@ -1,6 +1,7 @@
 // Author: Ching-Yu
 
 import 'package:flutter/material.dart';
+import '../../profile_page/providers/profile_page_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class LoginState {
@@ -30,7 +31,7 @@ class LoginNotifier extends StateNotifier<LoginState> {
     state = state.copyWith(isPasswordLogin: !state.isPasswordLogin);
   }
 
-  Future<void> mockLogin(BuildContext context) async {
+  Future<void> mockLogin(BuildContext context, WidgetRef ref) async {
     if (state.isLoading) return;
 
     state = state.copyWith(isLoading: true);
@@ -47,6 +48,9 @@ class LoginNotifier extends StateNotifier<LoginState> {
       state = state.copyWith(isLoading: false);
 
       if (loginSuccess) {
+        // 更新登录状态
+        ref.read(profileProvider.notifier).updateLoginStatus(true);
+
         Navigator.pop(context, true);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(

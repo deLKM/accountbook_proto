@@ -72,7 +72,7 @@ class LoginPage extends ConsumerWidget {
               // 登录按钮
               LoginButton(
                 isLoading: loginState.isLoading,
-                onPressed: () => loginNotifier.mockLogin(context),
+                onPressed: () => loginNotifier.mockLogin(context, ref),
               ),
               const SizedBox(height: 40),
 

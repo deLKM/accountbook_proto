@@ -1,80 +1,42 @@
 // Author: Ching-Yu
 
+import '../providers/code_field_provider.dart';
 import 'package:flutter/material.dart';
-import 'dart:async';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class CodeField extends StatefulWidget {
+class CodeField extends ConsumerWidget {
   const CodeField({
     super.key,
-    required TextEditingController codeController,
-    required TextEditingController phoneController,
-    required this.context,
+    required this.codeController,
+    required this.phoneController,
     required this.width,
-  }) : _codeController = codeController,
-    _phoneController = phoneController;
+  });
 
-  final TextEditingController _codeController;
-  final TextEditingController _phoneController;
-  final BuildContext context;
+  final TextEditingController codeController;
+  final TextEditingController phoneController;
   final double width;
 
   @override
-  State<CodeField> createState() => _CodeFieldState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(captchaProvider);
+    final notifier = ref.read(captchaProvider.notifier);
 
-class _CodeFieldState extends State<CodeField> {
-  int _countdown = 0;
-  Timer? _timer;
+    ref.listen(captchaProvider.select((s) => s.error), (_, error) {
+      if (error != null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(error.toString())),
+        );
+      }
+    });
 
-  Future<void> _getCaptcha() async {
-    if (_countdown > 0) return;
-
-    if (widget._phoneController.text.isEmpty) {
-      ScaffoldMessenger.of(widget.context).showSnackBar(
-        const SnackBar(content: Text('Enter Your Phone number firstly')),
-      );
-      return;
-    }
-
-    try {
-      // 这里替换为实际的验证码请求API调用
-      await Future.delayed(const Duration(seconds: 1));
-
-      if (!mounted) return;
-
-      setState(() => _countdown = 60);
-      _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-        setState(() {
-          if (_countdown > 0) {
-            _countdown--;
-          } else {
-            _timer?.cancel();
-          }
-        });
-      });
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: CAPTCHA error $e')),
-      );
-    }
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Center(
       child: SizedBox(
-        width: widget.width, 
+        width: width,
         child: Row(
           children: [
             Expanded(
               child: TextFormField(
-                controller: widget._codeController,
+                controller: codeController,
                 decoration: InputDecoration(
                   labelText: 'CAPTCHA',
                   border: OutlineInputBorder(
@@ -87,8 +49,8 @@ class _CodeFieldState extends State<CodeField> {
                       width: 2.0,
                     ),
                   ),
-                  prefixIcon: Icon(Icons.sms_rounded),
-                  hintText: 'Please enter 6-digit CAPTCHA'
+                  prefixIcon: const Icon(Icons.sms_rounded),
+                  hintText: 'Please enter 6-digit CAPTCHA',
                 ),
                 validator: (value) {
                   if (value?.isEmpty ?? true) return 'Please enter the CAPTCHA';
@@ -99,8 +61,20 @@ class _CodeFieldState extends State<CodeField> {
             ),
             const SizedBox(width: 12),
             OutlinedButton(
-              onPressed: _countdown == 0 ? _getCaptcha : null, 
-              child: const Text('Get the CAPTCHA'),
+              onPressed: state.countdown == 0 && !state.isLoading
+                  ? () => notifier.getCaptcha(phoneController.text)
+                  : null,
+              child: state.isLoading
+                  ? const SizedBox(
+                      width: 20,
+                      height: 20,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    )
+                  : Text(
+                      state.countdown > 0
+                          ? 'Retry (${state.countdown}s)'
+                          : 'Get CAPTCHA',
+                    ),
             ),
           ],
         ),

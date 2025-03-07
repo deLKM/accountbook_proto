@@ -64,7 +64,6 @@ class LoginPage extends ConsumerWidget {
                   : CodeField(
                       codeController: codeController,
                       phoneController: phoneController,
-                      context: context,
                       width: screenWidth * 0.8,
                     ),
               const SizedBox(height: 40),

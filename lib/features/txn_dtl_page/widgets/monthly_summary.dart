@@ -25,7 +25,12 @@ class MonthlySummary extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 20),
           child: Row(
             children: [
-              StatItem(label: "Balance", value: monthData.income - monthData.expense, color: Colors.black),
+              StatItem(
+                label: 'Balance',
+                labelColor: Theme.of(context).primaryColor,
+                value: monthData.income - monthData.expense,
+                color: Colors.black,
+              ),
             ],
           ),
         ),

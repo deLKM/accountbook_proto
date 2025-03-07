@@ -6,11 +6,13 @@ class StatItem extends StatelessWidget {
   const StatItem({
     super.key,
     required this.label,
+    required this.labelColor,
     required this.value,
     required this.color,
   });
 
   final String label;
+  final Color labelColor;
   final double value;
   final Color color;
 
@@ -21,21 +23,37 @@ class StatItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            label,
-            style: TextStyle(
-              color: Colors.grey[600],
-              fontSize: 12,
-            ),
+          Row(
+            children: [
+              Icon(
+                Icons.attach_money,
+                color: Colors.amber,
+                size: 20,
+              ),
+              const SizedBox(width: 0),
+                Text(
+                  label,
+                  style: TextStyle(
+                    color: labelColor,
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+            ],
           ),
           const SizedBox(height: 4),
-          Text(
-            value.toStringAsFixed(2),
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: color,
-            ),
+          Row(
+            children: [
+              const SizedBox(width: 20),
+              Text(
+                value.toStringAsFixed(2),
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: color,
+                ),
+              ),
+            ],
           ),
         ],
       ),

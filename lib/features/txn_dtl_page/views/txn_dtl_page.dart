@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../common/widgets/proto_appbar.dart';
 import '../widgets/monthly_summary.dart';
-import '../widgets/daily_list.dart';
 import '../widgets/time_selector.dart';
 import '../widgets/assets_and_liabilities.dart';
+import '../widgets/daily_list.dart';
 import '../providers/txn_dtl_page_provider.dart';
 
 class TxnDtlPage extends ConsumerWidget {
@@ -16,9 +16,8 @@ class TxnDtlPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final monthData = ref.watch(monthSummaryProvider);
     final dailyData = ref.watch(dailyDataProvider);
-
-    final assets = 0.0;
-    final liabilities = 0.0;
+    final assets = ref.watch(assetsProvider);
+    final liabilities = ref.watch(liabilitiesProvider);
 
     return Scaffold(
       appBar: ProtoAppBar(title: 'Transaction Detail'),
@@ -40,7 +39,7 @@ class TxnDtlPage extends ConsumerWidget {
             ],
           ),
 
-          // DailyListPage(dailyData: dailyData),
+          DailyListPage(dailyData: dailyData),
         ],
       ),
     );

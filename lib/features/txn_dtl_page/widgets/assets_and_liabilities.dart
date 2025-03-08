@@ -19,20 +19,44 @@ class AssetsAndLiabilities extends StatelessWidget {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
         elevation: 0,
         child: Padding(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Assets and Liabilities', 
-                style: const TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold
-                )
+              Row(
+                children: [
+                  Icon(Icons.attach_money, color: Colors.amber, size: 20),
+                  Text(
+                    'Assets and Liabilities',
+                    style: const TextStyle(
+                      fontSize: 17,
+                      color: Colors.lightBlueAccent,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 16),
-              _buildRow('Assets', totalAssets),
-              _buildRow('Liabilities', totalLiabilities),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _buildRow('Assets', totalAssets),
+                  Text(
+                    totalAssets.toStringAsFixed(2),
+                    style: TextStyle(fontSize: 20, color: Colors.black),
+                  ),
+                ],
+              ),
+              Divider(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  _buildRow('Liabilities', totalLiabilities),
+                  Text(
+                    totalLiabilities.toStringAsFixed(2),
+                    style: TextStyle(fontSize: 20, color: Colors.black),
+                  ),
+                ],
+              ),
             ],
           ),
         ),
@@ -42,23 +66,14 @@ class AssetsAndLiabilities extends StatelessWidget {
 
   Widget _buildRow(String label, double value) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
+          const SizedBox(width: 20),
           Text(
-            label, 
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            )
-          ),
-          Text(
-            value.toStringAsFixed(2),
-            style: TextStyle(
-              fontSize: 16,
-              color: Colors.black,
-            ),
+            label,
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ],
       ),

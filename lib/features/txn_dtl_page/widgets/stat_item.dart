@@ -25,20 +25,16 @@ class StatItem extends StatelessWidget {
         children: [
           Row(
             children: [
-              Icon(
-                Icons.attach_money,
-                color: Colors.amber,
-                size: 20,
-              ),
+              Icon(Icons.attach_money, color: Colors.amber, size: 20),
               const SizedBox(width: 0),
-                Text(
-                  label,
-                  style: TextStyle(
-                    color: labelColor,
-                    fontSize: 17,
-                    fontWeight: FontWeight.bold,
-                  ),
+              Text(
+                label,
+                style: TextStyle(
+                  color: labelColor,
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold,
                 ),
+              ),
             ],
           ),
           const SizedBox(height: 4),

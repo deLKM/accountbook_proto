@@ -35,3 +35,7 @@ final dailyDataProvider = StateProvider<List<DailyData>>((ref) {
   // 请求API
   return [DailyData(DateTime.now(), [])];
 });
+
+final assetsProvider = Provider<double>((ref) => 50000.0);
+
+final liabilitiesProvider = Provider<double>((ref) => 20000.0);

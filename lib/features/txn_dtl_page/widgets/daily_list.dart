@@ -20,7 +20,7 @@ class _DailyListPageState extends State<DailyListPage> with SingleTickerProvider
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 100),
+      duration: const Duration(milliseconds: 200),
       vsync: this,
     );
     _animation = Tween<double>(begin: 0.1, end: 0.9).animate(_controller);

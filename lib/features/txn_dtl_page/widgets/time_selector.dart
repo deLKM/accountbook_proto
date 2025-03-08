@@ -16,7 +16,7 @@ class TimeSelector extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return SliverToBoxAdapter(
       child: Padding(
-        padding: const EdgeInsets.only(left: 20.0),
+        padding: const EdgeInsets.only(left: 20.0, top: 0),
         child: Text(
           '${monthData.month.year}/${monthData.month.month}',
           style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),

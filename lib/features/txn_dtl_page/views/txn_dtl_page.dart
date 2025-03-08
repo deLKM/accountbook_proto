@@ -20,11 +20,14 @@ class TxnDtlPage extends ConsumerWidget {
       appBar: ProtoAppBar(title: 'Transaction Detail'),
       body: CustomScrollView(
         slivers: [
+          // 时间选择器（未完成）
           TimeSelector(monthData: monthData,),
 
           // 月统计
           MonthlySummary(monthData: monthData),
-
+          
+          // 当日细节应该是在一个新页面，这个页面默认展开，然后也可以下拉
+          // 记得实现这个功能
           // 当日细节
           DailyList(dailyData: dailyData),
         ],

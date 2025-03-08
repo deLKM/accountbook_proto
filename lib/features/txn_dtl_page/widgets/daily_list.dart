@@ -15,8 +15,7 @@ class DailyList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverList(
-      delegate: SliverChildBuilderDelegate(
-        (context, index) {
+      delegate: SliverChildBuilderDelegate( (context, index) {
           final daily = dailyData[index];
           return DailyItem(daily: daily);
         },

@@ -16,9 +16,9 @@ class MonthlySummary extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Card(
-        margin: const EdgeInsets.all(16),
+        margin: const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
+          borderRadius: BorderRadius.circular(25),
         ),
         elevation: 0,
         child: Padding(

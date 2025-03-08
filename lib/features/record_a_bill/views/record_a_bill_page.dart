@@ -14,11 +14,7 @@ class RecordPage extends StatefulWidget {
 
 class _RecordPageState extends State<RecordPage> with TickerProviderStateMixin {
   late TabController _tabController;
-  final List<String> _tabs = [
-    'Income', 
-    'Outcome', 
-    'Transfer'
-  ];
+  final List<String> _tabs = ['Income', 'Outcome', 'Transfer'];
 
   @override
   void initState() {
@@ -36,34 +32,57 @@ class _RecordPageState extends State<RecordPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Record'),
-        bottom: TabBar(
-          controller: _tabController,
-          tabs: _tabs.map((tab) => Tab(text: tab)).toList(),
-          indicatorColor: theme.primaryColor,
-          labelStyle: TextStyle(
-            fontSize: 16, 
-            color: theme.primaryColor,
-            fontWeight: FontWeight.bold
-          ),
-          unselectedLabelStyle: TextStyle(fontSize: 14),
-        ),
+    return Container(
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
       ),
-      body: ClipRRect(
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(25)),
-        child: Container(
-          color: Colors.white,
-          child: TabBarView(
-            controller: _tabController,
-            children: const [
-              income.IncomeTab(),
-              outcome.OutcomeTab(),
-              transfer.TransferTab(),
-            ],
+      child: Column(
+        children: [
+          Container(
+            height: kToolbarHeight,
+            decoration: BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: const BorderRadius.vertical(
+                top: Radius.circular(25), // 顶部圆角
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(left: 20.0),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Record',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
           ),
-        ),
+          TabBar(
+            controller: _tabController,
+            tabs: _tabs.map((tab) => Tab(text: tab)).toList(),
+            indicatorColor: theme.primaryColor,
+            labelStyle: TextStyle(
+              fontSize: 16,
+              color: theme.primaryColor,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Expanded(
+            child: TabBarView(
+              controller: _tabController,
+              children: const [
+                income.IncomeTab(),
+                outcome.OutcomeTab(),
+                transfer.TransferTab(),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

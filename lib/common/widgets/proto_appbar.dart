@@ -4,14 +4,10 @@ import 'package:flutter/material.dart';
 
 class ProtoAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
-  final double lineHeight;
-  final Color lineColor;
 
   const ProtoAppBar({
     super.key,
     required this.title,
-    this.lineHeight = 2,
-    this.lineColor = Colors.black,
   });
 
   @override

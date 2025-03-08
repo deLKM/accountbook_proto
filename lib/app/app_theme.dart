@@ -14,6 +14,7 @@ final appTheme = ThemeData(
     backgroundColor: Colors.transparent,
     titleTextStyle: TextStyle(
       color: Color(0xFF2D2D2D),
+
       fontSize: 20,
       fontWeight: FontWeight.bold,
     ),

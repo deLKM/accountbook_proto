@@ -10,7 +10,7 @@ final showRecordSheetProvider = Provider<void Function(BuildContext context)>((r
   return (context) {
     showModalBottomSheet(
       context: context,
-      isScrollControlled: true,
+      isScrollControlled: false,
       builder: (context) => ref.read(recordPageProvider),
     );
   };

@@ -51,13 +51,19 @@ class _RecordPageState extends State<RecordPage> with TickerProviderStateMixin {
           unselectedLabelStyle: TextStyle(fontSize: 14),
         ),
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-          income.IncomeTab(),
-          outcome.OutcomeTab(),
-          transfer.TransferTab(),
-        ],
+      body: ClipRRect(
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(25)),
+        child: Container(
+          color: Colors.white,
+          child: TabBarView(
+            controller: _tabController,
+            children: const [
+              income.IncomeTab(),
+              outcome.OutcomeTab(),
+              transfer.TransferTab(),
+            ],
+          ),
+        ),
       ),
     );
   }

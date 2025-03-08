@@ -18,16 +18,19 @@ class TxnDtlPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: ProtoAppBar(title: 'Transaction Detail'),
-      body: CustomScrollView(
-        slivers: [
-          // 时间选择器（未完成）
-          TimeSelector(monthData: monthData,),
+      body: Stack(
+        children: [
+          CustomScrollView(
+            slivers: [
+              // 时间选择器（未完成）
+              TimeSelector(monthData: monthData,),
+              
+              // 月统计
+              MonthlySummary(monthData: monthData),
+            ],
+          ),
           
-          // 月统计
-          MonthlySummary(monthData: monthData),
-
-          // 未完成下拉功能
-          SliverToBoxAdapter(child: DailyListPage(dailyData: dailyData)),
+          DailyListPage(dailyData: dailyData),
         ],
       ),
     );

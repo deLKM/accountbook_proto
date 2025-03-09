@@ -25,16 +25,6 @@ class PhoneField extends StatelessWidget {
             labelText: 'Phone Number',
             prefixIcon: const Icon(Icons.phone_iphone_rounded),
             hintText: 'Please enter your 11-digit phone number',
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30.0),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30.0),
-              borderSide: BorderSide(
-                color: Theme.of(context).primaryColor,
-                width: 2.0,
-              ),
-            ),
           ),
           validator: (value) {
             if (value?.isEmpty ?? true) return 'Please enter your phone number';

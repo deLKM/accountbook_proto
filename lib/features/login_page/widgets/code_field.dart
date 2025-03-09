@@ -39,16 +39,6 @@ class CodeField extends ConsumerWidget {
                 controller: codeController,
                 decoration: InputDecoration(
                   labelText: 'CAPTCHA',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                    borderSide: BorderSide(
-                      color: Theme.of(context).primaryColor,
-                      width: 2.0,
-                    ),
-                  ),
                   prefixIcon: const Icon(Icons.sms_rounded),
                   hintText: 'Please enter 6-digit CAPTCHA',
                 ),

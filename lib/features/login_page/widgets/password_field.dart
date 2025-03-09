@@ -32,16 +32,6 @@ class PasswordField extends ConsumerWidget {
           decoration: InputDecoration(
             labelText: hintText,
             prefixIcon: const Icon(Icons.lock_rounded),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30.0),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30.0),
-              borderSide: BorderSide(
-                color: Theme.of(context).primaryColor,
-                width: 2.0,
-              ),
-            ),
             suffixIcon: IconButton(
               onPressed: passwordNotifier.togglePasswordVisibility,
               icon: Icon(passwordState.showPassword

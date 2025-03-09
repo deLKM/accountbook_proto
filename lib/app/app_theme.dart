@@ -75,10 +75,16 @@ final appTheme = ThemeData(
   ),
 
   // 输入框主题
-  inputDecorationTheme: const InputDecorationTheme(
-    border: OutlineInputBorder(), // 默认边框
+  inputDecorationTheme: InputDecorationTheme(
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(30.0),
+    ), // 默认边框
     focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: primaryBlue), // 聚焦时边框颜色
+      borderRadius: BorderRadius.circular(30.0),
+      borderSide: BorderSide(
+        color: primaryBlue,
+        width: 2.0,
+        ), // 聚焦时边框颜色
     ),
     labelStyle: TextStyle(color: Colors.grey), // 默认标签颜色
     // focusedLabelStyle: TextStyle(color: primaryBlue), // 聚焦时标签颜色

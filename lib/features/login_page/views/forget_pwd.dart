@@ -1,5 +1,4 @@
 import '../widgets/login_header.dart';
-import '../../../common/widgets/proto_appbar.dart';
 import '../widgets/phone_field.dart';
 import '../widgets/code_field.dart';
 import '../widgets/password_field.dart';
@@ -25,7 +24,7 @@ class ForgotPwdPage extends ConsumerWidget {
     var screenWidth = screenSize.width;
 
     return Scaffold(
-      appBar: ProtoAppBar(title: 'Forgot Password'),
+      appBar: AppBar(title: Text('Forgot Password')),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Form(

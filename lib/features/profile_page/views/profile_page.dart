@@ -1,6 +1,5 @@
 // Author: Ching-Yu
 
-import 'package:accountbook_proto/common/widgets/proto_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../widgets/profile_header.dart';
@@ -17,7 +16,7 @@ class ProfilePage extends ConsumerWidget {
     final profileNotifier = ref.read(profileProvider.notifier);
 
     return Scaffold(
-      appBar: ProtoAppBar(title: 'Profile'),
+      appBar: AppBar(title: Text('Profile')),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(

@@ -1,8 +1,10 @@
 // Author: Ching-Yu
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../models/daily_data.dart';
 import '../models/month_summary.dart';
+
+part 'txn_dtl_page_provider.g.dart';
 
 MonthSummary generateMonthSummary(
   List<DailyData> dailyDataList,
@@ -17,25 +19,33 @@ MonthSummary generateMonthSummary(
   return MonthSummary(month, income, expense);
 }
 
-final monthSummaryProvider = StateProvider<MonthSummary>((ref) {
+@riverpod
+MonthSummary monthSummary(ref) {
   final now = DateTime.now();
   final currentMonth = DateTime(now.year, now.month);
   
-  final dailyDataList = ref.read(dailyDataProvider)    
+  final dailyDataList = ref.read(dailyData)    
       .where((dailyData) =>
         dailyData.date.year == currentMonth.year &&
         dailyData.date.month == currentMonth.month)
     .toList();
 
   return generateMonthSummary(dailyDataList, DateTime(now.year, now.month));
-});
+}
 
 // Provides a list of daily data, starting with the current date.
-final dailyDataProvider = StateProvider<List<DailyData>>((ref) {
+@riverpod
+List<DailyData> dailyData(ref) {
   // 请求API
   return [DailyData(DateTime.now(), [])];
-});
+}
 
-final assetsProvider = Provider<double>((ref) => 50000.0);
+@riverpod
+double assets(ref) {
+  return 50000.0;
+}
 
-final liabilitiesProvider = Provider<double>((ref) => 20000.0);
+@riverpod
+double liabilities(ref) {
+  return 20000.0;
+}

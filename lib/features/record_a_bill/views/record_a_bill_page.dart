@@ -64,10 +64,7 @@ class _RecordPageState extends State<RecordPage> with TickerProviderStateMixin {
             controller: _tabController,
             tabs: _tabs.map((tab) => Tab(text: tab)).toList(),
             indicatorColor: Theme.of(context).primaryColor,
-            labelStyle: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
+            labelStyle: Theme.of(context).textTheme.titleMedium,
           ),
           Expanded(
             child: TabBarView(

@@ -33,10 +33,24 @@ class AssetsAndLiabilities extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _buildRow(context, 'Assets', totalAssets),
-                  Text(
-                    totalAssets.toStringAsFixed(2),
-                    style: Theme.of(context).textTheme.titleSmall,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _buildRow(context, 'Assets: ', totalAssets),
+                      Text(
+                        totalAssets.toStringAsFixed(2),
+                        style: Theme.of(context).textTheme.titleSmall,
+                      ),
+                    ],
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/assets'); // 跳转注册页面
+                    },
+                    icon: Icon(
+                      Icons.edit,
+                      size: 15,
+                    ),
                   ),
                 ],
               ),
@@ -44,10 +58,24 @@ class AssetsAndLiabilities extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _buildRow(context, 'Liabilities', totalLiabilities),
-                  Text(
-                    totalLiabilities.toStringAsFixed(2),
-                    style: Theme.of(context).textTheme.titleSmall,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _buildRow(context, 'Liabilities:', totalLiabilities),
+                      Text(
+                        totalLiabilities.toStringAsFixed(2),
+                        style: Theme.of(context).textTheme.titleSmall,
+                      ),
+                    ],
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/liabilities');
+                    },
+                    icon: Icon(
+                      Icons.edit,
+                      size: 15,
+                    ),
                   ),
                 ],
               ),

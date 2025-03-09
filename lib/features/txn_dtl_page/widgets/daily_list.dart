@@ -52,11 +52,17 @@ class _DailyListPageState extends State<DailyListPage> with SingleTickerProvider
       child: AnimatedBuilder(
         animation: _animation,
         builder: (context, child) {
-          final offset = MediaQuery.of(context).size.height * 0.64 * _animation.value;
+          // 一个简单的响应式设计，土法响应式......
+          final offset = MediaQuery.of(context).size.width < 600 
+            ? MediaQuery.of(context).size.height * 0.64 * _animation.value
+            : MediaQuery.of(context).size.height * 0.7 * _animation.value;
+            
           return Transform.translate(
             offset: Offset(0, offset), 
             child: Container(
-              height: MediaQuery.of(context).size.height * 0.64,
+              height: MediaQuery.of(context).size.width < 600 
+                ? MediaQuery.of(context).size.height * 0.64
+                : MediaQuery.of(context).size.height * 0.7,
               decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.vertical(

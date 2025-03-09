@@ -30,8 +30,6 @@ class _RecordPageState extends State<RecordPage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Container(
       decoration: const BoxDecoration(
         color: Colors.white,
@@ -65,10 +63,10 @@ class _RecordPageState extends State<RecordPage> with TickerProviderStateMixin {
           TabBar(
             controller: _tabController,
             tabs: _tabs.map((tab) => Tab(text: tab)).toList(),
-            indicatorColor: theme.primaryColor,
+            indicatorColor: Theme.of(context).primaryColor,
             labelStyle: TextStyle(
               fontSize: 16,
-              color: theme.primaryColor,
+              color: Theme.of(context).primaryColor,
               fontWeight: FontWeight.bold,
             ),
           ),

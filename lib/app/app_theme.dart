@@ -3,36 +3,54 @@
 import 'package:flutter/material.dart';
 
 final appTheme = ThemeData(
-  primaryColor: Colors.lightBlueAccent,
-  scaffoldBackgroundColor: Colors.white,
+  primaryColor: const Color.fromARGB(255, 255, 243, 114),
+  primaryColorDark: const Color.fromARGB(255, 255, 234, 117),
+  primaryColorLight: const Color.fromARGB(255, 255, 251, 201),
+  scaffoldBackgroundColor: const Color.fromARGB(255, 255, 254, 249),
+
+  // Ban animation-related colors
   splashColor: Colors.transparent,
   splashFactory: NoSplash.splashFactory,
   hoverColor: Colors.transparent,
   focusColor: Colors.transparent,
   highlightColor: Colors.transparent,
+  
+  // Theme of the App Bar
   appBarTheme: const AppBarTheme(
     backgroundColor: Colors.transparent,
     titleTextStyle: TextStyle(
-      color: Color(0xFF2D2D2D),
-
+      color: Color.fromARGB(255, 255, 243, 114),
       fontSize: 20,
       fontWeight: FontWeight.bold,
     ),
     titleSpacing: 20,
     centerTitle: false,
   ),
+
+  // Theme of the Button
   buttonTheme: ButtonThemeData(
-    buttonColor: Colors.lightBlue,
+    buttonColor: Color.fromARGB(255, 255, 243, 114),
     textTheme: ButtonTextTheme.primary,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(30),
+      borderRadius: BorderRadius.circular(30.0),
     ),
   ),
+
+  // Theme of the Card
+  cardTheme: CardTheme(
+    color: const Color.fromARGB(255, 255, 243, 114),
+    elevation: 0,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(25),
+    ),
+  ),
+
+  // Theme of Input Decoration
   inputDecorationTheme: const InputDecorationTheme(
     border: OutlineInputBorder(),
     focusedBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.blue),
+      borderSide: BorderSide(color: Color.fromARGB(255, 255, 243, 114)),
     ),
-    labelStyle: TextStyle(color: Colors.blue),
+    labelStyle: TextStyle(color: Color.fromARGB(255, 255, 242, 100)),
   ),
 );

@@ -14,9 +14,7 @@ class AssetsAndLiabilities extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Card(
-        color: Color.fromARGB(167, 236, 247, 255),
         margin: const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
         elevation: 0,
         child: Padding(
           padding: const EdgeInsets.all(20),
@@ -28,9 +26,9 @@ class AssetsAndLiabilities extends StatelessWidget {
                   Icon(Icons.attach_money, color: Colors.amber, size: 20),
                   Text(
                     'Assets and Liabilities',
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 17,
-                      color: Colors.lightBlueAccent,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -39,10 +37,10 @@ class AssetsAndLiabilities extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _buildRow('Assets', totalAssets),
+                  _buildRow(context, 'Assets', totalAssets),
                   Text(
                     totalAssets.toStringAsFixed(2),
-                    style: TextStyle(fontSize: 20, color: Colors.black),
+                    style: TextStyle(fontSize: 20, color: Colors.white),
                   ),
                 ],
               ),
@@ -50,10 +48,10 @@ class AssetsAndLiabilities extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _buildRow('Liabilities', totalLiabilities),
+                  _buildRow(context, 'Liabilities', totalLiabilities),
                   Text(
                     totalLiabilities.toStringAsFixed(2),
-                    style: TextStyle(fontSize: 20, color: Colors.black),
+                    style: TextStyle(fontSize: 20, color: Colors.white),
                   ),
                 ],
               ),
@@ -64,7 +62,7 @@ class AssetsAndLiabilities extends StatelessWidget {
     );
   }
 
-  Widget _buildRow(String label, double value) {
+  Widget _buildRow(BuildContext context, String label, double value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
@@ -73,7 +71,11 @@ class AssetsAndLiabilities extends StatelessWidget {
           const SizedBox(width: 20),
           Text(
             label,
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: TextStyle(
+              fontSize: 20, 
+              color: Colors.white,
+              fontWeight: FontWeight.bold
+            ),
           ),
         ],
       ),

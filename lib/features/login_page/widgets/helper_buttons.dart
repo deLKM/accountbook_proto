@@ -13,15 +13,23 @@ class HelperButtons extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         TextButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/signup'); // 跳转注册页面
-            },
-          child: const Text('Sign Up'),
+          onPressed: () {
+            Navigator.pushNamed(context, '/signup'); // 跳转注册页面
+          },
+          style: TextButton.styleFrom(
+            foregroundColor: Theme.of(context).primaryColor,
+          ),
+          child: Text(
+            'Sign Up',
+          ),
         ),
         TextButton(
           onPressed: () {
             Navigator.pushNamed(context, '/forgotpwd');
           }, // 跳转忘记密码
+          style: TextButton.styleFrom(
+            foregroundColor: Theme.of(context).primaryColor,
+          ),
           child: const Text('Forgot your Password?'),
         ),
       ],

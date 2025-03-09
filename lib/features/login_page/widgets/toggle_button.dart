@@ -16,7 +16,6 @@ class ToggleButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     final activeText = isPasswordLogin ? 'SMS Login' : 'Password Login';
     final buttonText = isPasswordLogin 
         ? 'Switch to SMS Login' 
@@ -39,7 +38,7 @@ class ToggleButton extends StatelessWidget {
           child: Text(
             buttonText,
             style: TextStyle(
-              color: theme.primaryColor,
+              color: Theme.of(context).primaryColor,
               fontWeight: FontWeight.bold,
             ),
           ),

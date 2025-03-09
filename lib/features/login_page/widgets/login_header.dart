@@ -12,14 +12,12 @@ class LoginHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Column(
       children: [
         Icon(
           Icons.account_balance_wallet,
           size: 50,
-          color: theme.primaryColor,
+          color: Theme.of(context).primaryColor,
         ),
         const SizedBox(height: 0),
       ],

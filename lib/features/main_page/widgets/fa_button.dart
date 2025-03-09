@@ -9,18 +9,16 @@ class FAButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final theme = Theme.of(context);
     final showRecordSheet = ref.watch(showRecordSheetProvider);
 
     return FloatingActionButton(
       onPressed: () => showRecordSheet(context),
-      backgroundColor: theme.scaffoldBackgroundColor,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       elevation: 0,
       splashColor: Colors.transparent,
       enableFeedback: false,
       highlightElevation: 0,
-      foregroundColor: theme.primaryColor,
-      hoverColor: theme.primaryColorLight,
+      foregroundColor: Theme.of(context).primaryColor,
       hoverElevation: 0,
       shape: const CircleBorder(),
       child: const Icon(Icons.add),

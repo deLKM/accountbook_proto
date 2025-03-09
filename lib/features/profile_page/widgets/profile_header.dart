@@ -14,8 +14,6 @@ class ProfileHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -28,7 +26,7 @@ class ProfileHeader extends StatelessWidget {
           child: CircleAvatar(
             radius: 50,
             backgroundImage: NetworkImage(avatarUrl),
-            backgroundColor: theme.primaryColorLight,
+            backgroundColor: Theme.of(context).primaryColorLight,
           ),
         ),
         SizedBox(height: 16),

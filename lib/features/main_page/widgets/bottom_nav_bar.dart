@@ -17,16 +17,14 @@ class CustomBottomNavBar extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    
+  Widget build(BuildContext context) {    
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
       currentIndex: currentIndex,
       onTap: onTap,
-      backgroundColor: theme.primaryColor,
-      selectedItemColor: theme.primaryColorDark,
-      unselectedItemColor: theme.scaffoldBackgroundColor,
+      backgroundColor: Theme.of(context).primaryColor,
+      selectedItemColor: Theme.of(context).primaryColorDark,
+      unselectedItemColor: Theme.of(context).scaffoldBackgroundColor,
       iconSize: iconSize,
       selectedFontSize: fontSize,
       unselectedFontSize: fontSize,
@@ -40,14 +38,12 @@ class CustomBottomNavBar extends StatelessWidget {
   }
 
   BottomNavigationBarItem _buildNavItem(BuildContext context, IconData icon, int index, String label) {
-    final theme = Theme.of(context);
-
     return BottomNavigationBarItem(
       icon: Icon(icon, size: iconSize),
       label: label,
       backgroundColor: currentIndex == index
-        ? theme.primaryColorDark
-        : theme.scaffoldBackgroundColor,
+        ? Theme.of(context).primaryColorDark
+        : Theme.of(context).primaryColorDark,
     );
   }
 }

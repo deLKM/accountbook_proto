@@ -19,7 +19,11 @@ class TimeSelector extends ConsumerWidget {
         padding: const EdgeInsets.only(left: 20.0, top: 0),
         child: Text(
           '${monthData.month.year}/${monthData.month.month}',
-          style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontSize: 20.0,
+            color: Theme.of(context).primaryColor,
+            fontWeight: FontWeight.bold
+          ),
         ),
       ),
     );

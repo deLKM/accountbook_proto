@@ -25,9 +25,7 @@ class LoginButton extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    
+  Widget build(BuildContext context) {    
     return Center(
       child: SizedBox(
         width: width,
@@ -35,14 +33,14 @@ class LoginButton extends StatelessWidget {
           onPressed: isLoading ? null : onPressed,
           style: FilledButton.styleFrom(
             padding: padding,
-            backgroundColor: backgroundColor ?? theme.primaryColor,
+            backgroundColor: backgroundColor ?? Theme.of(context).primaryColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(borderRadius),
             ),
           ),
           child: isLoading
-              ? _buildProgressIndicator(theme)
-              : _buildButtonText(theme),
+              ? _buildProgressIndicator(Theme.of(context))
+              : _buildButtonText(Theme.of(context)),
         ),
       ),
     );

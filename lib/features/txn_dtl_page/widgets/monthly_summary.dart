@@ -16,11 +16,7 @@ class MonthlySummary extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Card(
-        color: Color.fromARGB(167, 236, 247, 255),
         margin: const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(25),
-        ),
         elevation: 0,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 20),
@@ -28,9 +24,9 @@ class MonthlySummary extends StatelessWidget {
             children: [
               StatItem(
                 label: 'Balance',
-                labelColor: Theme.of(context).primaryColor,
+                labelColor: Colors.white,
                 value: monthData.income - monthData.expense,
-                color: Colors.black,
+                color: Colors.white,
               ),
             ],
           ),

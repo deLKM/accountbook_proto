@@ -7,9 +7,7 @@ class LoginButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String buttonText;
   final double width;
-  final Color? backgroundColor;
   final Color progressColor;
-  final double borderRadius;
   final EdgeInsetsGeometry padding;
 
   const LoginButton({
@@ -18,9 +16,7 @@ class LoginButton extends StatelessWidget {
     required this.onPressed,
     this.buttonText = 'Log In',
     this.width = 150,
-    this.backgroundColor,
     this.progressColor = Colors.white,
-    this.borderRadius = 30.0,
     this.padding = const EdgeInsets.symmetric(vertical: 16),
   });
 
@@ -33,10 +29,7 @@ class LoginButton extends StatelessWidget {
           onPressed: isLoading ? null : onPressed,
           style: FilledButton.styleFrom(
             padding: padding,
-            backgroundColor: backgroundColor ?? Theme.of(context).primaryColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(borderRadius),
-            ),
+            backgroundColor: Theme.of(context).primaryColor,
           ),
           child: isLoading
               ? _buildProgressIndicator(Theme.of(context))

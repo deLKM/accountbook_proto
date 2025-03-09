@@ -1,10 +1,14 @@
 // Author: Ching-Yu
 
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../app_theme.dart';
 import '../app_router.dart';
 
-final themeProvider = Provider<ThemeData>((ref) => appTheme);
+part 'app_provider.g.dart';
 
-final routesProvider = Provider<Map<String, WidgetBuilder>>((ref) => appRoutes);
+@riverpod
+ThemeData theme(ref) => appTheme;
+
+@riverpod
+Map<String, WidgetBuilder> routes(ref) => appRoutes;

@@ -1,3 +1,5 @@
+// Author: Ching-Yu
+
 import 'package:flutter/material.dart';
 
 class AssetsAndLiabilities extends StatelessWidget {
@@ -61,7 +63,7 @@ class AssetsAndLiabilities extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _buildRow(context, 'Liabilities:', totalLiabilities),
+                      _buildRow(context, 'Liabilities: ', totalLiabilities),
                       Text(
                         totalLiabilities.toStringAsFixed(2),
                         style: Theme.of(context).textTheme.titleSmall,

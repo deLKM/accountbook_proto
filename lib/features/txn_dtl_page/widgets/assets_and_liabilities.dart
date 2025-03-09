@@ -26,11 +26,7 @@ class AssetsAndLiabilities extends StatelessWidget {
                   Icon(Icons.attach_money, color: Colors.amber, size: 20),
                   Text(
                     'Assets and Liabilities',
-                    style: TextStyle(
-                      fontSize: 17,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Theme.of(context).textTheme.titleLarge
                   ),
                 ],
               ),
@@ -40,7 +36,7 @@ class AssetsAndLiabilities extends StatelessWidget {
                   _buildRow(context, 'Assets', totalAssets),
                   Text(
                     totalAssets.toStringAsFixed(2),
-                    style: TextStyle(fontSize: 20, color: Colors.white),
+                    style: Theme.of(context).textTheme.titleSmall,
                   ),
                 ],
               ),
@@ -51,7 +47,7 @@ class AssetsAndLiabilities extends StatelessWidget {
                   _buildRow(context, 'Liabilities', totalLiabilities),
                   Text(
                     totalLiabilities.toStringAsFixed(2),
-                    style: TextStyle(fontSize: 20, color: Colors.white),
+                    style: Theme.of(context).textTheme.titleSmall,
                   ),
                 ],
               ),
@@ -71,11 +67,7 @@ class AssetsAndLiabilities extends StatelessWidget {
           const SizedBox(width: 20),
           Text(
             label,
-            style: TextStyle(
-              fontSize: 20, 
-              color: Colors.white,
-              fontWeight: FontWeight.bold
-            ),
+            style: Theme.of(context).textTheme.titleSmall,
           ),
         ],
       ),

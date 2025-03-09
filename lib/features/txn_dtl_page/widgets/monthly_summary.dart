@@ -24,9 +24,7 @@ class MonthlySummary extends StatelessWidget {
             children: [
               StatItem(
                 label: 'Balance',
-                labelColor: Colors.white,
                 value: monthData.income - monthData.expense,
-                color: Colors.white,
               ),
             ],
           ),

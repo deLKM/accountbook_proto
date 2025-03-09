@@ -60,11 +60,6 @@ class LoginButton extends StatelessWidget {
   Widget _buildButtonText(ThemeData theme) {
     return Text(
       buttonText,
-      style: TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.bold,
-        color: theme.colorScheme.onPrimary,
-      ),
     );
   }
 }

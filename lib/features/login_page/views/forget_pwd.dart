@@ -37,13 +37,10 @@ class ForgotPwdPage extends ConsumerWidget {
               const SizedBox(height: 40),
 
               // 提示文字
-              const Text(
+              Text(
                 'Please enter your phone number to reset your password.',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey,
-                ),
+                style: Theme.of(context).textTheme.labelLarge,
               ),
               const SizedBox(height: 40),
 

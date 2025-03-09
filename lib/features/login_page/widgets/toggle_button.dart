@@ -5,13 +5,11 @@ import 'package:flutter/material.dart';
 class ToggleButton extends StatelessWidget {
   final bool isPasswordLogin;
   final VoidCallback onToggle;
-  final Color activeColor;
 
   const ToggleButton({
     super.key,
     required this.isPasswordLogin,
     required this.onToggle,
-    this.activeColor = Colors.grey,
   });
 
   @override
@@ -26,7 +24,7 @@ class ToggleButton extends StatelessWidget {
       children: [
         Text(
           activeText,
-          style: TextStyle(color: activeColor),
+          style: Theme.of(context).textTheme.labelLarge,
         ),
         const SizedBox(width: 8),
         TextButton(

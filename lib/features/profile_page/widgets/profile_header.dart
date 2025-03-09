@@ -34,8 +34,8 @@ class ProfileHeader extends StatelessWidget {
         Text(
           username,
           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+            fontWeight: FontWeight.bold,
+          ),
         ),
         SizedBox(height: 8),
       ],

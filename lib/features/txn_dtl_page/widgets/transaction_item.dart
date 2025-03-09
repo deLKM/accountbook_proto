@@ -16,10 +16,8 @@ class TransactionItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: CircleAvatar(
-        backgroundColor: transaction.isIncome ? Colors.green[100] : Colors.red[100],
         child: Icon(
           transaction.isIncome ? Icons.arrow_upward : Icons.arrow_downward,
-          color: transaction.isIncome ? Colors.green : Colors.red,
         ),
       ),
       title: Text(transaction.title),
@@ -27,7 +25,6 @@ class TransactionItem extends StatelessWidget {
       trailing: Text(
         '${transaction.isIncome ? '+' : '-'}¥${transaction.amount.toStringAsFixed(2)}',
         style: TextStyle(
-          color: transaction.isIncome ? Colors.green : Colors.red,
           fontWeight: FontWeight.bold,
         ),
       ),

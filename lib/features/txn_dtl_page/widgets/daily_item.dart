@@ -22,10 +22,7 @@ class DailyItem extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(20, 20, 16, 8),
           child: Text(
             DateFormat('M/d').format(daily.date),
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-            ),
+            style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
         ...daily.transactions.map((transaction) => TransactionItem(transaction: transaction)),

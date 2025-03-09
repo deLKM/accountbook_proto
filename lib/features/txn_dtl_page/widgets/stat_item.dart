@@ -6,15 +6,11 @@ class StatItem extends StatelessWidget {
   const StatItem({
     super.key,
     required this.label,
-    required this.labelColor,
     required this.value,
-    required this.color,
   });
 
   final String label;
-  final Color labelColor;
   final double value;
-  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +25,7 @@ class StatItem extends StatelessWidget {
               const SizedBox(width: 0),
               Text(
                 label,
-                style: TextStyle(
-                  color: labelColor,
-                  fontSize: 17,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: Theme.of(context).textTheme.titleLarge,
               ),
             ],
           ),
@@ -43,11 +35,7 @@ class StatItem extends StatelessWidget {
               const SizedBox(width: 20),
               Text(
                 value.toStringAsFixed(2),
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: color,
-                ),
+                style: Theme.of(context).textTheme.titleSmall,
               ),
             ],
           ),

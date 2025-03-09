@@ -53,7 +53,7 @@ class _RecordPageState extends State<RecordPage> with TickerProviderStateMixin {
                   'Record',
                   style: TextStyle(
                     fontSize: 20,
-                    color: Colors.black,
+                    color: Theme.of(context).primaryColor,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -66,7 +66,6 @@ class _RecordPageState extends State<RecordPage> with TickerProviderStateMixin {
             indicatorColor: Theme.of(context).primaryColor,
             labelStyle: TextStyle(
               fontSize: 16,
-              color: Theme.of(context).primaryColor,
               fontWeight: FontWeight.bold,
             ),
           ),

@@ -24,7 +24,7 @@ MonthSummary monthSummary(ref) {
   final now = DateTime.now();
   final currentMonth = DateTime(now.year, now.month);
   
-  final dailyDataList = ref.read(dailyData)    
+  final dailyDataList = ref.read(dailyDataProvider)    
       .where((dailyData) =>
         dailyData.date.year == currentMonth.year &&
         dailyData.date.month == currentMonth.month)

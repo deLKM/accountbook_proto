@@ -6,7 +6,7 @@ part of 'txn_dtl_page_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$monthSummaryHash() => r'60b71c0e3cb58e9c07e70c3240f58b5b5bfa846f';
+String _$monthSummaryHash() => r'5cd8658c8e732bf9fac17e5853a6cb6c83b09ff2';
 
 /// See also [monthSummary].
 @ProviderFor(monthSummary)

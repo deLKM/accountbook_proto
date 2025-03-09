@@ -18,10 +18,10 @@ class CodeField extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(captchaProvider);
-    final notifier = ref.read(captchaProvider.notifier);
+    final state = ref.watch(captchaNotifierProvider);
+    final notifier = ref.read(captchaNotifierProvider.notifier);
 
-    ref.listen(captchaProvider.select((s) => s.error), (_, error) {
+    ref.listen(captchaNotifierProvider.select((s) => s.error), (_, error) {
       if (error != null) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(error.toString())),

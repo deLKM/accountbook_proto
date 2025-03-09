@@ -1,9 +1,7 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'dart:async';
 
-final captchaProvider = NotifierProvider<CaptchaNotifier, CaptchaState>(
-  () => CaptchaNotifier(),
-);
+part 'code_field_provider.g.dart';
 
 class CaptchaState {
   final int countdown;
@@ -29,7 +27,8 @@ class CaptchaState {
   }
 }
 
-class CaptchaNotifier extends Notifier<CaptchaState> {
+@riverpod
+class CaptchaNotifier extends _$CaptchaNotifier {
   Timer? _timer;
 
   @override

@@ -12,8 +12,8 @@ class ForgotPwdPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final loginState = ref.watch(loginProvider);
-    final loginNotifier = ref.read(loginProvider.notifier);
+    final loginState = ref.watch(loginNotifierProvider);
+    final loginNotifier = ref.read(loginNotifierProvider.notifier);
 
     final phoneController = TextEditingController();
     final codeController = TextEditingController();

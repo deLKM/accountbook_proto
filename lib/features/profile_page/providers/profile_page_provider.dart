@@ -1,4 +1,6 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'profile_page_provider.g.dart';
 
 class ProfileState {
   final bool isLoggedIn;
@@ -12,7 +14,8 @@ class ProfileState {
   }
 }
 
-class ProfileNotifier extends Notifier<ProfileState> {
+@riverpod
+class ProfileNotifier extends _$ProfileNotifier {
   @override
   ProfileState build() {
     return ProfileState();
@@ -22,7 +25,3 @@ class ProfileNotifier extends Notifier<ProfileState> {
     state = state.copyWith(isLoggedIn: status);
   }
 }
-
-final profileProvider = NotifierProvider<ProfileNotifier, ProfileState>(() {
-  return ProfileNotifier();
-});

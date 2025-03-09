@@ -20,8 +20,8 @@ class PasswordField extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final passwordState = ref.watch(passwordFieldProvider);
-    final passwordNotifier = ref.read(passwordFieldProvider.notifier);
+    final passwordState = ref.watch(passwordFieldNotifierProvider);
+    final passwordNotifier = ref.read(passwordFieldNotifierProvider.notifier);
 
     return Center(
       child: SizedBox(

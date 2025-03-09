@@ -1,4 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'password_field_provider.g.dart';
 
 class PasswordFieldState {
   final bool showPassword;
@@ -12,7 +15,8 @@ class PasswordFieldState {
   }
 }
 
-class PasswordFieldNotifier extends Notifier<PasswordFieldState> {
+@riverpod
+class PasswordFieldNotifier extends _$PasswordFieldNotifier {
   @override
   PasswordFieldState build() {
     return PasswordFieldState();
@@ -22,7 +26,3 @@ class PasswordFieldNotifier extends Notifier<PasswordFieldState> {
     state = state.copyWith(showPassword: !state.showPassword);
   }
 }
-
-final passwordFieldProvider = NotifierProvider<PasswordFieldNotifier, PasswordFieldState>(() {
-  return PasswordFieldNotifier();
-});

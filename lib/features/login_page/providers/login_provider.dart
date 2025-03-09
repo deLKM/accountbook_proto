@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../profile_page/providers/profile_page_provider.dart';
+
+part 'login_provider.g.dart';
 
 class LoginState {
   final bool isPasswordLogin;
@@ -22,7 +25,8 @@ class LoginState {
   }
 }
 
-class LoginNotifier extends Notifier<LoginState> {
+@riverpod
+class LoginNotifier extends _$LoginNotifier {
   @override
   LoginState build() {
     return LoginState();
@@ -50,7 +54,7 @@ class LoginNotifier extends Notifier<LoginState> {
 
       if (loginSuccess) {
         // 更新登录状态
-        ref.read(profileProvider.notifier).updateLoginStatus(true);
+        ref.read(profileNotifierProvider.notifier).updateLoginStatus(true);
 
         Navigator.pop(context, true);
       } else {
@@ -98,7 +102,3 @@ class LoginNotifier extends Notifier<LoginState> {
     Navigator.pop(context); // 返回上一页
   }
 }
-
-final loginProvider = NotifierProvider<LoginNotifier, LoginState>(() {
-  return LoginNotifier();
-});

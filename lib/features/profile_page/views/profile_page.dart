@@ -12,8 +12,8 @@ class ProfilePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final profileState = ref.watch(profileProvider);
-    final profileNotifier = ref.read(profileProvider.notifier);
+    final profileState = ref.watch(profileNotifierProvider);
+    final profileNotifier = ref.read(profileNotifierProvider.notifier);
 
     return Scaffold(
       appBar: AppBar(title: Text('Profile')),

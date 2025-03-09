@@ -1,10 +1,8 @@
-// Author: Ching-Yu
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'dart:async';
 
-final captchaProvider = StateNotifierProvider<CaptchaNotifier, CaptchaState>(
-  (ref) => CaptchaNotifier(),
+final captchaProvider = NotifierProvider<CaptchaNotifier, CaptchaState>(
+  () => CaptchaNotifier(),
 );
 
 class CaptchaState {
@@ -17,16 +15,35 @@ class CaptchaState {
     this.isLoading = false,
     this.error,
   });
+
+  CaptchaState copyWith({
+    int? countdown,
+    bool? isLoading,
+    Object? error,
+  }) {
+    return CaptchaState(
+      countdown: countdown ?? this.countdown,
+      isLoading: isLoading ?? this.isLoading,
+      error: error ?? this.error,
+    );
+  }
 }
 
-class CaptchaNotifier extends StateNotifier<CaptchaState> {
-  CaptchaNotifier() : super(CaptchaState());
-
+class CaptchaNotifier extends Notifier<CaptchaState> {
   Timer? _timer;
+
+  @override
+  CaptchaState build() {
+    ref.onDispose(() {
+      _timer?.cancel();
+    });
+
+    return CaptchaState();
+  }
 
   Future<void> getCaptcha(String phoneNumber) async {
     if (state.countdown > 0 || state.isLoading) return;
-    
+
     if (phoneNumber.isEmpty) {
       state = state.copyWith(error: 'Phone number is required');
       return;
@@ -34,7 +51,7 @@ class CaptchaNotifier extends StateNotifier<CaptchaState> {
 
     try {
       state = state.copyWith(isLoading: true, error: null);
-      
+
       // 模拟 API 调用
       await Future.delayed(const Duration(seconds: 1));
 
@@ -42,7 +59,7 @@ class CaptchaNotifier extends StateNotifier<CaptchaState> {
         countdown: 60,
         isLoading: false,
       );
-      
+
       _startCountdown();
     } catch (e) {
       state = state.copyWith(
@@ -61,25 +78,5 @@ class CaptchaNotifier extends StateNotifier<CaptchaState> {
         _timer?.cancel();
       }
     });
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
-  }
-}
-
-extension _CaptchaStateCopyWith on CaptchaState {
-  CaptchaState copyWith({
-    int? countdown,
-    bool? isLoading,
-    Object? error,
-  }) {
-    return CaptchaState(
-      countdown: countdown ?? this.countdown,
-      isLoading: isLoading ?? this.isLoading,
-      error: error ?? this.error,
-    );
   }
 }

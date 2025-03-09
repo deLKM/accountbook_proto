@@ -1,8 +1,6 @@
-// Author: Ching-Yu
-
 import 'package:flutter/material.dart';
-import '../../profile_page/providers/profile_page_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import '../../profile_page/providers/profile_page_provider.dart';
 
 class LoginState {
   final bool isPasswordLogin;
@@ -24,8 +22,11 @@ class LoginState {
   }
 }
 
-class LoginNotifier extends StateNotifier<LoginState> {
-  LoginNotifier() : super(LoginState());
+class LoginNotifier extends Notifier<LoginState> {
+  @override
+  LoginState build() {
+    return LoginState();
+  }
 
   void toggleLoginType() {
     state = state.copyWith(isPasswordLogin: !state.isPasswordLogin);
@@ -58,7 +59,7 @@ class LoginNotifier extends StateNotifier<LoginState> {
         );
       }
     } catch (e) {
-      if (!mounted) return;
+      if (!context.mounted) return;
 
       state = state.copyWith(isLoading: false);
       ScaffoldMessenger.of(context).showSnackBar(
@@ -98,6 +99,6 @@ class LoginNotifier extends StateNotifier<LoginState> {
   }
 }
 
-final loginProvider = StateNotifierProvider<LoginNotifier, LoginState>((ref) {
+final loginProvider = NotifierProvider<LoginNotifier, LoginState>(() {
   return LoginNotifier();
 });

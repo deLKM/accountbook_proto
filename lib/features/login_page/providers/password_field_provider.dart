@@ -1,5 +1,3 @@
-// Author: Ching-Yu
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class PasswordFieldState {
@@ -14,14 +12,17 @@ class PasswordFieldState {
   }
 }
 
-class PasswordFieldNotifier extends StateNotifier<PasswordFieldState> {
-  PasswordFieldNotifier() : super(PasswordFieldState());
+class PasswordFieldNotifier extends Notifier<PasswordFieldState> {
+  @override
+  PasswordFieldState build() {
+    return PasswordFieldState();
+  }
 
   void togglePasswordVisibility() {
     state = state.copyWith(showPassword: !state.showPassword);
   }
 }
 
-final passwordFieldProvider = StateNotifierProvider<PasswordFieldNotifier, PasswordFieldState>((ref) {
+final passwordFieldProvider = NotifierProvider<PasswordFieldNotifier, PasswordFieldState>(() {
   return PasswordFieldNotifier();
 });

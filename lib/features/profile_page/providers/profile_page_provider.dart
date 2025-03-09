@@ -1,5 +1,3 @@
-// Author: Ching-Yu
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class ProfileState {
@@ -14,14 +12,17 @@ class ProfileState {
   }
 }
 
-class ProfileNotifier extends StateNotifier<ProfileState> {
-  ProfileNotifier() : super(ProfileState());
+class ProfileNotifier extends Notifier<ProfileState> {
+  @override
+  ProfileState build() {
+    return ProfileState();
+  }
 
   void updateLoginStatus(bool status) {
     state = state.copyWith(isLoggedIn: status);
   }
 }
 
-final profileProvider = StateNotifierProvider<ProfileNotifier, ProfileState>((ref) {
+final profileProvider = NotifierProvider<ProfileNotifier, ProfileState>(() {
   return ProfileNotifier();
 });

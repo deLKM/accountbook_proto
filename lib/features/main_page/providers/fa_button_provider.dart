@@ -16,7 +16,7 @@ void Function(BuildContext context) showRecordSheet(ref) {
   return (context) {
     showModalBottomSheet(
       context: context,
-      isScrollControlled: false,
+      isScrollControlled: true,
       builder: (context) => ref.read(recordPageProvider),
     );
   };

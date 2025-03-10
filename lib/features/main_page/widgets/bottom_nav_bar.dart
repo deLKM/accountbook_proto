@@ -31,7 +31,7 @@ class CustomBottomNavBar extends StatelessWidget {
       items: [
       _buildNavItem(context, Icons.home, 0, 'HOME'),
       _buildNavItem(context, Icons.list, 1, 'Plan'),
-      _buildNavItem(context, Icons.paste_rounded, 2, 'ACCOUNT'),
+      _buildNavItem(context, Icons.pie_chart, 2, 'STATISTIC'),
       _buildNavItem(context, Icons.person, 3, 'PROFILE'),
       ],
     );

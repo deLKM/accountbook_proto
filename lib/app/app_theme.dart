@@ -64,10 +64,18 @@ final appTheme = ThemeData(
     ),
   ),
 
+  iconButtonTheme: IconButtonThemeData(
+    style: IconButton.styleFrom(
+      backgroundColor: Colors.transparent, // 背景色为透明
+      hoverColor: Colors.transparent, // 悬停颜色为透明
+      focusColor: Colors.transparent, // 聚焦颜色为透明
+      highlightColor: Colors.transparent, // 高亮颜色为透明
+    ),
+  ),
+
   // 文本按钮主题
   textButtonTheme: TextButtonThemeData(
     style: ElevatedButton.styleFrom(
-      backgroundColor: primaryBlue, // 按钮背景色
       foregroundColor: Colors.white, // 按钮文本颜色
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(30), // 圆角按钮

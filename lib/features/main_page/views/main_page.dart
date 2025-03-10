@@ -1,6 +1,6 @@
 // Author: Ching-Yu
 
-import '../../account_page/views/account_page.dart';
+import '../../statistic_page/views/statistic_page.dart';
 import '../../plan_page/views/plan_page.dart';
 import '../../profile_page/views/profile_page.dart';
 import '../../txn_dtl_page/views/txn_dtl_page.dart';
@@ -21,7 +21,7 @@ class _MainPageState extends State<MainPage> {
   final List<Widget> _pages = [
     TxnDtlPage(),
     PlanPage(),
-    AccountPage(),
+    StatisticPage(),
     ProfilePage(),
   ];
 

@@ -14,7 +14,7 @@ class RecordPage extends StatefulWidget {
 
 class _RecordPageState extends State<RecordPage> with TickerProviderStateMixin {
   late TabController _tabController;
-  final List<String> _tabs = ['Income', 'Outcome', 'Transfer'];
+  final List<String> _tabs = ['Outcome', 'Income', 'Transfer'];
 
   @override
   void initState() {
@@ -70,8 +70,8 @@ class _RecordPageState extends State<RecordPage> with TickerProviderStateMixin {
             child: TabBarView(
               controller: _tabController,
               children: const [
-                income.IncomeTab(),
                 outcome.OutcomeTab(),
+                income.IncomeTab(),
                 transfer.TransferTab(),
               ],
             ),

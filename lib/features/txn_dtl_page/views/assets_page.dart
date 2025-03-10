@@ -34,7 +34,11 @@ class AssetsPage extends ConsumerWidget {
               ),
               Divider(),
               const SizedBox(height: 40),
-              AddButton(text: 'Add An Asset'),
+              AddButton(
+                text: 'Add An Asset',
+                onPressed: () => Navigator.pushNamed(context, '/manage_assets'),
+
+              ),
             ],
           ),
         ),

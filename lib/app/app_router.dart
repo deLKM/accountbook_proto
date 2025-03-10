@@ -4,6 +4,8 @@ import '../features/login_page/views/login_page.dart';
 import '../features/txn_dtl_page/views/txn_dtl_page.dart';
 import '../features/txn_dtl_page/views/assets_page.dart';
 import '../features/txn_dtl_page/views/liabilities_page.dart';
+import '../features/txn_dtl_page/views/manage_assets.dart';
+import '../features/txn_dtl_page/views/manage_liabilities.dart';
 import '../features/account_page/views/account_page.dart';
 import '../features/plan_page/views/plan_page.dart';
 import '../features/profile_page/views/profile_page.dart';
@@ -22,4 +24,6 @@ final appRoutes = {
   '/forgotpwd': (context) => ForgotPwdPage(),
   '/assets': (context) => AssetsPage(),
   '/liabilities': (context) => LiabilitiesPage(),
+  '/manage_assets': (context) => ManageAssetsPage(),
+  '/manage_liabilities': (context) => ManageLiabilitiesPage(),
 };

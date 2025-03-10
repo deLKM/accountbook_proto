@@ -5,10 +5,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class AddButton extends ConsumerWidget {
   final String text;
+  final VoidCallback onPressed;
+
 
   const AddButton({
     super.key,
     required this.text,
+    required this.onPressed,
   });
 
   @override
@@ -17,7 +20,7 @@ class AddButton extends ConsumerWidget {
       child: SizedBox(
         width: 150,
         child: FilledButton(
-          onPressed: () {},
+          onPressed: onPressed,
           style: FilledButton.styleFrom(
             padding: const EdgeInsets.symmetric(vertical: 16),
             backgroundColor: Theme.of(context).primaryColor,

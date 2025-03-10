@@ -37,7 +37,10 @@ class LiabilitiesPage extends ConsumerWidget {
               ),
               Divider(),
               const SizedBox(height: 40),
-              AddButton(text: 'Add A Liability'),
+              AddButton(
+                text: 'Add A Liability',
+                onPressed: () => Navigator.pushNamed(context, '/manage_liabilities')
+              ),
             ],
           ),
         ),

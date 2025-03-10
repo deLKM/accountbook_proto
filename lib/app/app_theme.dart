@@ -64,6 +64,17 @@ final appTheme = ThemeData(
     ),
   ),
 
+  // 文本按钮主题
+  textButtonTheme: TextButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: primaryBlue, // 按钮背景色
+      foregroundColor: Colors.white, // 按钮文本颜色
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(30), // 圆角按钮
+      ),
+    ),
+  ),
+
   // 卡片主题
   cardTheme: CardTheme(
     color: Colors.white, // 卡片背景色为白色

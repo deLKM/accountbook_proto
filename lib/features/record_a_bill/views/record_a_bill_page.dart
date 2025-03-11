@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'income.dart' as income;
-import 'outcome.dart' as outcome;
+import 'expense.dart' as expense;
 import 'transfer.dart' as transfer;
 
 class RecordPage extends StatefulWidget {
@@ -70,7 +70,7 @@ class _RecordPageState extends State<RecordPage> with TickerProviderStateMixin {
             child: TabBarView(
               controller: _tabController,
               children: const [
-                outcome.OutcomeTab(),
+                expense.ExpenseTab(),
                 income.IncomeTab(),
                 transfer.TransferTab(),
               ],

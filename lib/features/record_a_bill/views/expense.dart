@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import '../widgets/food_options.dart';
 
-class OutcomeTab extends StatelessWidget {
-  const OutcomeTab({super.key});
+class ExpenseTab extends StatelessWidget {
+  const ExpenseTab({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -78,7 +78,7 @@ final appTheme = ThemeData(
     style: ElevatedButton.styleFrom(
       foregroundColor: Colors.white, // 按钮文本颜色
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30), // 圆角按钮
+        borderRadius: BorderRadius.circular(30.0), // 圆角按钮
       ),
     ),
   ),

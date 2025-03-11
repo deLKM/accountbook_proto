@@ -4,11 +4,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class FoodOptions extends ConsumerWidget {
   final String title;
   final List<Map<String, dynamic>> foodOptions;
+  final Function(String) onOptionSelected;
   
   const FoodOptions({
     super.key,
     required this.title,
     required this.foodOptions,
+    required this.onOptionSelected,
   });
 
   @override
@@ -31,7 +33,9 @@ class FoodOptions extends ConsumerWidget {
             return Column(
               children: [
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    onOptionSelected(option['label']); // 触发回调
+                  },
                   icon: Icon(option['icon'], size: 40),
                 ),
                 Text(

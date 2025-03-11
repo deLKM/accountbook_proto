@@ -14,7 +14,7 @@ class RecordPage extends StatefulWidget {
 
 class _RecordPageState extends State<RecordPage> with TickerProviderStateMixin {
   late TabController _tabController;
-  final List<String> _tabs = ['Outcome', 'Income', 'Transfer'];
+  final List<String> _tabs = ['Expense', 'Income', 'Transfer'];
 
   @override
   void initState() {

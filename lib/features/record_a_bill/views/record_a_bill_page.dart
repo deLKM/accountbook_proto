@@ -69,7 +69,7 @@ class _RecordPageState extends State<RecordPage> with TickerProviderStateMixin {
           Expanded(
             child: TabBarView(
               controller: _tabController,
-              children: const [
+              children: [
                 expense.ExpenseTab(),
                 income.IncomeTab(),
                 transfer.TransferTab(),

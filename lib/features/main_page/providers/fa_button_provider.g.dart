@@ -22,7 +22,7 @@ final recordPageProvider = AutoDisposeProvider<Widget>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef RecordPageRef = AutoDisposeProviderRef<Widget>;
-String _$showRecordSheetHash() => r'b5abd6a651ea13fcfe846aea82b9c7b9956d05c1';
+String _$showRecordSheetHash() => r'ec43e6d7982350b79ce53543de70d3c89b44574e';
 
 /// See also [showRecordSheet].
 @ProviderFor(showRecordSheet)

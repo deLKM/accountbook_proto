@@ -6,26 +6,25 @@ part of 'expense_and_income_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$quantityControllerHash() =>
-    r'c7b7acbb055f9ff42c3b464a3f5c363c8cddd1dc';
+String _$priceControllerHash() => r'1898e24f0a72677a1725d871c4fea591a0a08a0e';
 
-/// See also [quantityController].
-@ProviderFor(quantityController)
-final quantityControllerProvider =
+/// See also [priceController].
+@ProviderFor(priceController)
+final priceControllerProvider =
     AutoDisposeProvider<TextEditingController>.internal(
-      quantityController,
-      name: r'quantityControllerProvider',
+      priceController,
+      name: r'priceControllerProvider',
       debugGetCreateSourceHash:
           const bool.fromEnvironment('dart.vm.product')
               ? null
-              : _$quantityControllerHash,
+              : _$priceControllerHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef QuantityControllerRef = AutoDisposeProviderRef<TextEditingController>;
+typedef PriceControllerRef = AutoDisposeProviderRef<TextEditingController>;
 String _$selectedOptionLabelHash() =>
     r'5f2aa53f6fc7e227758335259f2b7c17e11987ab';
 

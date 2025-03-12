@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/expense_and_income_provider.dart';
-import '../widgets/quantity_input_card.dart';
+import '../widgets/price_input_card.dart';
 import '../widgets/food_options.dart';
 
 class ExpenseTab extends ConsumerWidget {
@@ -17,7 +17,7 @@ class ExpenseTab extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final selectedOptionLabel = ref.watch(selectedOptionLabelProvider);
-    final quantityController = ref.watch(quantityControllerProvider);
+    final priceController = ref.watch(priceControllerProvider);
 
     return Scaffold(
       body: Stack(
@@ -33,8 +33,8 @@ class ExpenseTab extends ConsumerWidget {
                   {'icon': Icons.food_bank, 'label': 'Snacks'},
                 ],
                 onOptionSelected: (label) {
-                  ref.read(selectedOptionLabelProvider.notifier).state = label; 
-                  quantityController.clear(); // 清空输入框
+                  ref.read(selectedOptionLabelProvider.notifier).updateLabel(label); 
+                  quantityController.clear(); 
                 },
               ),
               const Divider(),
@@ -47,20 +47,20 @@ class ExpenseTab extends ConsumerWidget {
                   {'icon': Icons.emoji_transportation, 'label': 'Others'},
                 ],
                 onOptionSelected: (label) {
-                  ref.read(selectedOptionLabelProvider.notifier).state = label; // 更新状态
-                  quantityController.clear(); // 清空输入框
+                  ref.read(selectedOptionLabelProvider.notifier).updateLabel(label); 
+                  quantityController.clear(); 
                 },
               ),
               const Divider(),
             ],
           ),
-          if (selectedOptionLabel != null) // 显示弹出组件
+          if (selectedOptionLabel != null) 
             Positioned(
               bottom: 0,
               left: 0,
               right: 0,
-              child: QuantityInputCard(
-                quantityController: quantityController,
+              child: PriceInputCard(
+                priceController: priceController,
               ),
             ),
         ],

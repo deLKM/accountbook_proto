@@ -30,8 +30,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  intl: ^0.17.0
+  intl: ^0.20.2
   http: ^1.1.0  
+  shared_preferences: ^2.5.2
   
   # This App uses Riverpod for its State Management.
   flutter_riverpod: ^2.6.1
@@ -44,7 +45,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  
   build_runner:
   custom_lint:
   riverpod_generator: ^2.6.5

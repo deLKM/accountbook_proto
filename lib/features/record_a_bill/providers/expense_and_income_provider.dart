@@ -18,7 +18,7 @@ class SelectedOptionLabel extends _$SelectedOptionLabel {
 }
 
 @riverpod
-TextEditingController quantityController(ref) {
+TextEditingController priceController(ref) {
   final controller = TextEditingController();
   ref.onDispose(() => controller.dispose());
   return controller;

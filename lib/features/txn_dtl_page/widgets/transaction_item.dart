@@ -20,7 +20,7 @@ class TransactionItem extends StatelessWidget {
           transaction.isIncome ? Icons.arrow_upward : Icons.arrow_downward,
         ),
       ),
-      title: Text(transaction.title),
+      title: Text(transaction.abstra),
       subtitle: Text(DateFormat('HH:mm').format(transaction.time)),
       trailing: Text(
         '${transaction.isIncome ? '+' : '-'}¥${transaction.amount.toStringAsFixed(2)}',

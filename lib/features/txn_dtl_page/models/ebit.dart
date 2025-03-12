@@ -1,11 +1,19 @@
 // Author: Ching-Yu
 
 class Ebit {
-  final String account;
   final double amount;
 
-  Ebit({
-    required this.account,
-    required this.amount,
-  });
+  Ebit({required this.amount});
+
+  Map<String, dynamic> toJson() {
+    return {
+      'amount': amount,
+    };
+  }
+
+  static Ebit fromJson(Map<String, dynamic> json) {
+    return Ebit(
+      amount: json['amount'],
+    );
+  }
 }

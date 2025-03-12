@@ -12,15 +12,14 @@ String _$profileNotifierHash() => r'3a02c767c6b0fc13d2439e829568bfa324432ad9';
 @ProviderFor(ProfileNotifier)
 final profileNotifierProvider =
     AutoDisposeNotifierProvider<ProfileNotifier, ProfileState>.internal(
-      ProfileNotifier.new,
-      name: r'profileNotifierProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$profileNotifierHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+  ProfileNotifier.new,
+  name: r'profileNotifierProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$profileNotifierHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
 typedef _$ProfileNotifier = AutoDisposeNotifier<ProfileState>;
 // ignore_for_file: type=lint

@@ -61,6 +61,7 @@ class IncomeTab extends ConsumerWidget {
               right: 0,
               child: PriceInputCard(
                 priceController: priceController,
+                isIncome: true,
               ),
             ),
         ],

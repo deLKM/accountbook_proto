@@ -12,15 +12,14 @@ String _$priceControllerHash() => r'1898e24f0a72677a1725d871c4fea591a0a08a0e';
 @ProviderFor(priceController)
 final priceControllerProvider =
     AutoDisposeProvider<TextEditingController>.internal(
-      priceController,
-      name: r'priceControllerProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$priceControllerHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+  priceController,
+  name: r'priceControllerProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$priceControllerHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
@@ -32,15 +31,14 @@ String _$selectedOptionLabelHash() =>
 @ProviderFor(SelectedOptionLabel)
 final selectedOptionLabelProvider =
     AutoDisposeNotifierProvider<SelectedOptionLabel, String?>.internal(
-      SelectedOptionLabel.new,
-      name: r'selectedOptionLabelProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$selectedOptionLabelHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+  SelectedOptionLabel.new,
+  name: r'selectedOptionLabelProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$selectedOptionLabelHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
 typedef _$SelectedOptionLabel = AutoDisposeNotifier<String?>;
 // ignore_for_file: type=lint

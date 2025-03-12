@@ -12,15 +12,14 @@ String _$captchaNotifierHash() => r'2493f287dbb1810e4163dac9635e9b5a46832ecc';
 @ProviderFor(CaptchaNotifier)
 final captchaNotifierProvider =
     AutoDisposeNotifierProvider<CaptchaNotifier, CaptchaState>.internal(
-      CaptchaNotifier.new,
-      name: r'captchaNotifierProvider',
-      debugGetCreateSourceHash:
-          const bool.fromEnvironment('dart.vm.product')
-              ? null
-              : _$captchaNotifierHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+  CaptchaNotifier.new,
+  name: r'captchaNotifierProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$captchaNotifierHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
 
 typedef _$CaptchaNotifier = AutoDisposeNotifier<CaptchaState>;
 // ignore_for_file: type=lint

@@ -12,15 +12,12 @@ String _$passwordFieldNotifierHash() =>
 /// See also [PasswordFieldNotifier].
 @ProviderFor(PasswordFieldNotifier)
 final passwordFieldNotifierProvider = AutoDisposeNotifierProvider<
-  PasswordFieldNotifier,
-  PasswordFieldState
->.internal(
+    PasswordFieldNotifier, PasswordFieldState>.internal(
   PasswordFieldNotifier.new,
   name: r'passwordFieldNotifierProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$passwordFieldNotifierHash,
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$passwordFieldNotifierHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );

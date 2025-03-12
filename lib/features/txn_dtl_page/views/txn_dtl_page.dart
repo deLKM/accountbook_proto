@@ -37,7 +37,6 @@ class TxnDtlPage extends ConsumerWidget {
               ),
             ],
           ),
-
           DailyListPage(dailyData: dailyData),
         ],
       ),

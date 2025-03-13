@@ -39,7 +39,9 @@ class TxnDtlPage extends ConsumerWidget {
               ),
             ],
           ),
-          // 每日交易列表（未完成）
+          
+          // 每日交易列表
+          // 发现它会突破头顶的安全区，让其与头顶的 Bar 混着
           DailyListPage(dailyData: dailyData),
         ],
       ),

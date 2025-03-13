@@ -37,7 +37,6 @@ class AssetsPage extends ConsumerWidget {
               AddButton(
                 text: 'Add An Asset',
                 onPressed: () => Navigator.pushNamed(context, '/manage_assets'),
-
               ),
             ],
           ),

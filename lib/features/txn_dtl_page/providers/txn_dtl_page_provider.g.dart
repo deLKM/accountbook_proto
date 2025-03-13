@@ -22,7 +22,7 @@ final monthSummaryProvider = AutoDisposeProvider<MonthSummary>.internal(
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
 typedef MonthSummaryRef = AutoDisposeProviderRef<MonthSummary>;
-String _$dailyDataHash() => r'0fbdad336855faf623e03e8e06aaed1e6ee88a0e';
+String _$dailyDataHash() => r'9f247fb204f59e2314be796115f36313b71841df';
 
 /// See also [dailyData].
 @ProviderFor(dailyData)

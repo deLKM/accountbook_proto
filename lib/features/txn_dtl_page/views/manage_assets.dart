@@ -11,38 +11,44 @@ class ManageAssetsPage extends ConsumerWidget {
       appBar: AppBar(title: const Text('Manage Assets')),
       body: Column(
         children: [
+          // 现金
           AALButton(
-            onPressed: () {},
+            onPressed: () => Navigator.pushNamed(context, '/cash'),
             labeltext: 'Cash',
           ),
           const SizedBox(height: 30),
 
+          // 虚拟账户
           AALButton(
-            onPressed: () {},
-            labeltext: 'Virtual Account',
+            onPressed: () => Navigator.pushNamed(context, '/virtual_accounts'),
+            labeltext: 'Virtual Accounts',
           ),
           const SizedBox(height: 30),
 
+          // 储蓄卡
           AALButton(
-            onPressed: () {},
-            labeltext: 'Savings Card',
+            onPressed: () => Navigator.pushNamed(context, '/saving_cards'),
+            labeltext: 'Savings Cards',
           ),
           const SizedBox(height: 30),
 
+          // 债权
           AALButton(
-            onPressed: () {},
+            onPressed: () => Navigator.pushNamed(context, '/creditors_rights'),
             labeltext: 'Creditor\'s Rights',
           ),
           const SizedBox(height: 30),
 
+          // 理财账户
           AALButton(
-            onPressed: () {},
-            labeltext: 'Financial Account',
+            onPressed: () => Navigator.pushNamed(context, '/financial_accounts'),
+            labeltext: 'Financial Accounts',
           ), 
           const SizedBox(height: 30),
  
+          // 其他资产
           AALButton(
-            onPressed: () {},
+            onPressed: () => Navigator.pushNamed(context, '/other_assets'),
             labeltext: 'Other Assets',
           ),
         ],

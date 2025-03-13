@@ -11,41 +11,33 @@ class ManageLiabilitiesPage extends ConsumerWidget {
       appBar: AppBar(title: const Text('Manage Liabilities')),
       body: Column(
         children: [
-          // 还没调整好
+          // 信用卡
           AALButton(
-            onPressed: () {},
-            labeltext: 'Cash',
+            onPressed: () => Navigator.pushNamed(context, '/credit_cards'),
+            labeltext: 'Credit Cards',
           ),
           const SizedBox(height: 30),
 
+          // 网贷
           AALButton(
-            onPressed: () {},
-            labeltext: 'Virtual Account',
+            onPressed: () => Navigator.pushNamed(context, '/online_loans'),
+            labeltext: 'Online Loans',
           ),
           const SizedBox(height: 30),
 
+          // 债务
           AALButton(
-            onPressed: () {},
-            labeltext: 'Savings Card',
+            onPressed: () => Navigator.pushNamed(context, '/debts'),
+            labeltext: 'Debts',
           ),
           const SizedBox(height: 30),
 
+          // 其他负债
           AALButton(
-            onPressed: () {},
-            labeltext: 'Creditor\'s Rights',
+            onPressed: () => Navigator.pushNamed(context, '/other_liabilities'),
+            labeltext: 'Other Liabilities',
           ),
           const SizedBox(height: 30),
-
-          AALButton(
-            onPressed: () {},
-            labeltext: 'Financial Account',
-          ), 
-          const SizedBox(height: 30),
- 
-          AALButton(
-            onPressed: () {},
-            labeltext: 'Other Assets',
-          ),
         ],
       ),
     );

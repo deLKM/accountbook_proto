@@ -1,9 +1,18 @@
+// Author: Ching-Yu
+// 还没写完，有关 Account 的数据处理没有想出来该怎么办
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../providers/account_provider.dart';
+import '../../models/transaction.dart';
+import '../../models/ebit.dart';
+import '../../utils/add_transaction_to_daily_data.dart';
+import 'package:hive/hive.dart';
 import 'package:flutter/material.dart';
 
 class CashPage extends ConsumerWidget {
-  const CashPage({super.key});
+  CashPage({super.key});
+
+  final TextEditingController _balanceController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -32,9 +41,10 @@ class CashPage extends ConsumerWidget {
                 ),
               ],
             ),
-            const Divider(), 
+            const Divider(),
             const SizedBox(height: 16),
 
+            // 输入 Subtitle
             Row(
               children: [
                 const Text('Subtitle:', style: TextStyle(fontSize: 16)),
@@ -42,7 +52,7 @@ class CashPage extends ConsumerWidget {
                 Expanded(
                   child: TextField(
                     decoration: const InputDecoration(
-                      border: InputBorder.none, 
+                      border: InputBorder.none,
                     ),
                     onChanged: (value) {
                       accountNotifier.updateSubtitle(value);
@@ -51,28 +61,61 @@ class CashPage extends ConsumerWidget {
                 ),
               ],
             ),
-            const Divider(), 
+            const Divider(),
             const SizedBox(height: 16),
 
-            // 余额输入
+            // 输入 Balance
             Row(
               children: [
                 const Text('Balance:', style: TextStyle(fontSize: 16)),
                 const SizedBox(width: 16),
                 Expanded(
                   child: TextField(
+                    controller: _balanceController,
                     decoration: const InputDecoration(
-                      border: InputBorder.none, // 去掉边框
+                      border: InputBorder.none,
                     ),
                     keyboardType: TextInputType.number,
-                    onChanged: (value) {
-                      final balance = double.tryParse(value) ?? 0.0;
-
-                      // 很显然我需要处理一下 Account 和 Ebit 的关系
-                      accountNotifier.updateBalance(balance);
-                    },
                   ),
                 ),
+                // 添加保存按钮
+                IconButton(
+                  icon: const Icon(Icons.save),
+                  onPressed: () async {
+                    if (_balanceController.text.isEmpty) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('请输入金额')),
+                      );
+                      return;
+                    }
+
+                    // 创建 Transaction 对象
+                    final transaction = Transaction(
+                      internalId: '',
+                      displayId: 'TXN-${DateTime.now().millisecondsSinceEpoch}',
+                      timestamp: DateTime.now().toIso8601String(),
+                      debit: Ebit(amount: 0, account: 'cash'),
+                      credit: Ebit(
+                        amount: double.parse(_balanceController.text),
+                        account: 'current_account',
+                      ),
+                      abstra: 'Balance',
+                      isIncome: true,
+                    );
+
+                    // 存储到 Hive
+                    final box = Hive.box<Transaction>('transactions');
+                    await box.add(transaction);
+
+                    // 添加每日数据
+                    addTransactionToDailyData(ref, transaction);
+
+                    // 清空输入
+                    _balanceController.clear();
+                  },
+                ),
+              ],
+            ),
             const Divider(),
             const SizedBox(height: 24),
           ],

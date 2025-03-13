@@ -1,10 +1,12 @@
+// Author: Ching-Yu
+
 import 'package:hive/hive.dart';
 import 'transaction.dart';
 import 'daily_data.dart';
 
 class DailyDataAdapter extends TypeAdapter<DailyData> {
   @override
-  final int typeId = 2; // 确保 typeId 唯一
+  final int typeId = 2; 
 
   @override
   DailyData read(BinaryReader reader) {

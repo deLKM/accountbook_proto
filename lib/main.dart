@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'features/txn_dtl_page/models/transaction.dart';
 import 'features/txn_dtl_page/models/transaction_adapter.dart';
 import 'features/txn_dtl_page/models/ebit_adapter.dart';
+import 'features/txn_dtl_page/models/account.dart';
+import 'features/txn_dtl_page/models/account_adapter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,9 +19,11 @@ void main() async {
   Hive.registerAdapter(TransactionAdapter()); 
   Hive.registerAdapter(EbitAdapter());
   Hive.registerAdapter(DailyDataAdapter());
+  Hive.registerAdapter(AccountAdapter());
   await Hive.openBox<Transaction>('transactions'); 
   await Hive.openBox<DailyData>('daily_data'); 
   await Hive.openBox<Ebit>('ebit'); 
+  await Hive.openBox<Account>('account');
 
   runApp(ProviderScope(child: MyApp()));
 }

@@ -1,9 +1,25 @@
+// Author: Ching-Yu
+
+import 'package:hive/hive.dart';
+
+@HiveType(typeId: 3)
 class Account {
+  @HiveField(0)
   final String internalId;
+
+  @HiveField(1)
   final String displayId;
+
+  @HiveField(2)
   final String title;
+
+  @HiveField(3)
   final String subtitle;
+
+  @HiveField(4)
   final String subOf;
+
+  @HiveField(5)
   final bool? deleted;
 
   Account({

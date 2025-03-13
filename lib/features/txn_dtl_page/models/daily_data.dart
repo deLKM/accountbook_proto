@@ -1,5 +1,6 @@
-import 'package:hive_flutter/hive_flutter.dart';
+// Author: Ching-Yu
 
+import 'package:hive_flutter/hive_flutter.dart';
 import 'transaction.dart';
 
 @HiveType(typeId: 2)

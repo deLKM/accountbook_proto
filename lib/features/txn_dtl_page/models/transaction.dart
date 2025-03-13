@@ -22,7 +22,7 @@ class Transaction {
 
   // abstract 显然是一个保留关键字
   @HiveField(5)
-  final String abstra;
+  final String? abstra;
 
   @HiveField(6)
   final bool isIncome;

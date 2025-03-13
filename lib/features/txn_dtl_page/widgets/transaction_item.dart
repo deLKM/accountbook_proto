@@ -15,12 +15,15 @@ class TransactionItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: CircleAvatar(
-        child: Icon(
-          transaction.isIncome ? Icons.arrow_upward : Icons.arrow_downward,
+      leading: Container(
+        width: 10,
+        height: 10,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.black,
         ),
       ),
-      title: Text(transaction.abstra),
+      title: Text(transaction.abstra ?? ''),
       subtitle: Text(DateFormat('HH:mm').format(transaction.time)),
       trailing: Text(
         '${transaction.isIncome ? '+' : '-'}¥${transaction.amount.toStringAsFixed(2)}',

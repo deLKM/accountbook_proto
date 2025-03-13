@@ -71,7 +71,7 @@ class PriceInputCard extends ConsumerWidget {
                         credit: isIncome
                             ? Ebit(amount: double.parse(price), account: '')
                             : Ebit(amount: 0, account: ''),
-                        abstra: isIncome ? 'Income' : 'Expense',
+                        abstra: ref.watch(selectedOptionLabelProvider),
                         isIncome: isIncome,
                       );
 
@@ -108,6 +108,8 @@ class PriceInputCard extends ConsumerWidget {
                     ref
                         .read(selectedOptionLabelProvider.notifier)
                         .updateLabel(null);
+
+                    priceController.clear();
                   },
                   child: const Text('Cancel'),
                 ),

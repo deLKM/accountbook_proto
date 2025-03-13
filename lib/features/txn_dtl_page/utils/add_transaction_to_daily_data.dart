@@ -26,6 +26,7 @@ void addTransactionToDailyData(WidgetRef ref, Transaction transaction) async {
     dailyData.transactions.add(transaction);
   }
 
+  // 调试信息
   print('Transaction saved in DailyData: ${transaction.displayId}');
 
   // 存储或更新 DailyData

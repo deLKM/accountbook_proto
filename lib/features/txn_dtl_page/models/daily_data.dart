@@ -1,7 +1,14 @@
+import 'package:hive_flutter/hive_flutter.dart';
+
 import 'transaction.dart';
 
+@HiveType(typeId: 2)
 class DailyData {
+  @HiveField(0)
   final DateTime date;
+
+  // 每日的所有的 Transaction 的列表
+  @HiveField(1)
   final List<Transaction> transactions;
 
   DailyData(this.date, this.transactions);

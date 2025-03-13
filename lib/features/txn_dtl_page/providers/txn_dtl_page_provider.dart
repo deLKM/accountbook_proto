@@ -1,6 +1,7 @@
 // Author: Ching-Yu
 
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:hive/hive.dart';
 import '../models/daily_data.dart';
 import '../models/month_summary.dart';
 
@@ -37,8 +38,17 @@ MonthSummary monthSummary(ref) {
 // 显然这里还没有做完......
 @riverpod
 List<DailyData> dailyData(ref) {
-  // 请求本地存储
-  return [DailyData(DateTime.now(), [])];
+  final box = Hive.box<DailyData>('daily_data');
+
+  // 获取所有 DailyData
+  final dailyDataList = box.values.toList();
+
+  // 如果没有数据，返回一个默认的 DailyData
+  if (dailyDataList.isEmpty) {
+    return [DailyData(DateTime.now(), [])];
+  }
+
+  return dailyDataList;
 }
 
 @riverpod

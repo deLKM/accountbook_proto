@@ -1,5 +1,8 @@
 // Author: Ching-Yu
 
+import 'package:accountbook_proto/features/txn_dtl_page/models/daily_data.dart';
+import 'package:accountbook_proto/features/txn_dtl_page/models/daily_data_adapter.dart';
+import 'package:accountbook_proto/features/txn_dtl_page/models/ebit.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'app/app.dart';
@@ -13,7 +16,10 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(TransactionAdapter()); 
   Hive.registerAdapter(EbitAdapter());
+  Hive.registerAdapter(DailyDataAdapter());
   await Hive.openBox<Transaction>('transactions'); 
+  await Hive.openBox<DailyData>('daily_data'); 
+  await Hive.openBox<Ebit>('ebit'); 
 
   runApp(ProviderScope(child: MyApp()));
 }

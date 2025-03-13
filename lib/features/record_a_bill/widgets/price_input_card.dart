@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import '../../txn_dtl_page/utils/add_transaction_to_daily_data.dart';
 import '../../txn_dtl_page/models/transaction.dart';
 import '../../txn_dtl_page/models/ebit.dart';
 import '../providers/expense_and_income_provider.dart';
@@ -76,12 +77,17 @@ class PriceInputCard extends ConsumerWidget {
 
                       // 将 Transaction 存储到 Hive 中
                       final box = Hive.box<Transaction>('transactions');
+
+                      // 将 Transaction 转换为 DailyData 后存储到 Hive 中
+                      addTransactionToDailyData(ref, transaction);
+
                       // 调试用，确认 Hive Box 是否开启
                       print('Box opened: ${box.isOpen}');
 
                       await box.add(transaction);
                       // 调试用，确认 Transaction 是否正确存储进 Hive Box
                       print('Transaction saved: ${transaction.displayId}');
+
                       // 清除选中的选项标签
                       ref
                           .read(selectedOptionLabelProvider.notifier)

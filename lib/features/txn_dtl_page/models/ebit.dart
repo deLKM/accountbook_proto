@@ -1,7 +1,13 @@
 // Author: Ching-Yu
 
+import 'package:hive/hive.dart';
+
+@HiveType(typeId: 1)
 class Ebit {
+  @HiveField(0)
   final double amount;
+
+  @HiveField(1)
   final String account;
 
   Ebit({

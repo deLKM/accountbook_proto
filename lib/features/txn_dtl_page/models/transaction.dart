@@ -1,15 +1,30 @@
 // Author: Ching-Yu
 
 import 'ebit.dart';
+import 'package:hive/hive.dart';
 
+@HiveType(typeId: 0)
 class Transaction {
+  @HiveField(0)
   final String internalId;
+
+  @HiveField(1)
   final String displayId;
+
+  @HiveField(2)
   final String timestamp;
+
+  @HiveField(3)
   final Ebit debit;
+
+  @HiveField(4)
   final Ebit credit;
+
   // abstract 显然是一个保留关键字
+  @HiveField(5)
   final String abstra;
+
+  @HiveField(6)
   final bool isIncome;
 
   Transaction({

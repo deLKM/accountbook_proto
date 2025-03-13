@@ -5,7 +5,7 @@ import 'transaction.dart';
 
 class TransactionAdapter extends TypeAdapter<Transaction> {
   @override
-  final int typeId = 0; // 适配器的唯一 ID
+  final int typeId = 0; 
 
   @override
   Transaction read(BinaryReader reader) {

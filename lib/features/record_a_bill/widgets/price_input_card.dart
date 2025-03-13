@@ -76,8 +76,12 @@ class PriceInputCard extends ConsumerWidget {
 
                       // 将 Transaction 存储到 Hive 中
                       final box = Hive.box<Transaction>('transactions');
+                      // 调试用，确认 Hive Box 是否开启
+                      print('Box opened: ${box.isOpen}');
+
                       await box.add(transaction);
-                      
+                      // 调试用，确认 Transaction 是否正确存储进 Hive Box
+                      print('Transaction saved: ${transaction.displayId}');
                       // 清除选中的选项标签
                       ref
                           .read(selectedOptionLabelProvider.notifier)

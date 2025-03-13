@@ -34,9 +34,10 @@ MonthSummary monthSummary(ref) {
 }
 
 // Provides a list of daily data, starting with the current date.
+// 显然这里还没有做完......
 @riverpod
 List<DailyData> dailyData(ref) {
-  // 请求API
+  // 请求本地存储
   return [DailyData(DateTime.now(), [])];
 }
 

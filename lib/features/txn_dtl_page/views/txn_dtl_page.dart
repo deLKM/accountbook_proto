@@ -14,6 +14,8 @@ class TxnDtlPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final monthData = ref.watch(monthSummaryProvider);
+    
+    // dailyData 由订阅 dailyDataProvider 获得
     final dailyData = ref.watch(dailyDataProvider);
     final assets = ref.watch(assetsProvider);
     final liabilities = ref.watch(liabilitiesProvider);
@@ -27,7 +29,7 @@ class TxnDtlPage extends ConsumerWidget {
               // 时间选择器（未完成）
               TimeSelector(monthData: monthData),
 
-              // 月统计
+              // 月统计（未完成）
               MonthlySummary(monthData: monthData),
 
               // 资产与负债详记（未完成）
@@ -37,6 +39,7 @@ class TxnDtlPage extends ConsumerWidget {
               ),
             ],
           ),
+          // 每日交易列表（未完成）
           DailyListPage(dailyData: dailyData),
         ],
       ),

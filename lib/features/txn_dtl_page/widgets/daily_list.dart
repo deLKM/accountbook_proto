@@ -5,9 +5,13 @@ import '../models/daily_data.dart';
 import 'daily_item.dart';
 
 class DailyListPage extends StatefulWidget {
-  const DailyListPage({super.key, required this.dailyData});
-
+  // 显然这里 List<DailyData> 是个参数
   final List<DailyData> dailyData;
+
+  const DailyListPage({
+    super.key, 
+    required this.dailyData
+  });
 
   @override
   State<DailyListPage> createState() => _DailyListPageState();

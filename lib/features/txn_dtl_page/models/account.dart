@@ -5,7 +5,7 @@ import 'package:hive/hive.dart';
 @HiveType(typeId: 3)
 class Account {
   @HiveField(0)
-  final String internalId;
+  final String? internalId;
 
   @HiveField(1)
   final String displayId;
@@ -23,7 +23,7 @@ class Account {
   final bool? deleted;
 
   Account({
-    required this.internalId,
+    this.internalId,
     required this.displayId,
     required this.title,
     required this.subtitle,

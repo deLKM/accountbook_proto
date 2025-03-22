@@ -6,7 +6,7 @@ import 'package:hive/hive.dart';
 @HiveType(typeId: 0)
 class Transaction {
   @HiveField(0)
-  final String internalId;
+  final String? internalId;
 
   @HiveField(1)
   final String displayId;
@@ -28,7 +28,7 @@ class Transaction {
   final bool isIncome;
 
   Transaction({
-    required this.internalId,
+    this.internalId,
     required this.displayId,
     required this.timestamp,
     required this.debit,

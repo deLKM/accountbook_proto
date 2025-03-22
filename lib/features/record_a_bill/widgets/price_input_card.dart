@@ -8,6 +8,7 @@ import '../../txn_dtl_page/models/transaction.dart';
 import '../../txn_dtl_page/models/ebit.dart';
 import '../providers/expense_and_income_provider.dart';
 
+// 这里的问题就是需要拥有选择 account 的功能
 class PriceInputCard extends ConsumerWidget {
   final TextEditingController priceController;
   final bool isIncome;
@@ -28,7 +29,6 @@ class PriceInputCard extends ConsumerWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // 输入框右对齐，宽度为父容器的一半
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -60,14 +60,14 @@ class PriceInputCard extends ConsumerWidget {
                     if (price.isNotEmpty) {
                       // 创建新的 Transaction 对象
                       final transaction = Transaction(
-                        internalId: '',
                         displayId:
                             'TXN-${DateTime.now().millisecondsSinceEpoch}',
                         timestamp: DateTime.now().toIso8601String(),
+                        // 这里 debit 和 credit 的 account 的问题还没有解决，
+                        // 需要找个方法把 account 和 ebit 连在一起
                         debit: isIncome
                             ? Ebit(amount: 0, account: '')
-                            : Ebit(
-                                amount: double.parse(price), account: ''),
+                            : Ebit(amount: double.parse(price), account: ''),
                         credit: isIncome
                             ? Ebit(amount: double.parse(price), account: '')
                             : Ebit(amount: 0, account: ''),

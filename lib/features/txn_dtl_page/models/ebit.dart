@@ -7,6 +7,7 @@ class Ebit {
   @HiveField(0)
   final double amount;
 
+  // account 应该是引用 account 的 internalId
   @HiveField(1)
   final String account;
 

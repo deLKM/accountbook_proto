@@ -21,7 +21,6 @@ class AccountNotifier extends _$AccountNotifier {
   AccountState build() {
     return AccountState(
       account: Account(
-        internalId: 'defaultId',
         displayId: 'defaultDisplayId',
         title: '',
         subtitle: '',

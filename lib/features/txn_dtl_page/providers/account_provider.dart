@@ -5,13 +5,21 @@ import '../models/account.dart';
 
 part 'account_provider.g.dart';
 
+// 我需要支持多 account 的功能
 class AccountState {
-  final Account account;
+  final List<Account> accounts; // 支持多账户
+  final Account? selectedAccount; // 当前选中的账户
 
-  AccountState({required this.account});
+  AccountState({required this.accounts, this.selectedAccount});
 
-  AccountState copyWith({Account? account}) {
-    return AccountState(account: account ?? this.account);
+  AccountState copyWith({
+    List<Account>? accounts,
+    Account? selectedAccount,
+  }) {
+    return AccountState(
+      accounts: accounts ?? this.accounts,
+      selectedAccount: selectedAccount ?? this.selectedAccount,
+    );
   }
 }
 
@@ -19,34 +27,57 @@ class AccountState {
 class AccountNotifier extends _$AccountNotifier {
   @override
   AccountState build() {
+    // 初始化时，添加一个默认账户
     return AccountState(
-      account: Account(
-        displayId: 'defaultDisplayId',
-        title: '',
-        subtitle: '',
-        subOf: '',
-      ),
+      accounts: [
+        Account(
+          displayId: 'defaultDisplayId',
+          title: 'Default Account',
+          subtitle: 'Main account',
+          subOf: '',
+        ),
+      ],
+      selectedAccount: null, // 默认没有选中的账户
     );
   }
 
-  // 更新 title
-  void updateTitle(String newTitle) {
+  // 添加账户
+  void addAccount(Account account) {
     state = state.copyWith(
-      account: state.account.copyWith(title: newTitle),
+      accounts: [...state.accounts, account],
     );
   }
 
-  // 更新 subtitle
-  void updateSubtitle(String newSubtitle) {
+  // 删除账户
+  void removeAccount(String displayId) {
     state = state.copyWith(
-      account: state.account.copyWith(subtitle: newSubtitle),
+      accounts: state.accounts.where((a) => a.displayId != displayId).toList(),
     );
   }
 
-  // 更新 subOf
-  void updateSubOf(String newSubOf) {
+  // 更新账户
+  void updateAccount(Account updatedAccount) {
     state = state.copyWith(
-      account: state.account.copyWith(subOf: newSubOf),
+      accounts: state.accounts.map((a) {
+        if (a.displayId == updatedAccount.displayId) {
+          return updatedAccount;
+        }
+        return a;
+      }).toList(),
     );
+  }
+
+  // 更新选中账户
+  void selectAccount(String displayId) {
+    final selectedAccount = state.accounts.firstWhere(
+      (a) => a.displayId == displayId,
+      orElse: () => throw Exception('Account not found'),
+    );
+    state = state.copyWith(selectedAccount: selectedAccount);
+  }
+
+  // 清除选中账户
+  void clearSelectedAccount() {
+    state = state.copyWith(selectedAccount: null);
   }
 }

@@ -2,7 +2,6 @@
 // 还没写完，有关 Account 的数据处理没有想出来该怎么办
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../providers/account_provider.dart';
 import '../../models/transaction.dart';
 import '../../models/ebit.dart';
 import '../../models/account.dart';
@@ -19,7 +18,6 @@ class CashPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final accountNotifier = ref.read(accountNotifierProvider.notifier);
     // final account = ref.watch(accountNotifierProvider);
 
     return Scaffold(
@@ -43,9 +41,6 @@ class CashPage extends ConsumerWidget {
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                     ),
-                    onChanged: (value) {
-                      accountNotifier.updateTitle(value);
-                    },
                   ),
                 ),
               ],
@@ -66,9 +61,6 @@ class CashPage extends ConsumerWidget {
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                     ),
-                    onChanged: (value) {
-                      accountNotifier.updateSubtitle(value);
-                    },
                   ),
                 ),
               ],

@@ -6,6 +6,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 import '../../txn_dtl_page/utils/add_transaction_to_daily_data.dart';
 import '../../txn_dtl_page/models/transaction.dart';
 import '../../txn_dtl_page/models/ebit.dart';
+import '../../txn_dtl_page/models/account.dart';
+import '../../txn_dtl_page/providers/account_provider.dart';
 import '../providers/expense_and_income_provider.dart';
 
 // 这里的问题就是需要拥有选择 account 的功能
@@ -30,8 +32,31 @@ class PriceInputCard extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
               children: [
+                // 账户选择器
+                DropdownButton<Account>(
+                  value: ref
+                      .watch(accountNotifierProvider)
+                      .selectedAccount, // 当前选中的账户
+                  onChanged: (Account? newValue) {
+                    if (newValue != null) {
+                      // 更新选中的账户
+                      ref
+                          .read(accountNotifierProvider.notifier)
+                          .selectAccount(newValue.displayId);
+                    }
+                  },
+                  items: ref
+                      .watch(accountNotifierProvider)
+                      .accounts
+                      .map<DropdownMenuItem<Account>>((Account account) {
+                    return DropdownMenuItem<Account>(
+                      value: account,
+                      child: Text(account.title), // 显示账户的 title
+                    );
+                  }).toList(),
+                ),
+                const SizedBox(width: 10),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.5,
                   child: TextFormField(

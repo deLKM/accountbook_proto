@@ -1,6 +1,7 @@
 // Author: Ching-Yu
 // 还没写完，有关 Account 的数据处理没有想出来该怎么办
 
+import 'package:accountbook_proto/features/txn_dtl_page/providers/account_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../models/transaction.dart';
 import '../../models/ebit.dart';
@@ -18,8 +19,6 @@ class CashPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final account = ref.watch(accountNotifierProvider);
-
     return Scaffold(
       appBar: AppBar(title: const Text('Cash')),
       body: Padding(
@@ -106,22 +105,21 @@ class CashPage extends ConsumerWidget {
                       }
 
                       // 创建 Account 对象
-                      final account = Account(
+                      final account = ref.read(accountNotifierProvider.notifier).addAccount(
                         displayId: 'ACC-${DateTime.now().millisecondsSinceEpoch}',
                         title: _titleController.text,
                         subtitle: _subtitleController.text,
                         subOf: '',
                         deleted: false,
                       );
+                      print('Creating Account object');
 
                       // 存储
                       final accountBox = Hive.box<Account>('accounts');
                       await accountBox.add(account);
 
-                      final balance = double.parse(_balanceController.text);
-                      // accountNotifier.updateBalance(balance);
-
                       // 创建 Transaction 记录
+                      print('Creating Transaction object');
                       final transaction = Transaction(
                         displayId: 'TXN-${DateTime.now().millisecondsSinceEpoch}',
                         timestamp: DateTime.now().toIso8601String(),
@@ -130,8 +128,8 @@ class CashPage extends ConsumerWidget {
                           account: ''
                         ),
                         credit: Ebit(
-                          amount: balance,
-                          account: '',
+                          amount: double.parse(_balanceController.text),
+                          account: account.internalId ?? '',
                         ),
                         abstra: 'Balance',
                         isIncome: true,
@@ -142,9 +140,11 @@ class CashPage extends ConsumerWidget {
                       await box.add(transaction);   
 
                       // 添加每日数据
+                      print('Adding transaction to daily data');
                       addTransactionToDailyData(ref, transaction);
 
                       // 清空输入
+                      print('Clear input fields');
                       _titleController.clear();
                       _subtitleController.clear();
                       _balanceController.clear();

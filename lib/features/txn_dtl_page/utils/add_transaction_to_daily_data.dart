@@ -9,10 +9,6 @@ import '../models/daily_data.dart';
 
 void addTransactionToDailyData(WidgetRef ref, Transaction transaction) async {
   final box = Hive.box<DailyData>('daily_data');
-
-  // 调试用，确认 Hive Box 是否开启
-  print('Box opened: ${box.isOpen}');
-  
   final date = DateTime.parse(transaction.timestamp).toLocal();
   final key = DateTime(date.year, date.month, date.day).toIso8601String();
 
@@ -24,10 +20,7 @@ void addTransactionToDailyData(WidgetRef ref, Transaction transaction) async {
   } else {
     dailyData.transactions.add(transaction);
   }
-
-  // 调试信息
-  print('Transaction saved in DailyData: ${transaction.displayId}');
-
+  
   await box.put(key, dailyData);
 
   ref.refresh(dailyDataProvider);

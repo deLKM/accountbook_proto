@@ -24,7 +24,7 @@ void main() async {
   await Hive.openBox<Transaction>('transactions'); 
   await Hive.openBox<DailyData>('daily_data'); 
   await Hive.openBox<Ebit>('ebit'); 
-  await Hive.openBox<Account>('account');
+  await Hive.openBox<Account>('accounts');
 
   // 启用调试绘制
   // debugPaintSizeEnabled = true;

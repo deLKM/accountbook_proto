@@ -25,27 +25,46 @@ class AccountState {
 
 @riverpod
 class AccountNotifier extends _$AccountNotifier {
+  int _nextInternalId = 1;
+
   @override
   AccountState build() {
     // 初始化时，添加一个默认账户
     return AccountState(
-      accounts: [
-        Account(
-          displayId: 'defaultDisplayId',
-          title: 'Default Account',
-          subtitle: 'Main account',
-          subOf: '',
-        ),
-      ],
+      accounts: [],
       selectedAccount: null, // 默认没有选中的账户
     );
   }
 
-  // 添加账户
-  void addAccount(Account account) {
-    state = state.copyWith(
-      accounts: [...state.accounts, account],
+  // 生成 internalId
+  String _generateInternalId() {
+    final internalId = 'ID-$_nextInternalId'; // 格式为 ID-1, ID-2, ID-3, ...
+    _nextInternalId++; // 递增计数器
+    return internalId;
+  }
+
+  // 添加账号
+  Account addAccount({
+    required String displayId,
+    required String title,
+    required String subtitle,
+    required String subOf,
+    bool? deleted,
+  }) {
+    final newAccount = Account(
+      internalId: _generateInternalId(), // 生成 internalId
+      displayId: displayId,
+      title: title,
+      subtitle: subtitle,
+      subOf: subOf,
+      deleted: deleted ?? false,
     );
+    state = state.copyWith(
+      accounts: [...state.accounts, newAccount],
+    );
+    // 调试信息
+    print("New Account Is Added: ${state.accounts}");
+    return newAccount;
   }
 
   // 删除账户

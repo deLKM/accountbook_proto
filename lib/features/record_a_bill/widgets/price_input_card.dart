@@ -15,6 +15,7 @@ class PriceInputCard extends ConsumerWidget {
   final TextEditingController priceController;
   final bool isIncome;
 
+
   const PriceInputCard({
     super.key,
     required this.priceController,
@@ -23,6 +24,10 @@ class PriceInputCard extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final accounts = ref.watch(accountNotifierProvider).accounts;
+    // 调试 accounts 的内容是否正确
+    print("Accounts: $accounts");
+
     return Card(
       elevation: 4,
       margin: EdgeInsets.zero,
@@ -32,42 +37,66 @@ class PriceInputCard extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // 账户选择器
-                DropdownButton<Account>(
-                  value: ref
-                      .watch(accountNotifierProvider)
-                      .selectedAccount, // 当前选中的账户
-                  onChanged: (Account? newValue) {
-                    if (newValue != null) {
-                      // 更新选中的账户
-                      ref
-                          .read(accountNotifierProvider.notifier)
-                          .selectAccount(newValue.displayId);
-                    }
-                  },
-                  items: ref
-                      .watch(accountNotifierProvider)
-                      .accounts
-                      .map<DropdownMenuItem<Account>>((Account account) {
-                    return DropdownMenuItem<Account>(
-                      value: account,
-                      child: Text(account.title), // 显示账户的 title
-                    );
-                  }).toList(),
+                const SizedBox(width: 10),
+                Text(
+                  'Account:',
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(width: 10),
+                // 账户选择器
+                // 这个选择器目前还有逻辑没有完成，不知道为何总是错的？？？
                 SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.5,
-                  child: TextFormField(
-                    controller: priceController,
-                    readOnly: true,
-                    textAlign: TextAlign.right,
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      enabledBorder: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      contentPadding: EdgeInsets.only(right: 20),
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      border: Border.all(color: Colors.grey),
+                    ),
+                    child: DropdownButtonHideUnderline(
+                      child: DropdownButton<Account>(
+                        value: ref
+                            .watch(accountNotifierProvider)
+                            .selectedAccount, // 当前选中的账户
+                        onChanged: (Account? newValue) {
+                          // 更新账户
+                          if (newValue != null) {
+                            ref
+                                .read(accountNotifierProvider.notifier)
+                                .selectAccount(newValue.displayId);
+                          }
+                        },
+                        // 这个 item 永远不正确的显示
+                        items: accounts.map<DropdownMenuItem<Account>>((Account account) {
+                          return DropdownMenuItem<Account>(
+                            value: account,
+                            child: Text(
+                              account.title,
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                          );
+                        }).toList(),
+                        isExpanded: true,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 20),
+                Expanded(
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    child: TextFormField(
+                      controller: priceController,
+                      readOnly: true,
+                      textAlign: TextAlign.right,
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                        contentPadding: EdgeInsets.only(right: 20),
+                      ),
                     ),
                   ),
                 ),
@@ -103,15 +132,9 @@ class PriceInputCard extends ConsumerWidget {
                       // 将 Transaction 存储到 Hive 中
                       final box = Hive.box<Transaction>('transactions');
 
-                      // 将 Transaction 转换为 DailyData 后存储到 Hive 中
                       addTransactionToDailyData(ref, transaction);
 
-                      // 调试用，确认 Hive Box 是否开启
-                      print('Box opened: ${box.isOpen}');
-
                       await box.add(transaction);
-                      // 调试用，确认 Transaction 是否正确存储进 Hive Box
-                      print('Transaction saved: ${transaction.displayId}');
 
                       // 清除选中的选项标签
                       ref
@@ -133,7 +156,6 @@ class PriceInputCard extends ConsumerWidget {
                     ref
                         .read(selectedOptionLabelProvider.notifier)
                         .updateLabel(null);
-
                     priceController.clear();
                   },
                   child: const Text('Cancel'),

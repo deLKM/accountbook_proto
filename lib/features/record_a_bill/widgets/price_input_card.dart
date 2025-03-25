@@ -7,14 +7,11 @@ import '../../txn_dtl_page/utils/add_transaction_to_daily_data.dart';
 import '../../txn_dtl_page/models/transaction.dart';
 import '../../txn_dtl_page/models/ebit.dart';
 import '../../txn_dtl_page/models/account.dart';
-import '../../txn_dtl_page/providers/account_provider.dart';
 import '../providers/expense_and_income_provider.dart';
 
-// 这里的问题就是需要拥有选择 account 的功能
 class PriceInputCard extends ConsumerWidget {
   final TextEditingController priceController;
   final bool isIncome;
-
 
   const PriceInputCard({
     super.key,
@@ -22,12 +19,28 @@ class PriceInputCard extends ConsumerWidget {
     required this.isIncome,
   });
 
+  // 获得 HiveBox 里的所有 account
+  Future<List<Account>> _getAccounts() async {
+    final box = await Hive.openBox<Account>('accounts');
+    return box.values.toList();
+  }
+
+  // 获取选中的账户
+  Account? _getSelectedAccount(Box<Account> box) {
+    return box.values.firstWhere((account) => account.isSelected, orElse: () => Account(displayId: '', title: '', isSelected: false, subtitle: '', subOf: ''));
+  }
+
+  // 更新选中的账户
+  void _selectAccount(Box<Account> box, String displayId) {
+    final accounts = box.values.toList();
+    for (var account in accounts) {
+      final updateAccount = account.copyWith(isSelected: account.displayId == displayId);
+      updateAccount.save();
+    }
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final accounts = ref.watch(accountNotifierProvider).accounts;
-    // 调试 accounts 的内容是否正确
-    print("Accounts: $accounts");
-
     return Card(
       elevation: 4,
       margin: EdgeInsets.zero,
@@ -45,43 +58,58 @@ class PriceInputCard extends ConsumerWidget {
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(width: 10),
+
                 // 账户选择器
-                // 这个选择器目前还有逻辑没有完成，不知道为何总是错的？？？
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: Colors.grey),
-                    ),
-                    child: DropdownButtonHideUnderline(
-                      child: DropdownButton<Account>(
-                        value: ref
-                            .watch(accountNotifierProvider)
-                            .selectedAccount, // 当前选中的账户
-                        onChanged: (Account? newValue) {
-                          // 更新账户
-                          if (newValue != null) {
-                            ref
-                                .read(accountNotifierProvider.notifier)
-                                .selectAccount(newValue.displayId);
-                          }
-                        },
-                        // 这个 item 永远不正确的显示
-                        items: accounts.map<DropdownMenuItem<Account>>((Account account) {
-                          return DropdownMenuItem<Account>(
-                            value: account,
-                            child: Text(
-                              account.title,
-                              style: Theme.of(context).textTheme.titleMedium,
+                FutureBuilder<List<Account>>(
+                  future: _getAccounts(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircularProgressIndicator();
+                    } else if (snapshot.hasError) {
+                      return Text('Error: ${snapshot.error}');
+                    } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                      return Text('No accounts available');
+                    } else {
+                      final accounts = snapshot.data!;
+                      return ValueListenableBuilder(
+                        valueListenable: Hive.box<Account>('accounts').listenable(),
+                        builder: (context, Box<Account> box, _) {
+                          final selectedAccount = _getSelectedAccount(box);
+                          return SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            child: Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                border: Border.all(color: Colors.grey),
+                              ),
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton<Account>(
+                                  value: selectedAccount,
+                                  onChanged: (Account? newValue) {
+                                    if (newValue != null) {
+                                      _selectAccount(box, newValue.displayId);
+                                      print('New Account Is Settled: ${newValue}');
+                                    }
+                                  },
+                                  items: accounts.map<DropdownMenuItem<Account>>((Account account) {
+                                    return DropdownMenuItem<Account>(
+                                      value: account,
+                                      child: Text(
+                                        account.title,
+                                        style: Theme.of(context).textTheme.titleMedium,
+                                      ),
+                                    );
+                                  }).toList(),
+                                  isExpanded: true,
+                                ),
+                              ),
                             ),
                           );
-                        }).toList(),
-                        isExpanded: true,
-                      ),
-                    ),
-                  ),
+                        },
+                      );
+                    }
+                  },
                 ),
                 const SizedBox(width: 20),
                 Expanded(
@@ -103,7 +131,10 @@ class PriceInputCard extends ConsumerWidget {
               ],
             ),
             const SizedBox(height: 5),
+
+            // 数字输入九键键盘
             _buildNumberPad(context),
+
             const SizedBox(height: 5),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -114,17 +145,10 @@ class PriceInputCard extends ConsumerWidget {
                     if (price.isNotEmpty) {
                       // 创建新的 Transaction 对象
                       final transaction = Transaction(
-                        displayId:
-                            'TXN-${DateTime.now().millisecondsSinceEpoch}',
+                        displayId: 'TXN-${DateTime.now().millisecondsSinceEpoch}',
                         timestamp: DateTime.now().toIso8601String(),
-                        // 这里 debit 和 credit 的 account 的问题还没有解决，
-                        // 需要找个方法把 account 和 ebit 连在一起
-                        debit: isIncome
-                            ? Ebit(amount: 0, account: '')
-                            : Ebit(amount: double.parse(price), account: ''),
-                        credit: isIncome
-                            ? Ebit(amount: double.parse(price), account: '')
-                            : Ebit(amount: 0, account: ''),
+                        debit: isIncome ? Ebit(amount: 0, account: '') : Ebit(amount: double.parse(price), account: ''),
+                        credit: isIncome ? Ebit(amount: double.parse(price), account: '') : Ebit(amount: 0, account: ''),
                         abstra: ref.watch(selectedOptionLabelProvider),
                         isIncome: isIncome,
                       );
@@ -137,9 +161,7 @@ class PriceInputCard extends ConsumerWidget {
                       await box.add(transaction);
 
                       // 清除选中的选项标签
-                      ref
-                          .read(selectedOptionLabelProvider.notifier)
-                          .updateLabel(null);
+                      ref.read(selectedOptionLabelProvider.notifier).updateLabel(null);
 
                       // 清除价格输入
                       priceController.clear();
@@ -153,9 +175,7 @@ class PriceInputCard extends ConsumerWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    ref
-                        .read(selectedOptionLabelProvider.notifier)
-                        .updateLabel(null);
+                    ref.read(selectedOptionLabelProvider.notifier).updateLabel(null);
                     priceController.clear();
                   },
                   child: const Text('Cancel'),
@@ -207,8 +227,7 @@ class PriceInputCard extends ConsumerWidget {
     return IconButton(
       onPressed: () {
         if (priceController.text.isNotEmpty) {
-          priceController.text = priceController.text
-              .substring(0, priceController.text.length - 1);
+          priceController.text = priceController.text.substring(0, priceController.text.length - 1);
         }
       },
       icon: const Icon(Icons.backspace, size: 18),

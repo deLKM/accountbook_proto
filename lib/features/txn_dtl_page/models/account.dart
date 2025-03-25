@@ -22,12 +22,17 @@ class Account {
   @HiveField(5)
   final bool? deleted;
 
+  // 这个值不转为 Json 里的 tag，内部保有
+  @HiveField(6)
+  final bool isSelected;
+
   Account({
     this.internalId,
     required this.displayId,
     required this.title,
     required this.subtitle,
     required this.subOf,
+    required this.isSelected,
     this.deleted = false,
   });
 
@@ -38,6 +43,7 @@ class Account {
     String? subtitle,
     String? subOf,
     bool? deleted,
+    bool? isSelected,
   }) {
     return Account(
       internalId: internalId ?? this.internalId,
@@ -46,6 +52,12 @@ class Account {
       subtitle: subtitle ?? this.subtitle,
       subOf: subOf ?? this.subOf,
       deleted: deleted ?? this.deleted,
+      isSelected: isSelected ?? this.isSelected,
     );
+  }
+
+  void save() {
+    final box = Hive.box<Account>('accounts');
+    box.put(displayId, this);
   }
 }

@@ -1,7 +1,6 @@
 // Author: Ching-Yu
 // 还没写完，有关 Account 的数据处理没有想出来该怎么办
 
-import 'package:accountbook_proto/features/txn_dtl_page/providers/account_provider.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../models/transaction.dart';
 import '../../models/ebit.dart';
@@ -105,12 +104,13 @@ class CashPage extends ConsumerWidget {
                       }
 
                       // 创建 Account 对象
-                      final account = ref.read(accountNotifierProvider.notifier).addAccount(
+                      final account = Account(
                         displayId: 'ACC-${DateTime.now().millisecondsSinceEpoch}',
                         title: _titleController.text,
                         subtitle: _subtitleController.text,
                         subOf: '',
                         deleted: false,
+                        isSelected: false,
                       );
                       print('Creating Account object');
 
@@ -144,7 +144,6 @@ class CashPage extends ConsumerWidget {
                       addTransactionToDailyData(ref, transaction);
 
                       // 清空输入
-                      print('Clear input fields');
                       _titleController.clear();
                       _subtitleController.clear();
                       _balanceController.clear();

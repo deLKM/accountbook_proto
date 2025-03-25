@@ -24,7 +24,7 @@ class Account {
 
   // 这个值不转为 Json 里的 tag，内部保有
   @HiveField(6)
-  final bool isSelected;
+  bool isSelected;
 
   Account({
     this.internalId,
@@ -32,7 +32,7 @@ class Account {
     required this.title,
     required this.subtitle,
     required this.subOf,
-    required this.isSelected,
+    this.isSelected = false,
     this.deleted = false,
   });
 

@@ -6,7 +6,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import '../../txn_dtl_page/utils/add_transaction_to_daily_data.dart';
 import '../../txn_dtl_page/models/transaction.dart';
 import '../../txn_dtl_page/models/ebit.dart';
-import '../../txn_dtl_page/models/account.dart';
+import 'account_selector.dart';
 import '../providers/expense_and_income_provider.dart';
 
 class PriceInputCard extends ConsumerWidget {
@@ -18,26 +18,6 @@ class PriceInputCard extends ConsumerWidget {
     required this.priceController,
     required this.isIncome,
   });
-
-  // 获得 HiveBox 里的所有 account
-  Future<List<Account>> _getAccounts() async {
-    final box = await Hive.openBox<Account>('accounts');
-    return box.values.toList();
-  }
-
-  // 获取选中的账户
-  Account? _getSelectedAccount(Box<Account> box) {
-    return box.values.firstWhere((account) => account.isSelected, orElse: () => Account(displayId: '', title: '', isSelected: false, subtitle: '', subOf: ''));
-  }
-
-  // 更新选中的账户
-  void _selectAccount(Box<Account> box, String displayId) {
-    final accounts = box.values.toList();
-    for (var account in accounts) {
-      final updateAccount = account.copyWith(isSelected: account.displayId == displayId);
-      updateAccount.save();
-    }
-  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -60,57 +40,8 @@ class PriceInputCard extends ConsumerWidget {
                 const SizedBox(width: 10),
 
                 // 账户选择器
-                FutureBuilder<List<Account>>(
-                  future: _getAccounts(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return CircularProgressIndicator();
-                    } else if (snapshot.hasError) {
-                      return Text('Error: ${snapshot.error}');
-                    } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                      return Text('No accounts available');
-                    } else {
-                      final accounts = snapshot.data!;
-                      return ValueListenableBuilder(
-                        valueListenable: Hive.box<Account>('accounts').listenable(),
-                        builder: (context, Box<Account> box, _) {
-                          final selectedAccount = _getSelectedAccount(box);
-                          return SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                border: Border.all(color: Colors.grey),
-                              ),
-                              child: DropdownButtonHideUnderline(
-                                child: DropdownButton<Account>(
-                                  value: selectedAccount,
-                                  onChanged: (Account? newValue) {
-                                    if (newValue != null) {
-                                      _selectAccount(box, newValue.displayId);
-                                      print('New Account Is Settled: ${newValue}');
-                                    }
-                                  },
-                                  items: accounts.map<DropdownMenuItem<Account>>((Account account) {
-                                    return DropdownMenuItem<Account>(
-                                      value: account,
-                                      child: Text(
-                                        account.title,
-                                        style: Theme.of(context).textTheme.titleMedium,
-                                      ),
-                                    );
-                                  }).toList(),
-                                  isExpanded: true,
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      );
-                    }
-                  },
-                ),
+                AccountSelector(),
+
                 const SizedBox(width: 20),
                 Expanded(
                   child: SizedBox(

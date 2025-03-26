@@ -3,6 +3,7 @@
 import 'package:accountbook_proto/features/txn_dtl_page/models/daily_data.dart';
 import 'package:accountbook_proto/features/txn_dtl_page/models/daily_data_adapter.dart';
 import 'package:accountbook_proto/features/txn_dtl_page/models/ebit.dart';
+// import 'package:flutter/rendering.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'app/app.dart';
@@ -23,7 +24,10 @@ void main() async {
   await Hive.openBox<Transaction>('transactions'); 
   await Hive.openBox<DailyData>('daily_data'); 
   await Hive.openBox<Ebit>('ebit'); 
-  await Hive.openBox<Account>('account');
+  await Hive.openBox<Account>('accounts');
+
+  // 启用调试绘制
+  // debugPaintSizeEnabled = true;
 
   runApp(ProviderScope(child: MyApp()));
 }

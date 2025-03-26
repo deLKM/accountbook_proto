@@ -16,6 +16,7 @@ class AccountAdapter extends TypeAdapter<Account> {
       subtitle: reader.read(),      // @HiveField(3)
       subOf: reader.read(),         // @HiveField(4)
       deleted: reader.read(),       // @HiveField(5)
+      isSelected: reader.read(),    // @HiveField(6)
     );
   }
 
@@ -27,5 +28,6 @@ class AccountAdapter extends TypeAdapter<Account> {
     writer.write(obj.subtitle);
     writer.write(obj.subOf);
     writer.write(obj.deleted);
+    writer.write(obj.isSelected);
   }
 }

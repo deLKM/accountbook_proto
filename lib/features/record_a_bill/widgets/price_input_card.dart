@@ -28,28 +28,35 @@ class PriceInputCard extends ConsumerWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // 输入框右对齐，宽度为父容器的一半
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.5,
-                  child: TextFormField(
-                    controller: priceController,
-                    readOnly: true,
-                    textAlign: TextAlign.right,
-                    decoration: const InputDecoration(
-                      border: InputBorder.none,
-                      enabledBorder: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      contentPadding: EdgeInsets.only(right: 20),
+                const SizedBox(width: 10),
+
+                const SizedBox(width: 20),
+                Expanded(
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    child: TextFormField(
+                      controller: priceController,
+                      readOnly: true,
+                      textAlign: TextAlign.right,
+                      decoration: const InputDecoration(
+                        border: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                        contentPadding: EdgeInsets.only(right: 20),
+                      ),
                     ),
                   ),
                 ),
               ],
             ),
             const SizedBox(height: 5),
+
+            // 数字输入九键键盘
             _buildNumberPad(context),
+
             const SizedBox(height: 5),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -60,44 +67,28 @@ class PriceInputCard extends ConsumerWidget {
                     if (price.isNotEmpty) {
                       // 创建新的 Transaction 对象
                       final transaction = Transaction(
-                        internalId: '',
-                        displayId:
-                            'TXN-${DateTime.now().millisecondsSinceEpoch}',
+                        displayId: 'TXN-${DateTime.now().millisecondsSinceEpoch}',
                         timestamp: DateTime.now().toIso8601String(),
-                        debit: isIncome
-                            ? Ebit(amount: 0, account: '')
-                            : Ebit(
-                                amount: double.parse(price), account: ''),
-                        credit: isIncome
-                            ? Ebit(amount: double.parse(price), account: '')
-                            : Ebit(amount: 0, account: ''),
+                        debit: isIncome ? Ebit(amount: 0, account: '') : Ebit(amount: double.parse(price), account: ''),
+                        credit: isIncome ? Ebit(amount: double.parse(price), account: '') : Ebit(amount: 0, account: ''),
                         abstra: ref.watch(selectedOptionLabelProvider),
                         isIncome: isIncome,
                       );
 
                       // 将 Transaction 存储到 Hive 中
                       final box = Hive.box<Transaction>('transactions');
+                      await box.add(transaction);
 
-                      // 将 Transaction 转换为 DailyData 后存储到 Hive 中
                       addTransactionToDailyData(ref, transaction);
 
-                      // 调试用，确认 Hive Box 是否开启
-                      print('Box opened: ${box.isOpen}');
-
-                      await box.add(transaction);
-                      // 调试用，确认 Transaction 是否正确存储进 Hive Box
-                      print('Transaction saved: ${transaction.displayId}');
-
                       // 清除选中的选项标签
-                      ref
-                          .read(selectedOptionLabelProvider.notifier)
-                          .updateLabel(null);
+                      ref.read(selectedOptionLabelProvider.notifier).updateLabel(null);
 
                       // 清除价格输入
                       priceController.clear();
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('请输入金额')),
+                        const SnackBar(content: Text('Please Enter The Amount of Money')),
                       );
                     }
                   },
@@ -105,10 +96,7 @@ class PriceInputCard extends ConsumerWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    ref
-                        .read(selectedOptionLabelProvider.notifier)
-                        .updateLabel(null);
-
+                    ref.read(selectedOptionLabelProvider.notifier).updateLabel(null);
                     priceController.clear();
                   },
                   child: const Text('Cancel'),
@@ -160,8 +148,7 @@ class PriceInputCard extends ConsumerWidget {
     return IconButton(
       onPressed: () {
         if (priceController.text.isNotEmpty) {
-          priceController.text = priceController.text
-              .substring(0, priceController.text.length - 1);
+          priceController.text = priceController.text.substring(0, priceController.text.length - 1);
         }
       },
       icon: const Icon(Icons.backspace, size: 18),

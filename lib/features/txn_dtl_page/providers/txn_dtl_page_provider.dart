@@ -50,6 +50,7 @@ List<DailyData> dailyData(ref) {
   return dailyDataList;
 }
 
+// 这里的 assets 和 liabilities 需要后续的跟进配合
 @riverpod
 double assets(ref) {
   return 50000.0;

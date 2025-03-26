@@ -16,7 +16,7 @@ class SocialLogin extends StatelessWidget {
             Expanded(child: Divider()),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 12),
-              child: Text('Other Ways'),
+              child: Text('其他登录方式'),
             ),
             Expanded(child: Divider()),
           ],

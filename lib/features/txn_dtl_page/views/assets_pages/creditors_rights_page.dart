@@ -9,7 +9,7 @@ class CreditorsRightsPages extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(title: Text('Creditor\'s Rights')),
+      appBar: AppBar(title: Text('股权')),
     );
   }
 }

@@ -14,7 +14,7 @@ class RecordPage extends StatefulWidget {
 
 class _RecordPageState extends State<RecordPage> with TickerProviderStateMixin {
   late TabController _tabController;
-  final List<String> _tabs = ['Expense', 'Income', 'Transfer'];
+  final List<String> _tabs = ['支出', '收入', '互转'];
 
   @override
   void initState() {
@@ -42,7 +42,7 @@ class _RecordPageState extends State<RecordPage> with TickerProviderStateMixin {
             decoration: BoxDecoration(
               color: Colors.transparent,
               borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(25), // 顶部圆角
+                top: Radius.circular(25),
               ),
             ),
             child: Padding(
@@ -50,7 +50,7 @@ class _RecordPageState extends State<RecordPage> with TickerProviderStateMixin {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Record',
+                  '记录一笔流水',
                   style: TextStyle(
                     fontSize: 20,
                     color: Theme.of(context).primaryColor,

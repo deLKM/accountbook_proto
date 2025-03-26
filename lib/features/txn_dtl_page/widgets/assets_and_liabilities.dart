@@ -27,7 +27,7 @@ class AssetsAndLiabilities extends StatelessWidget {
                 children: [
                   Icon(Icons.attach_money, color: Colors.amber, size: 20),
                   Text(
-                    'Assets and Liabilities',
+                    '资产与负债',
                     style: Theme.of(context).textTheme.titleLarge
                   ),
                 ],
@@ -38,7 +38,7 @@ class AssetsAndLiabilities extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _buildRow(context, 'Assets: ', totalAssets),
+                      _buildRow(context, '资产：', totalAssets),
                       Text(
                         totalAssets.toStringAsFixed(2),
                         style: Theme.of(context).textTheme.titleSmall,
@@ -63,7 +63,7 @@ class AssetsAndLiabilities extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      _buildRow(context, 'Liabilities: ', totalLiabilities),
+                      _buildRow(context, '负债：', totalLiabilities),
                       Text(
                         totalLiabilities.toStringAsFixed(2),
                         style: Theme.of(context).textTheme.titleSmall,

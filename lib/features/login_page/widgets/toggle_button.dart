@@ -14,10 +14,10 @@ class ToggleButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final activeText = isPasswordLogin ? 'SMS Login' : 'Password Login';
+    final activeText = isPasswordLogin ? '短信验证登录' : '账号密码登录';
     final buttonText = isPasswordLogin 
-        ? 'Switch to SMS Login' 
-        : 'Switch to Password Login';
+        ? '切换至短信验证登录' 
+        : '切换至账号密码登录';
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,

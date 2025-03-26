@@ -3,17 +3,17 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'expense_and_income_provider.g.dart'; // 引入生成的代码
+part 'expense_and_income_provider.g.dart';
 
 @riverpod
 class SelectedOptionLabel extends _$SelectedOptionLabel {
   @override
   String? build() {
-    return null; // 默认值为 null
+    return null; 
   }
 
   void updateLabel(String? label) {
-    state = label; // 更新状态
+    state = label; 
   }
 }
 

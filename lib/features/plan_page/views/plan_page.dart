@@ -13,7 +13,7 @@ class _PlanPageState extends State<PlanPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Plan')),
+      appBar: AppBar(title: Text('计划')),
     );
   }
 }

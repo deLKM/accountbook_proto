@@ -8,7 +8,7 @@ class ChangeAvatarPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Change Avatar')),
+      appBar: AppBar(title: Text('更改头像')),
     );
   }
 }

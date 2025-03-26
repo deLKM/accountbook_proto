@@ -39,7 +39,7 @@ class ForgotPwdPage extends ConsumerWidget {
 
               // 提示文字
               Text(
-                'Please enter your phone number to reset your password.',
+                '请输入您的手机号',
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.labelLarge,
               ),
@@ -65,7 +65,7 @@ class ForgotPwdPage extends ConsumerWidget {
               PasswordField(
                 controller: newPasswordController,
                 width: screenWidth * 0.8,
-                hintText: 'New Password',
+                hintText: '新密码',
               ),
               const SizedBox(height: 40),
 
@@ -73,7 +73,7 @@ class ForgotPwdPage extends ConsumerWidget {
               PasswordField(
                 controller: confirmPasswordController,
                 width: screenWidth * 0.8,
-                hintText: 'Confirm New Password',
+                hintText: '重复新密码',
               ),
               const SizedBox(height: 40),
 
@@ -87,7 +87,7 @@ class ForgotPwdPage extends ConsumerWidget {
                   newPasswordController.text,
                   confirmPasswordController.text,
                 ),
-                buttonText: 'Reset Password',
+                buttonText: '重置密码',
               ),
               const SizedBox(height: 40),
             ],

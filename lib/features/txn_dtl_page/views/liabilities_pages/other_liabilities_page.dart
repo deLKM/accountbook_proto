@@ -9,7 +9,7 @@ class OtherLiabilitiesPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(title: Text('Other Liabilities')),
+      appBar: AppBar(title: Text('其他负债')),
     );  
   }
 }

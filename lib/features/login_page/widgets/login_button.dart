@@ -14,7 +14,7 @@ class LoginButton extends StatelessWidget {
     super.key,
     required this.isLoading,
     required this.onPressed,
-    this.buttonText = 'Log In',
+    this.buttonText = '登录',
     this.width = 150,
     this.progressColor = Colors.white,
     this.padding = const EdgeInsets.symmetric(vertical: 16),

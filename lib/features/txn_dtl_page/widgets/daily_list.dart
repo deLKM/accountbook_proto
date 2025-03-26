@@ -36,9 +36,9 @@ class _DailyListPageState extends State<DailyListPage> with SingleTickerProvider
     setState(() {
       _isExpanded = !_isExpanded;
       if (_isExpanded) {
-        _controller.reverse(); // 展开
+        _controller.reverse();
       } else {
-        _controller.forward(); // 收起
+        _controller.forward();
       }
     });
   }

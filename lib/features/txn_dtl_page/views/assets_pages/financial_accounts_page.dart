@@ -9,7 +9,7 @@ class FinancialAccountsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(title: Text('Financial Accounts')),
+      appBar: AppBar(title: Text('金融账户')),
     );
   }
 }

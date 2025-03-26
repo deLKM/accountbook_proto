@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import '../../record_a_bill/views/record_a_bill_page.dart';
 
-part 'fa_button_provider.g.dart'; // 生成的文件
+part 'fa_button_provider.g.dart'; 
 
 @riverpod
 Widget recordPage(ref) {

@@ -16,7 +16,7 @@ class ProfilePage extends ConsumerWidget {
     final profileNotifier = ref.read(profileNotifierProvider.notifier);
 
     return Scaffold(
-      appBar: AppBar(title: Text('Profile')),
+      appBar: AppBar(title: Text('我的')),
       body: CustomScrollView(
         slivers: [
           SliverAppBar(

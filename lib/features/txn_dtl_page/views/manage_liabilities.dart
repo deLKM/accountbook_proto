@@ -10,34 +10,34 @@ class ManageLiabilitiesPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Manage Liabilities')),
+      appBar: AppBar(title: const Text('管理负债')),
       body: Column(
         children: [
           // 信用卡
           AALButton(
             onPressed: () => Navigator.pushNamed(context, '/credit_cards'),
-            labeltext: 'Credit Cards',
+            labeltext: '信用卡',
           ),
           const SizedBox(height: 30),
 
           // 网贷
           AALButton(
             onPressed: () => Navigator.pushNamed(context, '/online_loans'),
-            labeltext: 'Online Loans',
+            labeltext: '网贷',
           ),
           const SizedBox(height: 30),
 
           // 债务
           AALButton(
             onPressed: () => Navigator.pushNamed(context, '/debts'),
-            labeltext: 'Debts',
+            labeltext: '欠款',
           ),
           const SizedBox(height: 30),
 
           // 其他负债
           AALButton(
             onPressed: () => Navigator.pushNamed(context, '/other_liabilities'),
-            labeltext: 'Other Liabilities',
+            labeltext: '其他负债',
           ),
           const SizedBox(height: 30),
         ],

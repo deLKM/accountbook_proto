@@ -28,7 +28,7 @@ class LoginPage extends ConsumerWidget {
     var screenWidth = screenSize.width;
 
     return Scaffold(
-      appBar: AppBar(title: Text('Login')),
+      appBar: AppBar(title: Text('登录')),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Form(
@@ -59,7 +59,7 @@ class LoginPage extends ConsumerWidget {
                   ? PasswordField(
                       controller: passwordController,
                       width: screenWidth * 0.8,
-                      hintText: 'Password',
+                      hintText: '密码',
                     )
                   : CodeField(
                       codeController: codeController,

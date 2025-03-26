@@ -46,7 +46,7 @@ class CaptchaNotifier extends _$CaptchaNotifier {
     if (state.countdown > 0 || state.isLoading) return;
 
     if (phoneNumber.isEmpty) {
-      state = state.copyWith(error: 'Phone number is required');
+      state = state.copyWith(error: '需要填写手机号');
       return;
     }
 

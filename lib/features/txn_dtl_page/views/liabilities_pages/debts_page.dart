@@ -9,7 +9,7 @@ class DebtsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(title: Text('Debts')),
+      appBar: AppBar(title: Text('欠款')),
     );  
   }
 }

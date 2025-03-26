@@ -9,7 +9,7 @@ class VirtualAccountsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(title: Text('Virtual Accounts')),
+      appBar: AppBar(title: Text('虚拟账户')),
     );  
   }
 }

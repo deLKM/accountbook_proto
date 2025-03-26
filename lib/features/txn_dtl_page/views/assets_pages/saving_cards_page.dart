@@ -9,7 +9,7 @@ class SavingCardsPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(title: Text('Saving Cards')),
+      appBar: AppBar(title: Text('储蓄卡')),
     );  
   }
 }

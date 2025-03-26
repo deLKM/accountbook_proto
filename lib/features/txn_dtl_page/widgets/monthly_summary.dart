@@ -23,7 +23,7 @@ class MonthlySummary extends StatelessWidget {
           child: Row(
             children: [
               StatItem(
-                label: 'Balance',
+                label: '余额',
                 value: monthData.income - monthData.expense,
               ),
             ],

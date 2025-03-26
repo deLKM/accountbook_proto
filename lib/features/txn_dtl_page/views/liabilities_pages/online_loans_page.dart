@@ -9,7 +9,7 @@ class OnlineLoansPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(title: Text('Online Loans')),
+      appBar: AppBar(title: Text('网贷')),
     );  
   }
 }

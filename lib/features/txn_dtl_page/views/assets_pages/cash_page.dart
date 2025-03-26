@@ -19,7 +19,7 @@ class CashPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Cash')),
+      appBar: AppBar(title: const Text('现金')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -29,7 +29,7 @@ class CashPage extends ConsumerWidget {
             Row(
               children: [
                 Text(
-                  'Title:', 
+                  '账户名：', 
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(width: 16),
@@ -49,7 +49,7 @@ class CashPage extends ConsumerWidget {
             Row(
               children: [
                 Text(
-                  'Subtitle:', 
+                  '账户备注：', 
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(width: 16),
@@ -72,7 +72,7 @@ class CashPage extends ConsumerWidget {
                 Row(
                   children: [
                     Text(
-                      'Balance:', 
+                      '账户余额：', 
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                     const SizedBox(width: 16),
@@ -98,7 +98,7 @@ class CashPage extends ConsumerWidget {
                           _subtitleController.text.isEmpty || 
                           _balanceController.text.isEmpty) {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Please fill all fields.')),
+                          const SnackBar(content: Text('请将所有信息填写完整')),
                         );
                         return;
                       }
@@ -148,9 +148,7 @@ class CashPage extends ConsumerWidget {
                       _subtitleController.clear();
                       _balanceController.clear();
                     }, 
-                    child: Text(
-                      'Save'
-                    ),
+                    child: Text('保存'),
                   ),
                 ),
               ],

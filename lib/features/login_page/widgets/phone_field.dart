@@ -22,13 +22,13 @@ class PhoneField extends StatelessWidget {
         child: TextFormField(
           controller: _phoneController,
           decoration: InputDecoration(
-            labelText: 'Phone Number',
+            labelText: '手机号',
             prefixIcon: const Icon(Icons.phone_iphone_rounded),
-            hintText: 'Please enter your 11-digit phone number',
+            hintText: '请输入11位手机号',
           ),
           validator: (value) {
-            if (value?.isEmpty ?? true) return 'Please enter your phone number';
-            if (!RegExp(r'^1[3-9]\d{9}$').hasMatch(value!)) return 'Wrong format';
+            if (value?.isEmpty ?? true) return '请输入您的手机号码';
+            if (!RegExp(r'^1[3-9]\d{9}$').hasMatch(value!)) return '手机号格式错误';
             return null;
           },
         ),

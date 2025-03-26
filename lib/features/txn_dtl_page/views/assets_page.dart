@@ -13,7 +13,7 @@ class AssetsPage extends ConsumerWidget {
     final assets = ref.watch(assetsProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text('Assets')),
+      appBar: AppBar(title: Text('资产')),
       body: Card(
         margin: const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
         elevation: 0,
@@ -25,7 +25,7 @@ class AssetsPage extends ConsumerWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Assets', style: Theme.of(context).textTheme.titleLarge),
+                  Text('资产', style: Theme.of(context).textTheme.titleLarge),
                   Text(
                     assets.toStringAsFixed(2),
                     style: Theme.of(context).textTheme.titleLarge,
@@ -35,7 +35,7 @@ class AssetsPage extends ConsumerWidget {
               Divider(),
               const SizedBox(height: 40),
               AddButton(
-                text: 'Add An Asset',
+                text: '添加资产',
                 onPressed: () => Navigator.pushNamed(context, '/manage_assets'),
               ),
             ],

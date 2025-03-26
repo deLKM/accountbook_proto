@@ -40,8 +40,8 @@ class PasswordField extends ConsumerWidget {
             ),
           ),
           validator: (value) {
-            if (value?.isEmpty ?? true) return 'Please enter your Password';
-            if (value!.length < 6) return 'At least 6-digit Password is needed';
+            if (value?.isEmpty ?? true) return '请输入你的密码';
+            if (value!.length < 6) return '密码需要至少6位数字';
             return null;
           },
         ),

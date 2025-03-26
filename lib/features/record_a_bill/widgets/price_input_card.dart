@@ -88,18 +88,18 @@ class PriceInputCard extends ConsumerWidget {
                       priceController.clear();
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Please Enter The Amount of Money')),
+                        const SnackBar(content: Text('请输入具体金额')),
                       );
                     }
                   },
-                  child: const Text('Confirm'),
+                  child: const Text('确认'),
                 ),
                 ElevatedButton(
                   onPressed: () {
                     ref.read(selectedOptionLabelProvider.notifier).updateLabel(null);
                     priceController.clear();
                   },
-                  child: const Text('Cancel'),
+                  child: const Text('取消'),
                 ),
               ],
             ),

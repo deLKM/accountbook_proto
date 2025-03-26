@@ -30,6 +30,7 @@ class ProfileHeader extends StatelessWidget {
           ),
         ),
         SizedBox(height: 16),
+        
         // Username
         Text(
           username,

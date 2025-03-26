@@ -27,10 +27,10 @@ class ExpenseTab extends ConsumerWidget {
               FoodOptions(
                 title: 'Basic',
                 foodOptions: [
-                  {'icon': Icons.breakfast_dining, 'label': 'Breakfast'},
-                  {'icon': Icons.lunch_dining, 'label': 'Lunch'},
-                  {'icon': Icons.dinner_dining, 'label': 'Dinner'},
-                  {'icon': Icons.food_bank, 'label': 'Snacks'},
+                  {'icon': Icons.breakfast_dining, 'label': '早餐'},
+                  {'icon': Icons.lunch_dining, 'label': '午餐'},
+                  {'icon': Icons.dinner_dining, 'label': '晚餐'},
+                  {'icon': Icons.food_bank, 'label': '加餐'},
                 ],
                 onOptionSelected: (label) {
                   ref.read(selectedOptionLabelProvider.notifier).updateLabel(label); 
@@ -41,10 +41,10 @@ class ExpenseTab extends ConsumerWidget {
               FoodOptions(
                 title: 'Transport',
                 foodOptions: [
-                  {'icon': Icons.local_taxi, 'label': 'Taxi'},
-                  {'icon': Icons.subway, 'label': 'Subway'},
-                  {'icon': Icons.bus_alert_outlined, 'label': 'Bus'},
-                  {'icon': Icons.emoji_transportation, 'label': 'Others'},
+                  {'icon': Icons.local_taxi, 'label': '出租车'},
+                  {'icon': Icons.subway, 'label': '地铁'},
+                  {'icon': Icons.bus_alert_outlined, 'label': '公交车'},
+                  {'icon': Icons.emoji_transportation, 'label': '其他'},
                 ],
                 onOptionSelected: (label) {
                   ref.read(selectedOptionLabelProvider.notifier).updateLabel(label); 

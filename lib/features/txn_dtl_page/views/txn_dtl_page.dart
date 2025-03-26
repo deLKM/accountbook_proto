@@ -21,7 +21,7 @@ class TxnDtlPage extends ConsumerWidget {
     final liabilities = ref.watch(liabilitiesProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text('Transaction Detail')),
+      appBar: AppBar(title: Text('明细')),
       body: Stack(
         children: [
           CustomScrollView(

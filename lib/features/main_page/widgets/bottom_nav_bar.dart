@@ -29,10 +29,10 @@ class CustomBottomNavBar extends StatelessWidget {
       selectedFontSize: fontSize,
       unselectedFontSize: fontSize,
       items: [
-      _buildNavItem(context, Icons.home, 0, 'HOME'),
-      _buildNavItem(context, Icons.list, 1, 'Plan'),
-      _buildNavItem(context, Icons.pie_chart, 2, 'STATISTIC'),
-      _buildNavItem(context, Icons.person, 3, 'PROFILE'),
+      _buildNavItem(context, Icons.home, 0, '明细'),
+      _buildNavItem(context, Icons.list, 1, '计划'),
+      _buildNavItem(context, Icons.pie_chart, 2, '统计'),
+      _buildNavItem(context, Icons.person, 3, '我的'),
       ],
     );
   }

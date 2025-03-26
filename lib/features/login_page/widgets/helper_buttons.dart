@@ -20,7 +20,7 @@ class HelperButtons extends StatelessWidget {
             foregroundColor: Theme.of(context).primaryColor,
           ),
           child: Text(
-            'Sign Up',
+            '注册',
           ),
         ),
         TextButton(
@@ -30,7 +30,7 @@ class HelperButtons extends StatelessWidget {
           style: TextButton.styleFrom(
             foregroundColor: Theme.of(context).primaryColor,
           ),
-          child: const Text('Forgot your Password?'),
+          child: const Text('忘记你的密码？'),
         ),
       ],
     );

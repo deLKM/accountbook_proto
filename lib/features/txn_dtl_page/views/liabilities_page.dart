@@ -13,7 +13,7 @@ class LiabilitiesPage extends ConsumerWidget {
     final liabilities = ref.watch(liabilitiesProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text('Assets')),
+      appBar: AppBar(title: Text('负债')),
       body: Card(
         margin: const EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
         elevation: 0,
@@ -26,7 +26,7 @@ class LiabilitiesPage extends ConsumerWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'Liabilities',
+                    '负债',
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   Text(
@@ -38,7 +38,7 @@ class LiabilitiesPage extends ConsumerWidget {
               Divider(),
               const SizedBox(height: 40),
               AddButton(
-                text: 'Add A Liability',
+                text: '添加负债',
                 onPressed: () => Navigator.pushNamed(context, '/manage_liabilities')
               ),
             ],

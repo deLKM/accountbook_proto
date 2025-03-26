@@ -38,13 +38,13 @@ class CodeField extends ConsumerWidget {
               child: TextFormField(
                 controller: codeController,
                 decoration: InputDecoration(
-                  labelText: 'CAPTCHA',
+                  labelText: '验证码',
                   prefixIcon: const Icon(Icons.sms_rounded),
-                  hintText: 'Please enter 6-digit CAPTCHA',
+                  hintText: '请输入6位验证码',
                 ),
                 validator: (value) {
-                  if (value?.isEmpty ?? true) return 'Please enter the CAPTCHA';
-                  if (value!.length != 6) return 'At least 6-digit CAPTCHA is needed';
+                  if (value?.isEmpty ?? true) return '请输入验证码';
+                  if (value!.length != 6) return '请输入6位验证码';
                   return null;
                 },
               ),
@@ -62,8 +62,8 @@ class CodeField extends ConsumerWidget {
                     )
                   : Text(
                       state.countdown > 0
-                          ? 'Retry (${state.countdown}s)'
-                          : 'Get CAPTCHA',
+                          ? '${state.countdown}s 后重试'
+                          : '获取验证码',
                     ),
             ),
           ],

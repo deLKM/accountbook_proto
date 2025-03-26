@@ -18,14 +18,12 @@ class AccountSelector extends ConsumerWidget {
   Account? _getSelectedAccount(Box<Account> box) {
     try {
       return box.values.firstWhere((account) => account.isSelected);
-    } catch(e) {
+    } catch (e) {
       return null;
     }
   }
 
   // 更新选中的账户
-  // 现在有个问题，第一次选中的 Account，
-  // 它的 isSelected 会一直是 true，就会报错
   void _selectAccount(Box<Account> box, String displayId) {
     final accounts = box.values.toList();
     for (var account in accounts) {
@@ -64,7 +62,10 @@ class AccountSelector extends ConsumerWidget {
                   ),
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton<Account>(
-                      value: selectedAccount,
+                      value: selectedAccount != null &&
+                              accounts.contains(selectedAccount)
+                          ? selectedAccount
+                          : null,
                       onChanged: (Account? newValue) {
                         if (newValue != null) {
                           _selectAccount(box, newValue.displayId);

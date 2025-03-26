@@ -98,7 +98,7 @@ class PriceInputCard extends ConsumerWidget {
                       priceController.clear();
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('请输入金额')),
+                        const SnackBar(content: Text('Please Enter The Amount of Money')),
                       );
                     }
                   },

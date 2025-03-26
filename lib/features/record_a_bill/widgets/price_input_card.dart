@@ -6,7 +6,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 import '../../txn_dtl_page/utils/add_transaction_to_daily_data.dart';
 import '../../txn_dtl_page/models/transaction.dart';
 import '../../txn_dtl_page/models/ebit.dart';
-import 'account_selector.dart';
 import '../providers/expense_and_income_provider.dart';
 
 class PriceInputCard extends ConsumerWidget {
@@ -38,9 +37,6 @@ class PriceInputCard extends ConsumerWidget {
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(width: 10),
-
-                // 账户选择器
-                AccountSelector(),
 
                 const SizedBox(width: 20),
                 Expanded(
@@ -86,10 +82,9 @@ class PriceInputCard extends ConsumerWidget {
 
                       // 将 Transaction 存储到 Hive 中
                       final box = Hive.box<Transaction>('transactions');
+                      await box.add(transaction);
 
                       addTransactionToDailyData(ref, transaction);
-
-                      await box.add(transaction);
 
                       // 清除选中的选项标签
                       ref.read(selectedOptionLabelProvider.notifier).updateLabel(null);

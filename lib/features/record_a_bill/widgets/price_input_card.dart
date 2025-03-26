@@ -32,11 +32,6 @@ class PriceInputCard extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const SizedBox(width: 10),
-                Text(
-                  'Account:',
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                const SizedBox(width: 10),
 
                 const SizedBox(width: 20),
                 Expanded(
